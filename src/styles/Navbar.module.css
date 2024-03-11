@@ -1,0 +1,24 @@
+.navbar_container {
+	border: 1px dotted black;
+
+	height: 7vh;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 0 3rem;
+}
+
+.logo {
+	font-size: large;
+	font-weight: bolder;
+}
+
+.Navbar_menu_items menu {
+	display: flex;
+}
+
+.Navbar_menu_items menu li {
+	padding-right: 1rem;
+}

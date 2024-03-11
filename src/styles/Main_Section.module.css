@@ -1,0 +1,70 @@
+.hero_container {
+	/* border: 2px dotted red; */
+
+	background-image: url("../assets/hero_img_2.jpg");
+	background-position: left;
+	object-fit: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 43vh;
+
+	width: 100vw;
+
+	display: flex;
+	justify-content: center;
+	align-items: end;
+}
+
+.hero_img_container {
+	/* border: 1px dotted red; */
+
+	/* background-image: url("../assets/hero_img_2.jpg");
+	background-position: left;
+	object-fit: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 43vh;
+
+	width: 100vw; */
+}
+
+.services_container {
+	border: 2px dotted blue;
+}
+
+.tracker_container {
+	/* border: 2px dotted red; */
+
+	width: 25rem;
+	height: 10rem;
+
+	margin-bottom: 3rem;
+
+	/* From https://css.glass */
+	background: rgba(90, 104, 160, 0.2);
+	border-radius: 10px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(13.4px);
+	-webkit-backdrop-filter: blur(13.4px);
+	/* border: 1px solid rgba(83, 114, 232, 0.3); */
+}
+
+.tracker_form {
+	padding-top: 1.5rem;
+	padding-left: 1rem;
+	height: 100%;
+}
+
+.tracker_form_label h1 {
+	/* border: 1px dotted red; */
+	padding-bottom: 0.75rem;
+}
+
+.tracker_form_input {
+	width: 75%;
+	height: 2.5rem;
+	padding: 0 0.5rem;
+	font-size: large;
+	border-radius: 7px;
+	border: none;
+}
