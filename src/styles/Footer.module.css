@@ -1,5 +1,34 @@
-.footer_container {
+.footer_container_1 {
 	border: 1px dotted blue;
 
 	height: 35vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 2rem;
+	color: rgb(5, 52, 119);
+}
+
+.footer_container_2 {
+	border: 1px dotted blue;
+
+	height: 15vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	flex-direction: column;
+
+	font-size: 2rem;
+	color: rgb(5, 52, 119);
+}
+
+.footer_2_h1 {
+	font-size: 1rem;
+	color: rgb(5, 52, 119);
+
+	text-align: end;
 }

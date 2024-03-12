@@ -11,8 +11,8 @@
 	width: 100vw;
 
 	display: flex;
-	justify-content: center;
-	align-items: end;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 .hero_img_container {
@@ -29,7 +29,17 @@
 }
 
 .services_container {
-	border: 2px dotted blue;
+	/* border: 2px dotted blue; */
+	height: 70vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.services_container h1 {
+	font-size: 4rem;
+	color: rgb(5, 52, 119);
 }
 
 .tracker_container {
@@ -38,33 +48,49 @@
 	width: 25rem;
 	height: 10rem;
 
-	margin-bottom: 3rem;
+	margin-bottom: 2rem;
+	margin-left: 2rem;
 
 	/* From https://css.glass */
 	background: rgba(90, 104, 160, 0.2);
 	border-radius: 10px;
-	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(13.4px);
 	-webkit-backdrop-filter: blur(13.4px);
 	/* border: 1px solid rgba(83, 114, 232, 0.3); */
 }
 
 .tracker_form {
-	padding-top: 1.5rem;
+	padding-top: 1rem;
 	padding-left: 1rem;
 	height: 100%;
+
+	position: relative;
 }
 
 .tracker_form_label h1 {
 	/* border: 1px dotted red; */
-	padding-bottom: 0.75rem;
+	padding-bottom: 1rem;
+	font-size: 1.5rem;
+	font-weight: bolder;
+	color: rgb(5, 52, 119);
 }
 
 .tracker_form_input {
-	width: 75%;
+	width: 95%;
 	height: 2.5rem;
 	padding: 0 0.5rem;
 	font-size: large;
 	border-radius: 7px;
 	border: none;
+}
+
+.search_icons {
+	cursor: pointer;
+	position: absolute;
+
+	font-size: 2rem;
+	color: rgb(5, 52, 119);
+	top: 65px;
+	right: 20px;
 }

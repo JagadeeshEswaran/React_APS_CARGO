@@ -6,14 +6,18 @@ const Navbar = () => {
 	return (
 		<>
 			<section className={styles.navbar_container}>
-				<article className={styles.logo}>APS_LOGO</article>
+				<article className={styles.logo}>
+					<a href="/">APS_CARGO</a>
+				</article>
 
 				<article className={styles.Navbar_menu_items}>
 					<menu>
-						<li>NavLinks_Menu_1</li>
-						<li>NavLinks_Menu_2</li>
-						<li>NavLinks_Menu_3</li>
-						<li>NavLinks_Menu_4</li>
+						<li style={{ textDecoration: "none" }}>
+							<a href="/tracking">Track</a>
+						</li>
+						<li>Link_2</li>
+						<li>Link_3</li>
+						<li>Link_4</li>
 					</menu>
 				</article>
 

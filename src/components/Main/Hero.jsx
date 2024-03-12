@@ -12,6 +12,7 @@ const Hero = () => {
 				</article>
 
 				<article className={styles.tracker_container}>
+					{/* <article className={styles.tracker_container_2}> */}
 					<Tracker />
 				</article>
 			</section>

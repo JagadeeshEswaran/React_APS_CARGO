@@ -3,16 +3,16 @@ import React from "react";
 
 import styles from "../../styles/Main_Section.module.css";
 
-const Services = () => {
+const Customers = () => {
 	return (
 		<>
 			<section>
 				<article className={styles.services_container}>
-					<h1>Services</h1>
+					<h1>Customers</h1>
 				</article>
 			</section>
 		</>
 	);
 };
 
-export default Services;
+export default Customers;
