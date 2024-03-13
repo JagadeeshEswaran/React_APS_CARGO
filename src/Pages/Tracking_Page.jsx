@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import styles from "../styles/Tracking_page.module.css";
-import { tracking_data } from "../../../Server/data";
+import { tracking_data } from "../data/consignment_data";
 
 const Tracking_Page = () => {
 	const [new_tracking_data, setTracking_data] = useState(tracking_data);
@@ -10,11 +10,11 @@ const Tracking_Page = () => {
 	const [consignment_data, setConsignmentData] = useState();
 	const [showAllTrackingUpdates, setShowAllTrackingUpdates] = useState(false);
 	let [idFromURL, setIdFromURL] = useState();
-	const [errorMsg, setErrorMsg] = useState();
+	const [errorMsg, setErrorMsg] = useState(false);
 
 	const handleConsignmentData = (id) => {
-		if (!id) {
-			setErrorMsg("Please Enter a Valid Tracking ID");
+		if (!id || id > 10) {
+			setErrorMsg(true);
 
 			setTimeout(() => {
 				setErrorMsg("");
@@ -89,17 +89,73 @@ const Tracking_Page = () => {
 					</button>
 				</article>
 
-				{errorMsg ? <p>{errorMsg}</p> : null}
+				{errorMsg ? (
+					<p>Please Enter a Valid Tracking ID</p>
+				) : (
+					consignment_data?.map((item) => (
+						<section key={item.id} className={styles.tracking_data_container}>
+							<article className={styles.tracking_data}>
+								<div>
+									<div style={{ paddingBottom: "0.5rem" }}>
+										Tracking ID : {consignment_data[0]?.id}
+									</div>
+									<div style={{ paddingBottom: "0.5rem" }}>
+										Shipment Handled By : {consignment_data[0]?.vendor}
+									</div>
 
-				{consignment_data?.map((item) => (
+									<div style={{ paddingBottom: "0.5rem" }}>
+										Weight : {consignment_data[0]?.net_weight} Kg
+									</div>
+									<div style={{ paddingBottom: "0.5rem" }}>
+										Consignment Type : {consignment_data[0]?.consignment_type}
+									</div>
+								</div>
+
+								<div className={styles.print_POD_Btn}>
+									<button>Print POD</button>
+								</div>
+							</article>
+
+							<article className={styles.curr_status_container}>
+								<div>
+									<p>
+										Source : <span>{item.origin}</span>
+									</p>
+									<p>
+										Destination :{" "}
+										<span style={{ color: "green" }}>{item.destination}</span>
+									</p>
+								</div>
+
+								<p>
+									Current Status : <span>{item.curr_location}</span>
+								</p>
+								<button onClick={handleShowAllUpdates}>
+									{!showAllTrackingUpdates
+										? "Show All Updates"
+										: "Hide All Updates"}
+								</button>
+							</article>
+						</section>
+					))
+				)}
+
+				{/* {consignment_data?.map((item) => (
 					<section key={item.id} className={styles.tracking_data_container}>
 						<article className={styles.tracking_data}>
 							<div>
 								<div style={{ paddingBottom: "0.5rem" }}>
 									Tracking ID : {consignment_data[0]?.id}
 								</div>
-								<div style={{ paddingBottom: "0.5rem 0" }}>
+								<div style={{ paddingBottom: "0.5rem" }}>
 									Shipment Handled By : {consignment_data[0]?.vendor}
+								</div>
+
+								<div style={{ paddingBottom: "0.5rem" }}>
+									Weight : {consignment_data[0]?.net_weight} Kg
+								</div>
+								<div style={{ paddingBottom: "0.5rem" }}>
+									Consignment Type : {consignment_data[0]?.consignment_type}
 								</div>
 							</div>
 
@@ -109,6 +165,16 @@ const Tracking_Page = () => {
 						</article>
 
 						<article className={styles.curr_status_container}>
+							<div>
+								<p>
+									Source : <span>{item.origin}</span>
+								</p>
+								<p>
+									Destination :{" "}
+									<span style={{ color: "green" }}>{item.destination}</span>
+								</p>
+							</div>
+
 							<p>
 								Current Status : <span>{item.curr_location}</span>
 							</p>
@@ -119,7 +185,7 @@ const Tracking_Page = () => {
 							</button>
 						</article>
 					</section>
-				))}
+				))} */}
 
 				{showAllTrackingUpdates ? (
 					<section className={styles.all_updates_container}>
