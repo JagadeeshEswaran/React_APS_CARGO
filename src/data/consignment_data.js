@@ -75,10 +75,6 @@ export const tracking_data = [
 				date: "12-03-2024",
 				status: "out-for-delivery",
 			},
-			{
-				date: "12-03-2024",
-				status: "delivered",
-			},
 		],
 		curr_location: "out-for-delivery",
 		vendor: "APS_Cargo",
