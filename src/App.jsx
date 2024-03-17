@@ -6,6 +6,10 @@ import Main_Section from "./components/Main/Main_Section";
 import Footer from "./components/Footer/Footer";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Tracking_Page from "./Pages/Tracking_Page";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import { ToastContainer, Flip } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
 	{
@@ -24,6 +28,14 @@ const router = createBrowserRouter([
 		path: "/tracking",
 		element: <Tracking_Page />,
 	},
+	{
+		path: "/admin/login",
+		element: <Login />,
+	},
+	{
+		path: "/admin/register",
+		element: <Register />,
+	},
 ]);
 
 const App = () => {
@@ -32,6 +44,8 @@ const App = () => {
 			<Navbar />
 
 			<RouterProvider router={router} />
+
+			<ToastContainer />
 
 			<Footer />
 		</>
