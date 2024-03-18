@@ -75,6 +75,8 @@ const Register = () => {
 					progress: undefined,
 					theme: "light",
 				});
+
+				setUserData({ username: "", password: "", c_password: "" });
 			}
 		} catch (error) {
 			console.log(error.response.data.msg);
@@ -108,6 +110,7 @@ const Register = () => {
 						<input
 							type="text"
 							placeholder="Type your desired Username"
+							value={userData.username}
 							onChange={(e) =>
 								setUserData({ ...userData, username: e.target.value })
 							}
@@ -119,6 +122,7 @@ const Register = () => {
 						<input
 							type="password"
 							placeholder="Please create a safe password"
+							value={userData.password}
 							onChange={(e) =>
 								setUserData({ ...userData, password: e.target.value })
 							}
@@ -130,6 +134,7 @@ const Register = () => {
 						<input
 							type="password"
 							placeholder="Please repeat password"
+							value={userData.c_password}
 							onChange={(e) =>
 								setUserData({ ...userData, c_password: e.target.value })
 							}
@@ -139,11 +144,22 @@ const Register = () => {
 							<button>Register</button>
 							<button>Cancel</button>
 						</article>
+
+						<article className={styles.alert_subtle_container}>
+							<p className={styles.alert_subtle_2}>
+								Already have an Account, Click hear to{" "}
+								<span>
+									<a href="/admin/login">Login</a>
+								</span>
+							</p>
+						</article>
 					</form>
 
-					<p className={styles.alert_subtle}>
-						<span>* </span>Please contact Admin, if unable to Register
-					</p>
+					<article className={styles.alert_subtle_container_2}>
+						<p className={styles.alert_subtle_1}>
+							<span>* </span>Please contact Admin, if unable to Register
+						</p>
+					</article>
 				</article>
 			</section>
 		</>

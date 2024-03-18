@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import styles from "../styles/Login.module.css";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 	const [userData, setUserData] = useState({
@@ -11,6 +12,7 @@ const Login = () => {
 		password: "",
 	});
 	const [errorMsg, setErrorMsg] = useState("");
+	const navigate = useNavigate();
 
 	const handleLogin = (e) => {
 		e.preventDefault();
@@ -65,6 +67,8 @@ const Login = () => {
 			if (response.data.success) {
 				console.log(response.data.msg);
 
+				navigate("/admin/staff_page");
+
 				toast.success(`${response.data.msg}`, {
 					position: "bottom-right",
 					autoClose: 5000,
@@ -117,7 +121,7 @@ const Login = () => {
 							Password <span>*</span> :{" "}
 						</label>
 						<input
-							type="text"
+							type="password"
 							placeholder="Enter your password"
 							onChange={(e) =>
 								setUserData({ ...userData, password: e.target.value })
@@ -128,11 +132,20 @@ const Login = () => {
 							<button>Login </button>
 							<button>Cancel</button>
 						</article>
+
+						<article className={styles.alert_subtle_container}>
+							<p className={styles.alert_subtle_2}>
+								If not Registered, Click hear to{" "}
+								<span>
+									<a href="/admin/register">Register</a>
+								</span>
+							</p>
+						</article>
 					</form>
 				</article>
 
 				<article>
-					<p className={styles.alert_subtle}>
+					<p className={styles.alert_subtle_1}>
 						<span>* </span>Please contact Admin, if unable to Login
 					</p>
 				</article>

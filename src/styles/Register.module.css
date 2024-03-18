@@ -6,7 +6,7 @@
 }
 
 .sign_up_form_container {
-	height: 30rem;
+	height: 33rem;
 	width: 30rem;
 
 	margin: 5rem 10rem 5rem 0;
@@ -20,7 +20,7 @@
 .signUp_form {
 	display: flex;
 	flex-direction: column;
-	padding: 2rem 2rem;
+	padding: 2rem 2rem 0 2rem;
 }
 
 .signUp_form h2 {
@@ -111,7 +111,39 @@
 	transition: 0.5s ease-in-out;
 }
 
-.alert_subtle {
+.alert_subtle_container {
+	/* border: 1px dotted blue; */
+	margin-top: 1rem;
+	padding: 1rem 0;
+}
+
+.alert_subtle_2 span a {
+	cursor: pointer;
+	font-weight: bold;
+	text-decoration: none;
+	color: rgb(248, 63, 63);
+
+	transition: 0.5s ease-in-out;
+}
+
+.alert_subtle_2 span a:hover {
+	text-decoration: none;
+	color: rgb(248, 63, 63);
+	/* color: inherit; */
+	border-bottom: 1px solid crimson;
+}
+
+.alert_subtle_container_2 {
+	width: 100%;
+	color: rgb(248, 63, 63);
+	margin-top: 1rem;
+
+	/* border: 1px dotted blue; */
+}
+/* 
+.alert_subtle_1 {
 	color: rgb(248, 63, 63);
 	font-size: medium;
-}
+	margin-top: 0.5rem;
+	margin-right: 18.5rem;
+} */

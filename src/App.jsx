@@ -10,6 +10,8 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import { ToastContainer, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import User_Page from "./components/Main/User_Page";
+import Booking from "./components/Data_Entry/Booking";
 
 const router = createBrowserRouter([
 	{
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
 	{
 		path: "/admin/register",
 		element: <Register />,
+	},
+	{
+		path: "/admin/staff_page",
+		element: <User_Page />,
+	},
+	{
+		path: "/admin/book_parcel",
+		element: <Booking />,
 	},
 ]);
 

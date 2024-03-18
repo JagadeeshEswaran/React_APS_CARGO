@@ -8,7 +8,7 @@
 	justify-content: space-between;
 	align-items: center;
 
-	padding: 0 3rem;
+	padding: 0 8rem;
 
 	box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
@@ -20,8 +20,31 @@
 
 .Navbar_menu_items menu {
 	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+
+	/* border: 1px dotted red; */
+
+	height: 5vh;
+	width: 40rem;
 }
 
-.Navbar_menu_items menu li {
-	padding-right: 1rem;
+.Navbar_menu_items menu article a {
+	cursor: pointer;
+
+	padding: 0.5rem 2.5rem;
+
+	transition: 0.15s;
+}
+
+.Navbar_menu_items menu article a:hover {
+	font-weight: bold;
+
+	background: rgb(5, 52, 119);
+	color: azure;
+	padding: 0.5rem 2.5rem;
+
+	border-radius: 7px;
+
+	/* margin: 2.5rem; */
 }

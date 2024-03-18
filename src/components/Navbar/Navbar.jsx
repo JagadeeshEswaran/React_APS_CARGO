@@ -12,12 +12,18 @@ const Navbar = () => {
 
 				<article className={styles.Navbar_menu_items}>
 					<menu>
-						<li style={{ textDecoration: "none" }}>
+						<article>
+							<a href="">About Us</a>
+						</article>
+						<article style={{ textDecoration: "none" }}>
 							<a href="/tracking">Track</a>
-						</li>
-						<li>Link_2</li>
-						<li>Link_3</li>
-						<li>Link_4</li>
+						</article>
+						<article>
+							<a href="">Our Team</a>
+						</article>
+						<article>
+							<a href="/admin/login">Sign In</a>
+						</article>
 					</menu>
 				</article>
 

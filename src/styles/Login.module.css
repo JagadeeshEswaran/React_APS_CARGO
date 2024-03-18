@@ -8,7 +8,7 @@
 }
 
 .sign_up_form_container {
-	height: 25rem;
+	height: 27rem;
 	width: 30rem;
 
 	margin: 5rem 10rem 0 0;
@@ -113,7 +113,25 @@
 	transition: 0.5s ease-in-out;
 }
 
-.alert_subtle {
+.alert_subtle_container {
+	/* border: 1px dotted blue; */
+	margin-top: 1rem;
+	padding: 1rem 0;
+}
+
+.alert_subtle_2 span {
+	cursor: pointer;
+	font-weight: bold;
+	text-decoration: none;
+	color: rgb(248, 63, 63);
+}
+
+.alert_subtle_2 span:visited {
+	text-decoration: none;
+	color: rgb(248, 63, 63);
+}
+
+.alert_subtle_1 {
 	color: rgb(248, 63, 63);
 	font-size: medium;
 	margin-top: 0.5rem;
