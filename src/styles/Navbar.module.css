@@ -1,14 +1,14 @@
 .navbar_container {
-	/* border: 1px dotted black; */
+	/* border: 1px dotted blue; */
 
 	height: 7vh;
-	width: 100vw;
+	/* width: 100vw; */
 
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 
-	padding: 0 8rem;
+	padding: 0 8%;
 
 	box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }

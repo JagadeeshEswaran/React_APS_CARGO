@@ -1,0 +1,263 @@
+.booking_form_container {
+	height: 98vh;
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+
+	flex-direction: column;
+
+	/* border: 1px dotted red; */
+}
+
+.booking_form_header {
+	height: auto;
+	min-height: 3rem;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+
+	padding: 2rem 5rem;
+
+	margin: 0 1rem;
+	width: 100%;
+	min-width: 5rem;
+
+	display: flex;
+	justify-content: start;
+	align-items: center;
+
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.card {
+	height: auto;
+	min-height: 3rem;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+
+	padding: 2rem 3rem;
+
+	margin: 2rem 1rem;
+	width: 50rem;
+	min-width: 5rem;
+
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.card_1 {
+	height: auto;
+	min-height: 3rem;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+
+	padding: 1rem 3rem;
+
+	background: white;
+
+	margin: 1rem 3rem;
+	width: 50rem;
+	min-width: 5rem;
+
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.card_2 {
+	height: auto;
+	max-height: 65vh;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+
+	padding: 2rem 3rem;
+
+	background: white;
+
+	margin: 1rem 3rem;
+	width: 50rem;
+	min-width: 5rem;
+
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.booking_form {
+	display: flex;
+	background: whitesmoke;
+	width: 100%;
+
+	/* background: rgb(179, 194, 243); */
+}
+
+.form_ele {
+	display: flex;
+	flex-direction: column;
+}
+
+.form_date_ele label {
+	font-size: large;
+	font-weight: 500;
+	/* margin-bottom: 1rem; */
+}
+
+.form_date_ele input {
+	height: 3rem;
+	width: 15rem;
+
+	padding: 0 0.5rem;
+	font-size: medium;
+
+	margin-bottom: 0.5rem;
+
+	border: none;
+	background: rgba(3, 51, 209, 0.377);
+	border-radius: 5px;
+}
+
+.addrField_ele label {
+	font-size: large;
+	font-weight: 500;
+	/* margin-bottom: 1rem; */
+}
+
+.addrField_ele_inputs_container input {
+	height: 3rem;
+	width: 10rem;
+
+	padding: 0 0.5rem;
+	font-size: medium;
+
+	border: none;
+	background: rgba(3, 51, 209, 0.377);
+	border-radius: 5px;
+}
+
+.names_container {
+	width: 100%;
+}
+
+.names_container input {
+	width: 48%;
+}
+
+.arrdLine_1 {
+	width: 100%;
+}
+
+.addrLine_2 {
+	width: 100%;
+}
+
+.addrLine_3 {
+	width: 100%;
+	margin-bottom: 0.5rem;
+}
+
+.addrLine_3 input {
+	width: 25%;
+	margin-right: 0.75rem;
+}
+
+.consigment_booking_2 {
+	display: flex;
+	flex-direction: column;
+}
+
+.buttons_container {
+	width: 100%;
+
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.buttons_container button {
+	height: 3rem;
+	width: 9rem;
+	border-radius: 5px;
+	border: none;
+}
+
+.buttons_container button:first-child {
+	border: none;
+	background: rgb(23, 123, 255);
+	color: aliceblue;
+	font-size: large;
+
+	transition: 0.1s;
+}
+
+.buttons_container button:first-child:hover,
+.buttons_container button:nth-child(2):hover,
+.buttons_container button:last-child:hover {
+	transform: scale(1.05);
+	font-weight: 500;
+
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+		rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.buttons_container button:nth-child(2) {
+	border: none;
+	background: crimson;
+	color: aliceblue;
+	font-size: large;
+
+	transition: 0.1s;
+}
+
+.buttons_container button:last-child {
+	border: none;
+	background: orange;
+	color: antiquewhite;
+	font-size: large;
+
+	transition: 0.1s;
+}
+
+.consDetails_container {
+	/* border: 1px dotted red; */
+}
+
+.consDetails_container label {
+	font-size: large;
+	font-weight: 500;
+}
+
+.consDetails_container input {
+	height: 3rem;
+	width: 25rem;
+
+	padding: 0 0.5rem;
+	font-size: medium;
+
+	margin-bottom: 0.5rem;
+
+	border: none;
+	background: rgba(3, 51, 209, 0.377);
+	border-radius: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.man_span {
+	color: red;
+}
+
+.package_type_selection {
+	/* border: 1px dotted red; */
+	display: flex;
+
+	width: 25rem;
+	justify-content: space-evenly;
+}
+
+.package_type_selection article {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.package_type_selection input {
+	width: 1rem;
+	font-size: 2.5rem;
+	margin: 0;
+	margin-right: 1rem;
+}
