@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import styles from "../styles/Tracking_page.module.css";
 import { tracking_data } from "../data/consignment_data";
@@ -39,6 +40,31 @@ const Tracking_Page = () => {
 		setShowAllTrackingUpdates(!showAllTrackingUpdates);
 	};
 
+	const handleAxiosRequest = async (id) => {
+		try {
+			const response = await axios.post(
+				`http://localhost:3000/api/tracking/${id}`
+			);
+
+			if (response.data.success === true) {
+				setConsignmentData([
+					{
+						...response.data.data.bookingDetails,
+						consignment_data: { ...response.data.data.consignmentDetails },
+					},
+				]);
+			} else {
+				// throw new Error("Something went wrong, please try again!!");
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	useEffect(() => {
+		console.log(consignment_data);
+	});
+
 	useEffect(() => {
 		const params = window.location.pathname;
 		const paramsArr = params.split("/");
@@ -47,6 +73,8 @@ const Tracking_Page = () => {
 
 		setIdFromURL(trackingIdFromURL);
 		handleConsignmentData(trackingIdFromURL);
+
+		handleAxiosRequest(trackingIdFromURL);
 	}, []);
 
 	return (
@@ -73,6 +101,7 @@ const Tracking_Page = () => {
 							id=""
 							placeholder="Please Enter the Tracking ID"
 							onChange={(e) => setTrackingId(e.target.value)}
+							value={trackingId}
 						/>
 					)}
 
@@ -97,17 +126,22 @@ const Tracking_Page = () => {
 							<article className={styles.tracking_data}>
 								<div>
 									<div style={{ paddingBottom: "0.5rem" }}>
-										Tracking ID : {consignment_data[0]?.id}
+										Tracking ID : {consignment_data[0]?.booking_id}
 									</div>
 									<div style={{ paddingBottom: "0.5rem" }}>
-										Shipment Handled By : {consignment_data[0]?.vendor}
+										Shipment Handled By :{" "}
+										{consignment_data?.vendor
+											? consignment_data.vendor
+											: "APS Cargo"}
 									</div>
 
 									<div style={{ paddingBottom: "0.5rem" }}>
-										Weight : {consignment_data[0]?.net_weight} Kg
+										Weight :{" "}
+										{consignment_data[0]?.consignment_data.gross_weight} Kg
 									</div>
 									<div style={{ paddingBottom: "0.5rem" }}>
-										Consignment Type : {consignment_data[0]?.consignment_type}
+										Consignment Type :{" "}
+										{consignment_data[0]?.consignment_data.type_of_goods}
 									</div>
 								</div>
 
@@ -119,11 +153,15 @@ const Tracking_Page = () => {
 							<article className={styles.curr_status_container}>
 								<div>
 									<p>
-										Source : <span>{item.origin}</span>
+										Source :{" "}
+										<span>{`${item?.sender_addr_town}, ${item?.sender_addr_Dt}, ${item?.sender_addr_state}, ${item?.sender_addr_country},  ${item?.sender_addr_pincode}`}</span>
 									</p>
 									<p>
 										Destination :{" "}
-										<span style={{ color: "green" }}>{item.destination}</span>
+										<span
+											style={{
+												color: "green",
+											}}>{`${item?.receiver_addr_town}, ${item?.receiver_addr_Dt}, ${item?.receiver_addr_state}, ${item?.receiver_addr_country},  ${item?.receiver_addr_pincode}`}</span>
 									</p>
 								</div>
 

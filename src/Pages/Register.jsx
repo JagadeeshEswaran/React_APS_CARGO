@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 import styles from "../styles/Register.module.css";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 
 const Register = () => {
@@ -162,6 +162,8 @@ const Register = () => {
 					</article>
 				</article>
 			</section>
+
+			<ToastContainer />
 		</>
 	);
 };

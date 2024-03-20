@@ -28,6 +28,12 @@ const AddrInputs = ({
 								name=""
 								id=""
 								placeholder="First Name *"
+								value={
+									person === "Sender"
+										? bookingDetails.sender_F_name
+										: bookingDetails.receiver_F_name
+								}
+								// value={bookingDetails.sender_F_name}
 								style={{ marginRight: "1rem", marginBottom: "1rem" }}
 								onChange={(e) => {
 									addrType === "From Address"
@@ -47,6 +53,11 @@ const AddrInputs = ({
 								name=""
 								id=""
 								placeholder="Last Name"
+								value={
+									person === "Sender"
+										? bookingDetails.sender_L_name
+										: bookingDetails.receiver_L_name
+								}
 								style={{}}
 								onChange={(e) => {
 									addrType === "From Address"
@@ -72,6 +83,11 @@ const AddrInputs = ({
 								id=""
 								placeholder="Block / Door No *"
 								style={{ width: "25%", marginRight: "1rem" }}
+								value={
+									person === "Sender"
+										? bookingDetails.sender_addr_DNo
+										: bookingDetails.receiver_addr_DNo
+								}
 								onChange={(e) => {
 									addrType === "From Address"
 										? setBookingDetails({
@@ -90,6 +106,11 @@ const AddrInputs = ({
 								name=""
 								id=""
 								placeholder="Street Name *"
+								value={
+									person === "Sender"
+										? bookingDetails.sender_addr_street
+										: bookingDetails.receiver_addr_street
+								}
 								style={{
 									width: "70.7%",
 									marginRight: "1rem",
@@ -117,6 +138,11 @@ const AddrInputs = ({
 								id=""
 								placeholder="City / Town Name *"
 								style={{ width: "48%", marginRight: "1rem" }}
+								value={
+									person === "Sender"
+										? bookingDetails.sender_addr_town
+										: bookingDetails.receiver_addr_town
+								}
 								onChange={(e) => {
 									addrType === "From Address"
 										? setBookingDetails({
@@ -141,6 +167,11 @@ const AddrInputs = ({
 									marginRight: "1rem",
 									marginBottom: "1rem",
 								}}
+								value={
+									person === "Sender"
+										? bookingDetails.sender_addr_Dt
+										: bookingDetails.receiver_addr_Dt
+								}
 								onChange={(e) => {
 									addrType === "From Address"
 										? setBookingDetails({
@@ -163,6 +194,11 @@ const AddrInputs = ({
 								id=""
 								placeholder="State *"
 								style={{}}
+								value={
+									person === "Sender"
+										? bookingDetails.sender_addr_state
+										: bookingDetails.receiver_addr_state
+								}
 								onChange={(e) => {
 									addrType === "From Address"
 										? setBookingDetails({
@@ -183,6 +219,11 @@ const AddrInputs = ({
 								id=""
 								placeholder="Country"
 								style={{}}
+								value={
+									person === "Sender"
+										? bookingDetails.sender_addr_country
+										: bookingDetails.receiver_addr_country
+								}
 								onChange={(e) => {
 									addrType === "From Address"
 										? setBookingDetails({
@@ -203,6 +244,11 @@ const AddrInputs = ({
 								id=""
 								placeholder="Pincode *"
 								style={{}}
+								value={
+									person === "Sender"
+										? bookingDetails.sender_addr_pincode
+										: bookingDetails.receiver_addr_pincode
+								}
 								onChange={(e) => {
 									addrType === "From Address"
 										? setBookingDetails({
@@ -223,6 +269,11 @@ const AddrInputs = ({
 							<input
 								type="number"
 								placeholder="+91 XXXXX XXXXX *"
+								value={
+									person === "Sender"
+										? bookingDetails.sender_Ph_num
+										: bookingDetails.receiver_Ph_num
+								}
 								onChange={(e) => {
 									addrType === "From Address"
 										? setBookingDetails({
