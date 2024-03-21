@@ -36,6 +36,7 @@ const Booking = () => {
 			type_of_goods: "",
 			package_type: "",
 			package_qty: 1,
+			delivery_agent: "APS Cargo",
 		},
 	});
 
@@ -139,10 +140,6 @@ const Booking = () => {
 			});
 		}
 	};
-
-	const qty = bookingDetails.consignment_data.package_qty;
-
-	console.log(typeof qty);
 
 	return (
 		<>
@@ -329,6 +326,66 @@ const Booking = () => {
 										})
 									}
 								/>
+
+								<label htmlFor="">Delivery Agent : </label>
+								<article className={styles.package_type_selection}>
+									<article>
+										<input
+											type="radio"
+											name="package_type"
+											id="APS_Cargo"
+											value="APS Cargo"
+											onChange={(e) =>
+												setBookingDetails({
+													...bookingDetails,
+													consignment_data: {
+														...bookingDetails.consignment_data,
+														delivery_agent: e.target.value,
+													},
+												})
+											}
+										/>
+										<label htmlFor="APS_Cargo">APS Cargo</label>
+									</article>
+
+									<article>
+										<input
+											type="radio"
+											name="package_type"
+											id="delhivery"
+											value="Delhivery"
+											onChange={(e) =>
+												setBookingDetails({
+													...bookingDetails,
+													consignment_data: {
+														...bookingDetails.consignment_data,
+														delivery_agent: e.target.value,
+													},
+												})
+											}
+										/>
+										<label htmlFor="delhivery">Delhivery</label>
+									</article>
+
+									<article>
+										<input
+											type="radio"
+											name="package_type"
+											id="others"
+											value="Others"
+											onChange={(e) =>
+												setBookingDetails({
+													...bookingDetails,
+													consignment_data: {
+														...bookingDetails.consignment_data,
+														delivery_agent: e.target.value,
+													},
+												})
+											}
+										/>
+										<label htmlFor="others">Other</label>
+									</article>
+								</article>
 							</form>
 
 							{/* <article

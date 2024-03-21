@@ -84,6 +84,7 @@ const Tracking_Page = () => {
 				className={styles.tracking_page_container}>
 				<h1>TRACK CONSIGNMENTS</h1>
 
+				{/* Trackign ID Input Form */}
 				<article className={styles.tracingID_input}>
 					{idFromURL ? (
 						<input
@@ -105,19 +106,12 @@ const Tracking_Page = () => {
 						/>
 					)}
 
-					{/* <input
-						type="text"
-						name="tracking_id"
-						id=""
-						placeholder="Please Enter the Tracking ID"
-						onChange={(e) => setTrackingId(e.target.value)}
-					/> */}
-
-					<button onClick={() => handleConsignmentData(trackingId)}>
+					<button onClick={() => handleAxiosRequest(trackingId)}>
 						<p style={{ fontSize: "1.3rem" }}>Track</p>
 					</button>
 				</article>
 
+				{/* Message or Tracking Data to Display */}
 				{errorMsg ? (
 					<p>Please Enter a Valid Tracking ID</p>
 				) : (
@@ -125,23 +119,38 @@ const Tracking_Page = () => {
 						<section key={item.id} className={styles.tracking_data_container}>
 							<article className={styles.tracking_data}>
 								<div>
-									<div style={{ paddingBottom: "0.5rem" }}>
-										Tracking ID : {consignment_data[0]?.booking_id}
+									<div style={{ paddingBottom: "0.5rem", display: "flex" }}>
+										Tracking ID :{" "}
+										<p style={{ fontWeight: "bold", paddingLeft: "0.5rem" }}>
+											{consignment_data[0]?.booking_id}
+										</p>
 									</div>
-									<div style={{ paddingBottom: "0.5rem" }}>
+									<div
+										style={{
+											paddingBottom: "0.5rem",
+											display: "flex",
+										}}>
 										Shipment Handled By :{" "}
-										{consignment_data?.vendor
-											? consignment_data.vendor
-											: "APS Cargo"}
+										<p style={{ fontWeight: "bold", paddingLeft: "0.5rem" }}>
+											{item?.consignment_data?.delivery_agent}
+										</p>
 									</div>
 
-									<div style={{ paddingBottom: "0.5rem" }}>
+									<div style={{ paddingBottom: "0.5rem", display: "flex" }}>
 										Weight :{" "}
-										{consignment_data[0]?.consignment_data.gross_weight} Kg
+										<p style={{ fontWeight: "bold", paddingLeft: "0.5rem" }}>
+											{consignment_data[0]?.consignment_data.gross_weight} Kg
+										</p>
 									</div>
-									<div style={{ paddingBottom: "0.5rem" }}>
+									<div style={{ paddingBottom: "0.5rem", display: "flex" }}>
 										Consignment Type :{" "}
-										{consignment_data[0]?.consignment_data.type_of_goods}
+										<p
+											style={{
+												fontWeight: "bold",
+												paddingLeft: "0.5rem",
+											}}>
+											{consignment_data[0]?.consignment_data.type_of_goods}
+										</p>
 									</div>
 								</div>
 
@@ -177,53 +186,6 @@ const Tracking_Page = () => {
 						</section>
 					))
 				)}
-
-				{/* {consignment_data?.map((item) => (
-					<section key={item.id} className={styles.tracking_data_container}>
-						<article className={styles.tracking_data}>
-							<div>
-								<div style={{ paddingBottom: "0.5rem" }}>
-									Tracking ID : {consignment_data[0]?.id}
-								</div>
-								<div style={{ paddingBottom: "0.5rem" }}>
-									Shipment Handled By : {consignment_data[0]?.vendor}
-								</div>
-
-								<div style={{ paddingBottom: "0.5rem" }}>
-									Weight : {consignment_data[0]?.net_weight} Kg
-								</div>
-								<div style={{ paddingBottom: "0.5rem" }}>
-									Consignment Type : {consignment_data[0]?.consignment_type}
-								</div>
-							</div>
-
-							<div className={styles.print_POD_Btn}>
-								<button>Print POD</button>
-							</div>
-						</article>
-
-						<article className={styles.curr_status_container}>
-							<div>
-								<p>
-									Source : <span>{item.origin}</span>
-								</p>
-								<p>
-									Destination :{" "}
-									<span style={{ color: "green" }}>{item.destination}</span>
-								</p>
-							</div>
-
-							<p>
-								Current Status : <span>{item.curr_location}</span>
-							</p>
-							<button onClick={handleShowAllUpdates}>
-								{!showAllTrackingUpdates
-									? "Show All Updates"
-									: "Hide All Updates"}
-							</button>
-						</article>
-					</section>
-				))} */}
 
 				{showAllTrackingUpdates ? (
 					<section className={styles.all_updates_container}>

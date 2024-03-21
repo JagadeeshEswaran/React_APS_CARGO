@@ -1,9 +1,14 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect } from "react";
 
 import styles from "../../styles/Main_Section.module.css";
+import { useAppContext } from "../../GlobalContext/AppContext";
 
 const User_Page = () => {
+	const { userData } = useAppContext();
+
+	console.log(userData);
+
 	return (
 		<>
 			<section className={styles.user_page_cards_container}>
