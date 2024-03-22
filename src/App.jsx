@@ -12,6 +12,7 @@ import { ToastContainer, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import User_Page from "./components/Main/User_Page";
 import Booking from "./components/Data_Entry/Booking";
+import ConsignmentUpdate from "./Pages/ConsignmentUpdate";
 
 const router = createBrowserRouter([
 	{
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
 	{
 		path: "/admin/book_parcel",
 		element: <Booking />,
+	},
+	{
+		path: "/admin/tracking_update",
+		element: <ConsignmentUpdate />,
 	},
 ]);
 

@@ -24,6 +24,14 @@ const User_Page = () => {
 				<a href="/admin/book_parcel">
 					<article className={styles.user_page_cards}>Book a Parcel</article>
 				</a>
+
+				<a
+					href="/admin/tracking_update
+				">
+					<article className={styles.user_page_cards}>
+						Update Consignment
+					</article>
+				</a>
 			</section>
 		</>
 	);

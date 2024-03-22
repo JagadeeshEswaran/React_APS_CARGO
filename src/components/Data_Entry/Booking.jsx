@@ -66,6 +66,8 @@ const Booking = () => {
 				});
 
 				if (
+					// response.data.data.consignment_id === response.data.data.booking_id &&
+					// response.data.data.consignment_id === response.data.data.tracking_id
 					response.data.data.consignment_id === response.data.data.booking_id
 				) {
 					toast.success(
@@ -332,7 +334,7 @@ const Booking = () => {
 									<article>
 										<input
 											type="radio"
-											name="package_type"
+											name="agent_handler"
 											id="APS_Cargo"
 											value="APS Cargo"
 											onChange={(e) =>
@@ -351,7 +353,7 @@ const Booking = () => {
 									<article>
 										<input
 											type="radio"
-											name="package_type"
+											name="agent_handler"
 											id="delhivery"
 											value="Delhivery"
 											onChange={(e) =>
@@ -370,7 +372,7 @@ const Booking = () => {
 									<article>
 										<input
 											type="radio"
-											name="package_type"
+											name="agent_handler"
 											id="others"
 											value="Others"
 											onChange={(e) =>
