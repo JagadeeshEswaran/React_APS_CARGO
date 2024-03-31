@@ -5,9 +5,11 @@ import React from "react";
 const ConsignmentInfo = ({ infoHead, info }) => {
 	return (
 		<>
-			<p className="fs-5 fw-semibold ">
+			<p className="fs-5 fw-semibold">
 				{infoHead} :{" "}
-				<span className="fs-6 fw-normal ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1">
+				<span
+					className="fs-6 fw-normal ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
+					style={{ textTransform: "capitalize" }}>
 					{info}
 				</span>
 			</p>

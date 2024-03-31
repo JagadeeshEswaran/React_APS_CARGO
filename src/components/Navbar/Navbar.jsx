@@ -15,7 +15,7 @@ const Navbar = () => {
 						<article>
 							<a href="">About Us</a>
 						</article>
-						<article style={{ textDecoration: "none" }}>
+						<article>
 							<a href="/tracking">Track</a>
 						</article>
 						<article>

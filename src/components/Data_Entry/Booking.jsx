@@ -54,7 +54,7 @@ const Booking = () => {
 			if (response.data.success === true) {
 				console.log(response);
 
-				toast.success(`${response.data.data.msg}`, {
+				toast.success(`${response.data.data.msg} `, {
 					position: "bottom-right",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -71,7 +71,7 @@ const Booking = () => {
 					response.data.data.consignment_id === response.data.data.booking_id
 				) {
 					toast.success(
-						`Consignment ID : ${response.data.data.consignment_id}`,
+						`Consignment ID : ${response.data.data.booking_data_id}`,
 						{
 							position: "bottom-right",
 							autoClose: 100000,

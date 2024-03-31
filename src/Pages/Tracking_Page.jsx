@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+import CircularProgress from "@mui/joy/CircularProgress";
+
 import styles from "../styles/Tracking_page.module.css";
 import { tracking_data } from "../data/consignment_data";
 
@@ -12,6 +14,7 @@ const Tracking_Page = () => {
 	const [showAllTrackingUpdates, setShowAllTrackingUpdates] = useState(false);
 	let [idFromURL, setIdFromURL] = useState();
 	const [errorMsg, setErrorMsg] = useState(false);
+	const [isLoading, setLoading] = useState(false);
 
 	const handleConsignmentData = (id) => {
 		if (!id || id > 10) {
@@ -41,29 +44,29 @@ const Tracking_Page = () => {
 	};
 
 	const handleAxiosRequest = async (id) => {
+		setLoading(true);
+		setShowAllTrackingUpdates(false);
+
 		try {
-			const response = await axios.post(
+			const response = await axios.get(
 				`http://localhost:3000/api/tracking/${id}`
 			);
 
+			// console.log(response);
+
 			if (response.data.success === true) {
-				setConsignmentData([
-					{
-						...response.data.data.bookingDetails,
-						consignment_data: { ...response.data.data.consignmentDetails },
-					},
-				]);
+				setConsignmentData(response.data.data);
+
+				setTimeout(() => {
+					setLoading(false);
+				}, 900);
 			} else {
-				// throw new Error("Something went wrong, please try again!!");
+				throw new Error("Something went wrong, please try again!!");
 			}
 		} catch (error) {
 			console.log(error);
 		}
 	};
-
-	useEffect(() => {
-		console.log(consignment_data);
-	});
 
 	useEffect(() => {
 		const params = window.location.pathname;
@@ -73,9 +76,9 @@ const Tracking_Page = () => {
 
 		setIdFromURL(trackingIdFromURL);
 		handleConsignmentData(trackingIdFromURL);
-
-		handleAxiosRequest(trackingIdFromURL);
 	}, []);
+
+	console.log(consignment_data);
 
 	return (
 		<>
@@ -93,7 +96,7 @@ const Tracking_Page = () => {
 							id=""
 							placeholder="Please Enter the Tracking ID"
 							onChange={(e) => setTrackingId(e.target.value)}
-							value={idFromURL}
+							value={idFromURL ? idFromURL : ""}
 						/>
 					) : (
 						<input
@@ -112,79 +115,91 @@ const Tracking_Page = () => {
 				</article>
 
 				{/* Message or Tracking Data to Display */}
-				{errorMsg ? (
+				{isLoading ? (
+					<CircularProgress size="lg" variant="soft" />
+				) : errorMsg ? (
 					<p>Please Enter a Valid Tracking ID</p>
-				) : (
-					consignment_data?.map((item) => (
-						<section key={item.id} className={styles.tracking_data_container}>
-							<article className={styles.tracking_data}>
-								<div>
-									<div style={{ paddingBottom: "0.5rem", display: "flex" }}>
-										Tracking ID :{" "}
-										<p style={{ fontWeight: "bold", paddingLeft: "0.5rem" }}>
-											{consignment_data[0]?.booking_id}
-										</p>
-									</div>
-									<div
+				) : consignment_data ? (
+					<section className={styles.tracking_data_container}>
+						{/* Section 1 */}
+						<article className={styles.tracking_data}>
+							<div>
+								<div style={{ paddingBottom: "0.5rem", display: "flex" }}>
+									Tracking ID :{" "}
+									<p
+										className="p-0 m-0"
+										style={{ fontWeight: "bold", paddingLeft: "0.5rem" }}>
+										{consignment_data?.booking_data[0]?.booking_id}
+									</p>
+								</div>
+								<div
+									style={{
+										paddingBottom: "0.5rem",
+										display: "flex",
+									}}>
+									Shipment Handled By :{" "}
+									<p
+										className="p-0 m-0"
+										style={{ fontWeight: "bold", paddingLeft: "0.5rem" }}>
+										{consignment_data?.consignment_data[0]?.delivery_agent}
+									</p>
+								</div>
+
+								<div style={{ paddingBottom: "0.5rem", display: "flex" }}>
+									Weight :{" "}
+									<p
+										className="p-0 m-0"
+										style={{ fontWeight: "bold", paddingLeft: "0.5rem" }}>
+										{consignment_data?.consignment_data[0]?.gross_weight} Kg
+									</p>
+								</div>
+								<div style={{ paddingBottom: "0.5rem", display: "flex" }}>
+									Consignment Type :{" "}
+									<p
+										className="p-0 m-0"
 										style={{
-											paddingBottom: "0.5rem",
-											display: "flex",
+											fontWeight: "bold",
+											paddingLeft: "0.5rem",
 										}}>
-										Shipment Handled By :{" "}
-										<p style={{ fontWeight: "bold", paddingLeft: "0.5rem" }}>
-											{item?.consignment_data?.delivery_agent}
-										</p>
-									</div>
-
-									<div style={{ paddingBottom: "0.5rem", display: "flex" }}>
-										Weight :{" "}
-										<p style={{ fontWeight: "bold", paddingLeft: "0.5rem" }}>
-											{consignment_data[0]?.consignment_data.gross_weight} Kg
-										</p>
-									</div>
-									<div style={{ paddingBottom: "0.5rem", display: "flex" }}>
-										Consignment Type :{" "}
-										<p
-											style={{
-												fontWeight: "bold",
-												paddingLeft: "0.5rem",
-											}}>
-											{consignment_data[0]?.consignment_data.type_of_goods}
-										</p>
-									</div>
-								</div>
-
-								<div className={styles.print_POD_Btn}>
-									<button>Print POD</button>
-								</div>
-							</article>
-
-							<article className={styles.curr_status_container}>
-								<div>
-									<p>
-										Source :{" "}
-										<span>{`${item?.sender_addr_town}, ${item?.sender_addr_Dt}, ${item?.sender_addr_state}, ${item?.sender_addr_country},  ${item?.sender_addr_pincode}`}</span>
-									</p>
-									<p>
-										Destination :{" "}
-										<span
-											style={{
-												color: "green",
-											}}>{`${item?.receiver_addr_town}, ${item?.receiver_addr_Dt}, ${item?.receiver_addr_state}, ${item?.receiver_addr_country},  ${item?.receiver_addr_pincode}`}</span>
+										{consignment_data?.consignment_data[0]?.type_of_goods}
 									</p>
 								</div>
+							</div>
 
-								<p>
-									Current Status : <span>{item.curr_location}</span>
+							<div className={styles.print_POD_Btn}>
+								<button>Print POD</button>
+							</div>
+						</article>
+
+						{/* Section 2 */}
+						<article className={styles.curr_status_container}>
+							<div>
+								<p className="p-0 m-0">
+									Source :{" "}
+									<span>{`${consignment_data?.booking_data[0]?.sender_addr_town}, ${consignment_data?.booking_data[0]?.sender_addr_Dt}, ${consignment_data?.booking_data[0]?.sender_addr_state}, ${consignment_data?.booking_data[0]?.sender_addr_country},  ${consignment_data?.booking_data[0]?.sender_addr_pincode}`}</span>
 								</p>
-								<button onClick={handleShowAllUpdates}>
-									{!showAllTrackingUpdates
-										? "Show All Updates"
-										: "Hide All Updates"}
-								</button>
-							</article>
-						</section>
-					))
+								<p className="p-0 m-0">
+									Destination :{" "}
+									<span
+										style={{
+											color: "green",
+										}}>{`${consignment_data?.booking_data[0]?.receiver_addr_town}, ${consignment_data?.booking_data[0]?.receiver_addr_Dt}, ${consignment_data?.booking_data[0]?.receiver_addr_state}, ${consignment_data?.booking_data[0]?.receiver_addr_country}, ${consignment_data?.booking_data[0]?.receiver_addr_pincode}`}</span>
+								</p>
+							</div>
+
+							<p className="p-0 m-0">
+								Current Status :{" "}
+								<span>{consignment_data?.tracking_data[0]?.curr_status}</span>
+							</p>
+							<button onClick={handleShowAllUpdates} className="mt-3">
+								{!showAllTrackingUpdates
+									? "Show All Updates"
+									: "Hide All Updates"}
+							</button>
+						</article>
+					</section>
+				) : (
+					<></>
 				)}
 
 				{showAllTrackingUpdates ? (
@@ -194,24 +209,24 @@ const Tracking_Page = () => {
 						</article>
 
 						<article>
-							{consignment_data[0]?.tracking_status?.map(
-								(item, idx) => (
-									<div key={idx} className={styles.tracking_data_timeline}>
-										<p>{item.date}</p>
-										<span>-</span>
+							<div className={styles.tracking_data_timeline}>
+								<p>
+									{consignment_data?.tracking_data[0]?.booked_date &&
+										new Date(
+											consignment_data.tracking_data[0].booked_date
+										).toLocaleDateString()}
+								</p>
+								<span>-</span>
 
-										{item.status === "delivered" ? (
-											<p style={{ color: "green", fontWeight: "bold" }}>
-												{item.status}
-											</p>
-										) : (
-											<p>{item.status}</p>
-										)}
-									</div>
-								)
-
-								// console.log(item)
-							)}
+								{consignment_data?.tracking_data[0]?.curr_status ===
+								"delivered" ? (
+									<p style={{ color: "green", fontWeight: "bold" }}>
+										{consignment_data?.tracking_data[0]?.curr_status}
+									</p>
+								) : (
+									<p>{consignment_data?.tracking_data[0]?.curr_status}</p>
+								)}
+							</div>
 						</article>
 					</section>
 				) : null}

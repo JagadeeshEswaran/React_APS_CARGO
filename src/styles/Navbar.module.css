@@ -1,6 +1,9 @@
 .navbar_container {
 	/* border: 1px dotted blue; */
 
+	text-decoration: none;
+	list-style: none;
+
 	height: 7vh;
 	/* width: 100vw; */
 
