@@ -1,5 +1,5 @@
 .tracking_page_container {
-	margin: 3rem 0;
+	margin: 2rem 0 1rem 0;
 
 	display: flex;
 	justify-content: flex-start;
@@ -11,7 +11,7 @@
 .tracingID_input {
 	/* border: 1px dotted blue; */
 
-	margin: 2rem 0;
+	margin: 2rem 0 1rem 0;
 
 	width: 23rem;
 
@@ -56,11 +56,12 @@
 
 .tracking_data_container,
 .all_updates_container {
+	padding: 0.5rem 0;
 	margin: 1rem 0;
 	border: 1px solid rgba(5, 53, 119, 0.301);
 	width: 60vw;
 	height: auto;
-	min-height: 20vh;
+	min-height: 30vh;
 
 	border-radius: 4px;
 

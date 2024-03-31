@@ -4,8 +4,11 @@ import axios from "axios";
 
 import CircularProgress from "@mui/joy/CircularProgress";
 
+import TimeLinePtr2 from "../components/ForTrackingUpdate/TimeLinePts2";
+
 import styles from "../styles/Tracking_page.module.css";
 import { tracking_data } from "../data/consignment_data";
+import { toast } from "react-toastify";
 
 const Tracking_Page = () => {
 	const [new_tracking_data, setTracking_data] = useState(tracking_data);
@@ -46,6 +49,7 @@ const Tracking_Page = () => {
 	const handleAxiosRequest = async (id) => {
 		setLoading(true);
 		setShowAllTrackingUpdates(false);
+		setConsignmentData();
 
 		try {
 			const response = await axios.get(
@@ -64,7 +68,28 @@ const Tracking_Page = () => {
 				throw new Error("Something went wrong, please try again!!");
 			}
 		} catch (error) {
-			console.log(error);
+			if (error.isAxiosError) {
+				console.log("Axios error message:", error.message);
+				console.log("Response status:", error.response.status);
+				console.log("Response data:", error.response.data);
+				// You can also access other properties such as error.response.headers, error.request, etc.
+
+				toast.error(error.response.data, {
+					position: "bottom-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				});
+			} else {
+				// If the error is not from Axios
+				console.log("Other error:", error.message);
+			}
+
+			setLoading(false);
 		}
 	};
 
@@ -85,7 +110,7 @@ const Tracking_Page = () => {
 			<section
 				style={{ height: "93vh" }}
 				className={styles.tracking_page_container}>
-				<h1>TRACK CONSIGNMENTS</h1>
+				<h3 className="m-0">TRACK CONSIGNMENTS</h3>
 
 				{/* Trackign ID Input Form */}
 				<article className={styles.tracingID_input}>
@@ -208,25 +233,59 @@ const Tracking_Page = () => {
 							<div>Showing All Updates !!</div>
 						</article>
 
-						<article>
-							<div className={styles.tracking_data_timeline}>
-								<p>
-									{consignment_data?.tracking_data[0]?.booked_date &&
-										new Date(
-											consignment_data.tracking_data[0].booked_date
-										).toLocaleDateString()}
-								</p>
-								<span>-</span>
+						{/* Consignment Timeline */}
+						<article
+							className="border col-6 bg-light bg-gradient bg-opacity-25 mx-5 mt-4 d-flex flex-row justify-content-center align-items-center"
+							style={{
+								width: "90%",
+								minHeight: "60%",
+								height: "auto",
+							}}>
+							{consignment_data?.tracking_data[0]?.booked_date ? (
+								<TimeLinePtr2
+									title="Booked"
+									date={consignment_data?.tracking_data[0]?.booked_date}
+								/>
+							) : (
+								<></>
+							)}
 
-								{consignment_data?.tracking_data[0]?.curr_status ===
-								"delivered" ? (
-									<p style={{ color: "green", fontWeight: "bold" }}>
-										{consignment_data?.tracking_data[0]?.curr_status}
-									</p>
-								) : (
-									<p>{consignment_data?.tracking_data[0]?.curr_status}</p>
-								)}
-							</div>
+							{consignment_data?.tracking_data[0]?.stat_dispatched === "1" ? (
+								<TimeLinePtr2
+									title="Dispatched"
+									date={consignment_data?.tracking_data[0]?.dispatch_date}
+								/>
+							) : (
+								<></>
+							)}
+
+							{consignment_data?.tracking_data[0]?.stat_inTransit === "1" ? (
+								<TimeLinePtr2
+									title="In-Transit"
+									date={consignment_data?.tracking_data[0]?.dispatch_date}
+								/>
+							) : (
+								<></>
+							)}
+
+							{consignment_data?.tracking_data[0]?.stat_outForDeliver ===
+							"1" ? (
+								<TimeLinePtr2
+									title="Out-For-Delivery"
+									date={consignment_data?.tracking_data[0]?.ofd_date}
+								/>
+							) : (
+								<></>
+							)}
+
+							{consignment_data?.tracking_data[0]?.stat_delivered === "1" ? (
+								<TimeLinePtr2
+									title="Delivered"
+									date={consignment_data?.tracking_data[0]?.delivery_date}
+								/>
+							) : (
+								<></>
+							)}
 						</article>
 					</section>
 				) : null}

@@ -1,13 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "../../styles/Main_Section.module.css";
 import { useAppContext } from "../../GlobalContext/AppContext";
 
 const User_Page = () => {
 	const { userData } = useAppContext();
-
-	console.log(userData);
 
 	return (
 		<>

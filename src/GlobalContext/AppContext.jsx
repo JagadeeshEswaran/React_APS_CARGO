@@ -13,6 +13,14 @@ export const AppContextProvider = ({ children }) => {
 		token: "",
 	});
 	const [consignment_data, setConsignmentData] = useState({});
+	const [userAuth, setUserAuth] = useState(false);
+
+	useEffect(() => {
+		const isUserLoggedIn = localStorage.getItem("isLoggedIn");
+		if (isUserLoggedIn) {
+			setUserAuth(true);
+		}
+	}, []);
 
 	return (
 		<GlobalContextProvider.Provider
@@ -21,6 +29,8 @@ export const AppContextProvider = ({ children }) => {
 				setUserData,
 				consignment_data,
 				setConsignmentData,
+				userAuth,
+				setUserAuth,
 			}}>
 			{children}
 		</GlobalContextProvider.Provider>

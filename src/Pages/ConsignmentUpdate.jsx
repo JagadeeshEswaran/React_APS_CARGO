@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "../styles/ConsignmentUpdate.css";
 import axios from "axios";
@@ -9,22 +9,22 @@ import { toast } from "react-toastify";
 import { useAppContext } from "../GlobalContext/AppContext";
 
 const ConsignmentUpdate = () => {
-	const [trackingId, setTrackingId] = useState();
 	const [errorMsg, setErrorMsg] = useState("");
 	const { consignment_data, setConsignmentData } = useAppContext([]);
+	const [cgmtUpdateFlag, setCgmtUpdateFlag] = useState(true);
 
 	const handleAxiosRequest = async (trackingId) => {
-		console.log(trackingId);
+		// console.log(trackingId);
 
 		try {
 			const response = await axios.get(
 				`http://localhost:3000/api/tracking/${trackingId}`
 			);
 
+			// console.log(response);
+
 			if (response.data.success === true) {
 				setConsignmentData(response.data.data);
-
-				setTrackingId("");
 			}
 		} catch (error) {
 			if (error.response.status === 404) {
@@ -52,9 +52,10 @@ const ConsignmentUpdate = () => {
 	};
 
 	const handleUserInput = async (trackingId) => {
-		if (trackingId.length < 6 || trackingId < 700555) {
-			setConsignmentData("");
+		// console.log(trackingId);
 
+		if (trackingId < 700555) {
+			setConsignmentData("");
 			return toast.error("Invalid Consignment ID, Please try with valid ID", {
 				position: "bottom-right",
 				autoClose: 5000,
@@ -66,16 +67,16 @@ const ConsignmentUpdate = () => {
 				theme: "light",
 			});
 		}
-
 		await handleAxiosRequest(trackingId);
 	};
 
-	// const handleCgmtUpdateAxios = () => {};
+	useEffect(() => {
+		consignment_data.booking_data &&
+			handleAxiosRequest(consignment_data.booking_data[0].booking_id);
+	}, [cgmtUpdateFlag]);
 
-	// console.log(trackingId);
-	console.log(consignment_data);
-	// console.log(errorMsg);
-	// console.log(consignment_data?.data?.tracking_data);
+	// console.log(consignment_data);
+	console.log(cgmtUpdateFlag);
 
 	return (
 		<>
@@ -85,7 +86,7 @@ const ConsignmentUpdate = () => {
 					className="tracking_form_header"
 					style={{ padding: "1rem 4rem" }}>
 					<h5 className="fw-bold m-0 p-0 text-info-emphasis">
-						Tracking Update
+						Consignment Update
 					</h5>
 				</article>
 
@@ -99,22 +100,20 @@ const ConsignmentUpdate = () => {
 					}}>
 					{/* Results */}
 					<CgmtIDInput
-						setTrackingId={setTrackingId}
-						trackingId={trackingId}
-						handleUserInput={() => handleUserInput(trackingId)}
-						consignment_data={consignment_data?.data?.consignment_data}
-						booking_data={consignment_data?.data?.booking_data}
+						handleUserInput={handleUserInput}
+						consignment_data={consignment_data}
 						errorMsg={errorMsg}
 					/>
 
-					{consignment_data ? (
-						<CgmtTrackingUpdateForm
-							// handleCgmtUpdateAxios={handleCgmtUpdateAxios}
-							// booking_data={consignment_data?.data?.booking_data}
-							// consignment_data={consignment_data?.data?.consignment_data}
-							tracking_data_1={consignment_data?.tracking_data}
-						/>
-					) : null}
+					<CgmtTrackingUpdateForm
+						setCgmtUpdateFlag={setCgmtUpdateFlag}
+						cgmtUpdateFlag={cgmtUpdateFlag}
+						tracking_data_1={
+							consignment_data.tracking_data
+								? consignment_data.tracking_data[0]
+								: []
+						}
+					/>
 				</article>
 			</section>
 		</>

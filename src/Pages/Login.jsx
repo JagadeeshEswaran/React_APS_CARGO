@@ -74,9 +74,11 @@ const Login = () => {
 
 				setUserData(testUserData);
 
+				localStorage.setItem("isLoggedIn", true);
+
 				setTimeout(() => {
 					navigate("/admin/staff_page");
-				}, 3000);
+				}, 1500);
 
 				toast.success(`${response.data.msg}, Please wait...`, {
 					position: "bottom-right",
@@ -86,7 +88,7 @@ const Login = () => {
 					pauseOnHover: true,
 					draggable: true,
 					progress: undefined,
-					theme: "light",
+					theme: "colored",
 				});
 			}
 		} catch (error) {
@@ -100,7 +102,7 @@ const Login = () => {
 				pauseOnHover: true,
 				draggable: true,
 				progress: undefined,
-				theme: "light",
+				theme: "colored",
 			});
 		}
 	};
