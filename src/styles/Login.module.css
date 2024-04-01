@@ -8,7 +8,7 @@
 }
 
 .sign_up_form_container {
-	height: 27rem;
+	height: 55vh;
 	width: 30rem;
 
 	margin: 5rem 10rem 0 0;
@@ -28,6 +28,10 @@
 .signUp_form h2 {
 	color: rgb(1, 77, 77);
 	/* padding-bottom: 0.5rem; */
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .signUp_form span {
@@ -117,6 +121,10 @@
 	/* border: 1px dotted blue; */
 	margin-top: 1rem;
 	padding: 1rem 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .alert_subtle_2 span {
@@ -136,4 +144,14 @@
 	font-size: medium;
 	margin-top: 0.5rem;
 	margin-right: 18.5rem;
+
+	/* margin-bottom: 2rem; */
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 100%;
+
+	/* border: 1px dotted red; */
 }

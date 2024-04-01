@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import styles from "../styles/Register.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 	const [userData, setUserData] = useState({
@@ -13,6 +14,7 @@ const Register = () => {
 		c_password: "",
 	});
 	const [errorMsg, setErrorMsg] = useState("");
+	const navigate = useNavigate();
 
 	const handleRegFormSubmit = (e) => {
 		e.preventDefault();
@@ -29,7 +31,7 @@ const Register = () => {
 							pauseOnHover: true,
 							draggable: true,
 							progress: undefined,
-							theme: "light",
+							theme: "colored",
 					  })
 				: toast.error("Password should be at least 7 characters", {
 						position: "bottom-right",
@@ -39,7 +41,7 @@ const Register = () => {
 						pauseOnHover: true,
 						draggable: true,
 						progress: undefined,
-						theme: "light",
+						theme: "colored",
 				  })
 			: toast.error("Username should be at least 8 characters", {
 					position: "bottom-right",
@@ -49,7 +51,7 @@ const Register = () => {
 					pauseOnHover: true,
 					draggable: true,
 					progress: undefined,
-					theme: "light",
+					theme: "colored",
 			  });
 	};
 
@@ -73,10 +75,14 @@ const Register = () => {
 					pauseOnHover: true,
 					draggable: true,
 					progress: undefined,
-					theme: "light",
+					theme: "colored",
 				});
 
 				setUserData({ username: "", password: "", c_password: "" });
+
+				setTimeout(() => {
+					navigate("/admin/login");
+				}, 2000);
 			}
 		} catch (error) {
 			console.log(error.response.data.msg);
@@ -89,7 +95,7 @@ const Register = () => {
 				pauseOnHover: true,
 				draggable: true,
 				progress: undefined,
-				theme: "light",
+				theme: "colored",
 			});
 		}
 	};

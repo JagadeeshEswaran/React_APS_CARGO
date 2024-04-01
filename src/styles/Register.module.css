@@ -6,7 +6,7 @@
 }
 
 .sign_up_form_container {
-	height: 33rem;
+	height: 65vh;
 	width: 30rem;
 
 	margin: 5rem 10rem 5rem 0;
@@ -15,6 +15,8 @@
 	border-radius: 5px;
 
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+	padding-bottom: 2rem;
 }
 
 .signUp_form {
@@ -26,6 +28,10 @@
 .signUp_form h2 {
 	color: rgb(1, 77, 77);
 	/* padding-bottom: 0.5rem; */
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .signUp_form span {
@@ -113,8 +119,12 @@
 
 .alert_subtle_container {
 	/* border: 1px dotted blue; */
-	margin-top: 1rem;
+	margin: 1rem 0;
 	padding: 1rem 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .alert_subtle_2 span a {
@@ -136,10 +146,20 @@
 .alert_subtle_container_2 {
 	width: 100%;
 	color: rgb(248, 63, 63);
-	margin-top: 1rem;
+	/* margin-top: 1rem; */
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
 	/* border: 1px dotted blue; */
 }
+
+.alert_subtle_container_2 p {
+	padding: 0;
+	margin: 0;
+}
+
 /* 
 .alert_subtle_1 {
 	color: rgb(248, 63, 63);

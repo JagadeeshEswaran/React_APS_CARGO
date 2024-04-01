@@ -4,7 +4,7 @@ import React from "react";
 
 const TimeLinePts2 = ({ title, date }) => {
 	return (
-		<article className="border border-0 border-bottom w-50 h-25 ps-4 position-relative d-flex flex-column justify-content-center align-items-center">
+		<article className="border border-0 border-bottom w-25 h-25 ps-4 position-relative d-flex flex-column justify-content-center align-items-center">
 			<article className=" d-flex flex-column justify-content-center align-items-center">
 				<h6>{title}</h6>
 				<p>{new Date(date).toLocaleString()}</p>

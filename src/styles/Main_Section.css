@@ -1,14 +1,15 @@
 .hero_container {
 	/* border: 2px dotted red; */
 
-	background-image: url("../assets/hero_img_2.jpg");
-	background-position: left;
+	background-image: url("../assets/hero_img_3.png");
+	background-size: contain;
+	background-position: bottom;
 	object-fit: cover;
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 43vh;
 
-	width: 100vw;
+	width: 99.1vw;
 
 	display: flex;
 	justify-content: flex-start;
@@ -30,16 +31,61 @@
 
 .services_container {
 	/* border: 2px dotted blue; */
-	height: 70vh;
+	height: 50vh;
 
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	background: whitesmoke;
 }
 
 .services_container h1 {
 	font-size: 4rem;
 	color: rgb(5, 52, 119);
+}
+
+.top_services_card {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border-radius: 7px;
+
+	background: rgb(236, 202, 209);
+	color: crimson;
+	box-shadow: rgba(247, 15, 35, 0.3) 0px 2px 4px 0px,
+		rgba(255, 15, 35, 0.5) 0px 2px 16px 0px;
+	top: -120px;
+	z-index: 0;
+	margin: 0 0.25rem;
+
+	transition: 0.5s;
+}
+
+.top_services_card:hover {
+	background: rgb(250, 93, 93);
+	color: bisque;
+	z-index: 5;
+	transform: scale(1.1);
+}
+
+.all_services_container {
+	height: auto;
+	min-height: 110vh;
+}
+
+.all_service_1,
+.all_service_2,
+.all_service_3 {
+	box-shadow: rgba(245, 14, 45, 0.19) 0px 10px 20px,
+		rgba(248, 15, 15, 0.23) 0px 6px 6px;
+}
+
+.customers_card {
+	border: 1px solid rgba(190, 184, 184, 0.514);
+
+	box-shadow: rgba(247, 17, 28, 0.979) 0px 5px 15px;
 }
 
 .tracker_container {
@@ -51,13 +97,19 @@
 	margin-bottom: 2rem;
 	margin-left: 3rem;
 
-	/* From https://css.glass */
-	background: rgba(90, 104, 160, 0.2);
+	transition: 0.35s;
+
+	background: rgba(241, 125, 160, 0.2);
 	border-radius: 10px;
 	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(13.4px);
 	-webkit-backdrop-filter: blur(13.4px);
 	/* border: 1px solid rgba(83, 114, 232, 0.3); */
+}
+
+.tracker_container:hover {
+	background: rgba(253, 77, 92, 0.55);
+	box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .tracker_form {
@@ -73,7 +125,7 @@
 	padding-bottom: 1rem;
 	font-size: 1.5rem;
 	font-weight: bolder;
-	color: rgb(5, 52, 119);
+	color: rgb(219, 234, 255);
 }
 
 .tracker_form_input {
@@ -89,10 +141,10 @@
 	cursor: pointer;
 	position: absolute;
 
-	font-size: 2rem;
+	font-size: 3rem;
 	color: rgb(5, 52, 119);
-	top: 67px;
-	right: 23px;
+	top: 45px;
+	right: 20px;
 }
 
 .user_page_cards_container {
@@ -156,5 +208,5 @@
 }
 
 .booking_form_container h1 {
-	color: rgb(5, 52, 119);	
+	color: rgb(5, 52, 119);
 }

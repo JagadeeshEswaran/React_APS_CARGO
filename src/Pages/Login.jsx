@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 import styles from "../styles/Login.module.css";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { HandleUserLogin } from "../Helpers/HandleUserSession";
@@ -92,9 +92,9 @@ const Login = () => {
 				});
 			}
 		} catch (error) {
-			console.log(error);
+			console.log(error.response.data.error);
 
-			toast.warning(`${error.response.data.error}`, {
+			toast.error(error.response.data.error, {
 				position: "bottom-right",
 				autoClose: 5000,
 				hideProgressBar: false,
@@ -152,15 +152,15 @@ const Login = () => {
 								</span>
 							</p>
 						</article>
+
+						<p className={styles.alert_subtle_1}>
+							<span>* </span>Please contact Admin, if unable to Login
+						</p>
 					</form>
 				</article>
-
-				<article>
-					<p className={styles.alert_subtle_1}>
-						<span>* </span>Please contact Admin, if unable to Login
-					</p>
-				</article>
 			</section>
+
+			<ToastContainer />
 		</>
 	);
 };

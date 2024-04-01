@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/Navbar.module.css";
+import "../../styles/Navbar.css";
 import { useAppContext } from "../../GlobalContext/AppContext";
+import { FaUserAlt } from "react-icons/fa";
 
 const Navbar = () => {
 	const { userAuth } = useAppContext();
@@ -12,12 +13,12 @@ const Navbar = () => {
 
 	return (
 		<>
-			<section className={styles.navbar_container}>
-				<article className={styles.logo}>
+			<section className="navbar_container">
+				<article className="logo">
 					<a href="/">APS_CARGO</a>
 				</article>
 
-				<article className={styles.Navbar_menu_items}>
+				<article className="Navbar_menu_items">
 					<menu>
 						<article>
 							<a href="">About Us</a>
@@ -40,10 +41,23 @@ const Navbar = () => {
 								<a href="/admin/login">Sign In</a>
 							</article>
 						)}
+
+						<article>
+							<a href="/contacts">Contacts</a>
+						</article>
 					</menu>
 				</article>
 
-				<article>Contacts</article>
+				<article
+					className="d-flex justify-content-center align-items-center me-5 "
+					style={{ width: "auto", height: "auto" }}>
+					<article
+						className="fs-2 border rounded-circle object-fit-cover d-flex justify-content-center align-items-center user_icon"
+						type="button"
+						style={{ height: "3rem", width: "3rem" }}>
+						<FaUserAlt />
+					</article>
+				</article>
 			</section>
 		</>
 	);

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { IoSearchCircle } from "react-icons/io5";
 
-import styles from "../../styles/Main_Section.module.css";
+import "../../styles/Main_Section.css";
 
 const Tracker = () => {
 	const [tracking_id, setTracking_id] = useState();
@@ -15,9 +15,11 @@ const Tracker = () => {
 
 	return (
 		<>
-			<article className={styles.tracker_form}>
+			<article className="tracker_form">
 				<form action="#">
-					<label htmlFor="tracker_label" className={styles.tracker_form_label}>
+					<label
+						htmlFor="tracker_label"
+						className="tracker_form_label text-danger">
 						<h1>Track Your Shipment</h1>
 					</label>
 
@@ -26,13 +28,13 @@ const Tracker = () => {
 						name="tracking_id"
 						id=""
 						placeholder="Enter the Tracking ID"
-						className={styles.tracker_form_input}
+						className="tracker_form_input"
 						onChange={(e) => setTracking_id(e.target.value)}
 					/>
 
 					<a href={`/tracking/${tracking_id}`}>
 						<article
-							className={styles.search_icons}
+							className="search_icons"
 							onClick={() => handleSearchButton(tracking_id)}>
 							<IoSearchCircle />
 						</article>

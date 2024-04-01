@@ -49,12 +49,10 @@ const Booking = () => {
 				bookingDetails
 			);
 
-			const result = response;
-
 			if (response.data.success === true) {
 				console.log(response);
 
-				toast.success(`${response.data.data.msg} `, {
+				toast.success(`${response.data.msg} `, {
 					position: "bottom-right",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -62,7 +60,7 @@ const Booking = () => {
 					pauseOnHover: true,
 					draggable: true,
 					progress: undefined,
-					theme: "light",
+					theme: "colored",
 				});
 
 				if (
@@ -80,7 +78,7 @@ const Booking = () => {
 							pauseOnHover: true,
 							draggable: true,
 							progress: undefined,
-							theme: "light",
+							theme: "colored",
 						}
 					);
 
@@ -123,7 +121,7 @@ const Booking = () => {
 						pauseOnHover: true,
 						draggable: true,
 						progress: undefined,
-						theme: "light",
+						theme: "colored",
 					});
 				}
 			}
@@ -138,7 +136,7 @@ const Booking = () => {
 				pauseOnHover: true,
 				draggable: true,
 				progress: undefined,
-				theme: "light",
+				theme: "colored",
 			});
 		}
 	};
@@ -149,7 +147,9 @@ const Booking = () => {
 				<article
 					className={styles.booking_form_header}
 					style={{ padding: "1rem 4rem" }}>
-					<h1>Consignment Booking</h1>
+					<h3 className="fw-bold text-primary text-opacity-75">
+						Consignment Booking
+					</h3>
 				</article>
 
 				<article className={styles.booking_form}>

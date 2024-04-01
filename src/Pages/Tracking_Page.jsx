@@ -230,14 +230,15 @@ const Tracking_Page = () => {
 				{showAllTrackingUpdates ? (
 					<section className={styles.all_updates_container}>
 						<article className={styles.all_updates_data}>
-							<div>Showing All Updates !!</div>
+							<h5>Showing All Updates !!</h5>
 						</article>
 
 						{/* Consignment Timeline */}
 						<article
-							className="border col-6 bg-light bg-gradient bg-opacity-25 mx-5 mt-4 d-flex flex-row justify-content-center align-items-center"
+							className=" col-6 bg-light bg-gradient bg-opacity-25 mx-5 mt-4 d-flex flex-row justify-content-start align-items-center"
 							style={{
-								width: "90%",
+								width: "auto",
+								minWidth: "10%",
 								minHeight: "60%",
 								height: "auto",
 							}}>
