@@ -5,7 +5,6 @@ import styles from "../styles/Login.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { HandleUserLogin } from "../Helpers/HandleUserSession";
 import { useAppContext } from "../GlobalContext/AppContext";
 
 const Login = () => {
@@ -24,7 +23,7 @@ const Login = () => {
 
 		if (userData.username.length < 8) {
 			toast.error("Username should be at least 8 characters", {
-				position: "bottom-right",
+				position: "top-right",
 				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
@@ -35,7 +34,7 @@ const Login = () => {
 			});
 		} else if (userData.password.length < 7) {
 			toast.error("Password should be at least 7 characters", {
-				position: "bottom-right",
+				position: "top-right",
 				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
@@ -46,7 +45,7 @@ const Login = () => {
 			});
 		} else if (errorMsg) {
 			toast.error(`${errorMsg}`, {
-				position: "bottom-right",
+				position: "top-right",
 				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
@@ -81,7 +80,7 @@ const Login = () => {
 				}, 1500);
 
 				toast.success(`${response.data.msg}, Please wait...`, {
-					position: "bottom-right",
+					position: "top-right",
 					autoClose: 5000,
 					hideProgressBar: false,
 					closeOnClick: true,
@@ -115,7 +114,14 @@ const Login = () => {
 						action="login"
 						className={styles.signUp_form}
 						onSubmit={handleLogin}>
-						<h2>APS Cargo Staff Login</h2>
+						<h2
+							className="fw-bold"
+							style={{
+								color: "aliceblue",
+								// textShadow: "red -5px 18px 30	px",
+							}}>
+							APS Cargo Staff Login
+						</h2>
 
 						<label htmlFor="username">
 							Username <span>*</span> :{" "}

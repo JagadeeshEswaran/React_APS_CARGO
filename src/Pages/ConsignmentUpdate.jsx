@@ -76,7 +76,7 @@ const ConsignmentUpdate = () => {
 	}, [cgmtUpdateFlag]);
 
 	// console.log(consignment_data);
-	console.log(cgmtUpdateFlag);
+	// console.log(cgmtUpdateFlag);
 
 	return (
 		<>

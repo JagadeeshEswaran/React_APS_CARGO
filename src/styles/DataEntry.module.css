@@ -7,6 +7,8 @@
 
 	flex-direction: column;
 
+	background: whitesmoke;
+	color: #182454;
 	/* border: 1px dotted red; */
 }
 
@@ -49,13 +51,17 @@
 
 	padding: 1rem 3rem;
 
-	background: white;
+	background: rgba(152, 179, 252, 0.4);
 
 	margin: 1rem 3rem;
 	width: 50rem;
 	min-width: 5rem;
 
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.card_1::placeholder {
+	color: aliceblue;
 }
 
 .card_2 {
@@ -65,7 +71,7 @@
 
 	padding: 2rem 3rem;
 
-	background: white;
+	background: rgba(152, 179, 252, 0.4);
 
 	margin: 1rem 3rem;
 	width: 50rem;
@@ -103,7 +109,7 @@
 	margin-bottom: 0.5rem;
 
 	border: none;
-	background: rgba(3, 51, 209, 0.377);
+	background: rgba(3, 51, 209, 0.3);
 	border-radius: 5px;
 }
 
@@ -121,7 +127,7 @@
 	font-size: medium;
 
 	border: none;
-	background: rgba(3, 51, 209, 0.377);
+	background: rgba(3, 51, 209, 0.25);
 	border-radius: 5px;
 }
 

@@ -101,7 +101,12 @@ const CgmtTrackingUpdateForm = ({
 				className="card shadow border border-2 col-7 row d-flex justify-content-center align-items-center update_consignment_Input_container_2"
 				style={{ width: "55vw", height: "80vh" }}>
 				{isLoading ? (
-					<CircularProgress size="lg" variant="soft" />
+					<CircularProgress
+						color="primary"
+						value={255}
+						variant="soft"
+						size="lg"
+					/>
 				) : tracking_data_1.curr_status ? (
 					<>
 						{/* Consignment Timeline */}

@@ -1,8 +1,14 @@
 .register_main_container {
-	height: 92svh;
+	height: 80svh;
 
 	display: flex;
 	justify-content: flex-end;
+
+	background-image: url("../assets/Icon_final.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: inherit;
+	background-position-x: 30%;
 }
 
 .sign_up_form_container {
@@ -13,10 +19,11 @@
 
 	/* border: 1px dotted red; */
 	border-radius: 5px;
-
-	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
+	box-shadow: rgba(16, 99, 252, 0.3) 0px 14px 28px,
+		rgba(38, 16, 241, 0.5) 0px 10px 10px;
 	padding-bottom: 2rem;
+
+	background: rgba(49, 121, 253, 0.521);
 }
 
 .signUp_form {
@@ -56,12 +63,16 @@
 	border-radius: 5px;
 
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+	color: aliceblue;
 }
 
 .signUp_form input::placeholder {
 	color: rgba(3, 25, 97, 0.6);
 	font-weight: 500;
 	font-size: medium;
+
+	color: rgba(240, 248, 255, 0.5);
 }
 
 .signUp_form_btn_container {

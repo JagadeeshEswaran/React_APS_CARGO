@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import CircularProgress from "@mui/joy/CircularProgress";
+import icon_logo from "../assets/Company Icons/Figma/IconPNG.png";
 
 import TimeLinePtr2 from "../components/ForTrackingUpdate/TimeLinePts2";
 
@@ -75,7 +76,7 @@ const Tracking_Page = () => {
 				// You can also access other properties such as error.response.headers, error.request, etc.
 
 				toast.error(error.response.data, {
-					position: "bottom-center",
+					position: "top-right",
 					autoClose: 5000,
 					hideProgressBar: false,
 					closeOnClick: true,
@@ -103,14 +104,20 @@ const Tracking_Page = () => {
 		handleConsignmentData(trackingIdFromURL);
 	}, []);
 
-	console.log(consignment_data);
+	// console.log(consignment_data);
 
 	return (
 		<>
 			<section
-				style={{ height: "93vh" }}
+				style={{
+					height: "auto",
+					minHeight: "68vh",
+					background: "whitesmoke",
+				}}
 				className={styles.tracking_page_container}>
-				<h3 className="m-0">TRACK CONSIGNMENTS</h3>
+				<h3 className="m-0 fw-semibold" style={{ color: "rgb(5, 52, 119)" }}>
+					TRACK CONSIGNMENTS
+				</h3>
 
 				{/* Trackign ID Input Form */}
 				<article className={styles.tracingID_input}>
@@ -141,7 +148,7 @@ const Tracking_Page = () => {
 
 				{/* Message or Tracking Data to Display */}
 				{isLoading ? (
-					<CircularProgress size="lg" variant="soft" />
+					<CircularProgress size="md" variant="soft" className="mt-5" />
 				) : errorMsg ? (
 					<p>Please Enter a Valid Tracking ID</p>
 				) : consignment_data ? (
@@ -235,7 +242,7 @@ const Tracking_Page = () => {
 
 						{/* Consignment Timeline */}
 						<article
-							className=" col-6 bg-light bg-gradient bg-opacity-25 mx-5 mt-4 d-flex flex-row justify-content-start align-items-center"
+							className="col-6 bg-light bg-gradient bg-opacity-25 mx-5 mt-5 d-flex flex-row justify-content-start align-items-center"
 							style={{
 								width: "auto",
 								minWidth: "10%",
@@ -291,6 +298,10 @@ const Tracking_Page = () => {
 					</section>
 				) : null}
 			</section>
+
+			{/* <article className="position-absolute top-0 end-50">
+				<img src={icon_logo} alt="" />
+			</article> */}
 		</>
 	);
 };

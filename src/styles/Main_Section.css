@@ -150,9 +150,11 @@
 .user_page_cards_container {
 	height: 70vh;
 	display: flex;
-
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	background: rgba(253, 236, 236, 0.6);
 }
 
 .user_page_cards {
@@ -166,11 +168,11 @@
 	justify-content: center;
 	align-items: center;
 
-	background: rgba(3, 51, 209, 0.377);
-	border-radius: 7px;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	background: rgba(44, 92, 253, 0.377);
+	border-radius: 4px;
+	box-shadow: rgba(38, 51, 241, 0.6) 0px 5px 15px;
 
-	transition: 0.2s ease-out;
+	transition: 0.35s;
 
 	/* color: aliceblue; */
 
@@ -180,11 +182,17 @@
 .user_page_cards {
 	font-size: large;
 	font-weight: 500;
+
+	color: rgba(12, 67, 247, 0.8);
 }
 
 .user_page_cards:hover,
 .user_page_cards a:hover {
-	transform: scale(1.05);
+	transform: scale(1.1);
+	box-shadow: rgba(24, 56, 236, 0.3) 0px 19px 38px,
+		rgba(8, 4, 252, 0.4) 0px 15px 12px;
+
+	border-radius: 20px;
 
 	background: rgba(3, 51, 209, 0.8);
 	color: aliceblue;
@@ -197,6 +205,39 @@
 	/* text-decoration: none; */
 	color: rgba(4, 44, 223, 0.726);
 	font-weight: bold;
+}
+
+.user_page_cards_for_list {
+	cursor: pointer;
+	height: 5rem;
+	width: 25rem;
+
+	margin: 3rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background: rgb(3, 196, 255);
+	border-radius: 7px;
+	box-shadow: rgba(38, 51, 241, 0.6) 0px 5px 15px;
+
+	transition: 0.35s;
+
+	color: aliceblue;
+
+	/* border: 1px dotted red; */
+}
+
+.user_page_cards_for_list:hover {
+	transform: scale(1.05);
+	box-shadow: rgba(24, 56, 236, 0.3) 0px 19px 38px,
+		rgba(8, 4, 252, 0.4) 0px 15px 12px;
+
+	border-radius: 10px;
+
+	background: rgba(3, 51, 209, 0.8);
+	color: rgb(199, 242, 255);
 }
 
 .booking_form_container {

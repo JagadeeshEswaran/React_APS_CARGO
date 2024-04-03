@@ -7,6 +7,9 @@
 
 	flex-direction: column;
 
+	background: whitesmoke;
+	color: rgb(13, 23, 66) !important;
+
 	/* border: 1px dotted red; */
 }
 
@@ -25,13 +28,25 @@
 	justify-content: start;
 	align-items: center;
 
-	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	box-shadow: rgba(81, 63, 238, 0.4) 0px 2px 4px,
+		rgba(11, 16, 59, 0.3) 0px 7px 13px -3px,
+		rgba(73, 62, 122, 0.2) 0px -3px 0px inset;
 }
 
 .update_consignment_Input_container_1 {
 	background: rgba(30, 54, 121, 0.9);
+	color: rgb(13, 23, 66) !important;
+
+	box-shadow: rgba(81, 63, 238, 0.4) 0px 2px 4px,
+		rgba(11, 16, 59, 0.3) 0px 7px 13px -3px,
+		rgba(73, 62, 122, 0.2) 0px -3px 0px inset !important;
 }
 
 .update_consignment_Input_container_2 {
 	background: rgba(30, 54, 121, 0.9);
+	color: rgb(13, 23, 66) !important;
+
+	box-shadow: rgba(81, 63, 238, 0.4) 0px 2px 4px,
+		rgba(11, 16, 59, 0.3) 0px 7px 13px -3px,
+		rgba(73, 62, 122, 0.2) 0px -3px 0px inset !important;
 }

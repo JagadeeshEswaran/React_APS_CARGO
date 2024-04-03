@@ -18,7 +18,7 @@
 }
 
 .footer_container_2 {
-	border: 1px dotted blue;
+	/* border: 1px dotted blue; */
 
 	height: 15vh;
 
@@ -30,11 +30,14 @@
 
 	font-size: 2rem;
 	color: rgb(5, 52, 119);
+	background: #334e8d;
 }
 
 .footer_2_h1 {
 	font-size: 1rem;
-	color: rgb(5, 52, 119);
+	color: rgb(191, 218, 255);
 
 	text-align: end;
+
+	/* margin-bottom: 3rem; */
 }

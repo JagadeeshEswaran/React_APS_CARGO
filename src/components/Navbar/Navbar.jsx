@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
+
+import main_icon from "../../assets/Company Icons/Figma/Icon_Full_Light.svg";
 import "../../styles/Navbar.css";
 import { useAppContext } from "../../GlobalContext/AppContext";
 import { FaUserAlt } from "react-icons/fa";
@@ -15,7 +17,9 @@ const Navbar = () => {
 		<>
 			<section className="navbar_container">
 				<article className="logo">
-					<a href="/">APS_CARGO</a>
+					<a href="/" className="text-light">
+						<img src={main_icon} alt="APS Cargo Icon" width={160} height={80} />
+					</a>
 				</article>
 
 				<article className="Navbar_menu_items">

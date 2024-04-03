@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import styles from "../../styles/DataEntry.module.css";
+import icons_PNG from "../../assets/Company Icons/Figma/Icon_final.svg";
 import AddrInputs from "./AddrInputs";
 import Buttons from "./Buttons";
 import { toast } from "react-toastify";
@@ -144,39 +145,39 @@ const Booking = () => {
 	return (
 		<>
 			<section className={styles.booking_form_container}>
-				<article
-					className={styles.booking_form_header}
-					style={{ padding: "1rem 4rem" }}>
-					<h3 className="fw-bold text-primary text-opacity-75">
-						Consignment Booking
-					</h3>
-				</article>
-
 				<article className={styles.booking_form}>
 					{/* Address Component */}
 					<article className={styles.card_1} style={{ width: "55rem" }}>
 						<form action="" className={styles.form_ele}>
 							{/* Date Component	 */}
 							<article className={styles.form_date_ele}>
-								<label htmlFor="">
-									Date : <span className={styles.man_span}>*</span>{" "}
-								</label>
-								<input
-									type="date"
-									name=""
-									id=""
-									value={bookingDetails.booking_date}
-									onChange={(e) => {
-										const selectedData = new Date(e.target.value);
-										const inMilliSec = selectedData.getTime();
+								<section className="row mb-2">
+									<article className="col-6">
+										<label htmlFor="">
+											Date : <span className={styles.man_span}>*</span>{" "}
+										</label>
+										<input
+											type="date"
+											name=""
+											id=""
+											value={bookingDetails.booking_date}
+											onChange={(e) => {
+												const selectedData = new Date(e.target.value);
+												const inMilliSec = selectedData.getTime();
 
-										setBookingDetails({
-											...bookingDetails,
-											booking_date_ms: inMilliSec,
-											booking_date: e.target.value,
-										});
-									}}
-								/>
+												setBookingDetails({
+													...bookingDetails,
+													booking_date_ms: inMilliSec,
+													booking_date: e.target.value,
+												});
+											}}
+										/>
+									</article>
+
+									<article className="col-6" style={{ color: "#182454" }}>
+										<h3 className="fw-bold text-end">Consignment Booking</h3>
+									</article>
+								</section>
 							</article>
 
 							<AddrInputs
@@ -399,6 +400,10 @@ const Booking = () => {
 
 						<article className={styles.card_1}>
 							<Buttons handleSubmitBtn={handleSubmitBtn} />
+						</article>
+
+						<article className="text-center opacity-25">
+							<img src={icons_PNG} alt="APS Cargo Icon" height={280} />
 						</article>
 					</article>
 				</article>

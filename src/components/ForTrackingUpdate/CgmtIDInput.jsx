@@ -44,6 +44,7 @@ const CgmtIDInput = ({ handleUserInput, consignment_data, errorMsg }) => {
 
 						<button
 							className="btn btn-info fw-bold bg-gradient bg-opacity-50 w-25 shadow"
+							style={{ color: "rgb(13, 23, 66)" }}
 							type="button"
 							onClick={() => handleCgmtSearch()}
 							id="button-addon2">
@@ -77,7 +78,7 @@ const CgmtIDInput = ({ handleUserInput, consignment_data, errorMsg }) => {
 
 					{isLoading ? (
 						<article className="mt-5 text-center">
-							<CircularProgress />
+							<CircularProgress color="primary" value={255} variant="soft" />
 						</article>
 					) : consignment_data.booking_data &&
 					  consignment_data.consignment_data &&
