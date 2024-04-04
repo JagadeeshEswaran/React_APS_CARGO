@@ -25,7 +25,7 @@ const Navbar = () => {
 				<article className="Navbar_menu_items">
 					<menu>
 						<article>
-							<a href="">About Us</a>
+							<a href="/about">About Us</a>
 						</article>
 						<article>
 							<a href="/tracking">Track</a>

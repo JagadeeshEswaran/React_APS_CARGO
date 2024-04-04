@@ -12,7 +12,7 @@
 	width: 99.1vw;
 
 	display: flex;
-	justify-content: flex-start;
+	justify-content: center;
 	align-items: center;
 }
 
@@ -125,16 +125,25 @@
 	padding-bottom: 1rem;
 	font-size: 1.5rem;
 	font-weight: bolder;
-	color: rgb(219, 234, 255);
+	color: rgb(5, 52, 119);
 }
 
 .tracker_form_input {
 	width: 95%;
-	height: 2.5rem;
+	height: 3rem;
 	padding: 0 0.5rem;
 	font-size: large;
 	border-radius: 7px;
 	border: none;
+
+	background: rgba(5, 53, 119, 0.75);
+	color: aliceblue;
+	font-weight: 600;
+}
+
+.tracker_form_input::placeholder {
+	color: rgba(240, 248, 255, 0.562);
+	font-weight: 400;
 }
 
 .search_icons {
@@ -142,9 +151,19 @@
 	position: absolute;
 
 	font-size: 3rem;
-	color: rgb(5, 52, 119);
-	top: 45px;
+	color: aliceblue;
+	top: 70px;
 	right: 20px;
+
+	transition: 0.35s;
+
+	border: 2px solid transparent;
+}
+
+.search_icons:hover {
+	top: 68px;
+	transform: scale(1.2);
+	border: 2px solid aliceblue;
 }
 
 .user_page_cards_container {

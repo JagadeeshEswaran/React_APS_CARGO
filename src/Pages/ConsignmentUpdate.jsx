@@ -12,6 +12,7 @@ const ConsignmentUpdate = () => {
 	const [errorMsg, setErrorMsg] = useState("");
 	const { consignment_data, setConsignmentData } = useAppContext([]);
 	const [cgmtUpdateFlag, setCgmtUpdateFlag] = useState(true);
+	const [cgmtId, serCgmtId] = useState();
 
 	const handleAxiosRequest = async (trackingId) => {
 		// console.log(trackingId);
@@ -75,9 +76,6 @@ const ConsignmentUpdate = () => {
 			handleAxiosRequest(consignment_data.booking_data[0].booking_id);
 	}, [cgmtUpdateFlag]);
 
-	// console.log(consignment_data);
-	// console.log(cgmtUpdateFlag);
-
 	return (
 		<>
 			<section className="tracking_form_container">
@@ -103,6 +101,7 @@ const ConsignmentUpdate = () => {
 						handleUserInput={handleUserInput}
 						consignment_data={consignment_data}
 						errorMsg={errorMsg}
+						cgmtId={cgmtId}
 					/>
 
 					<CgmtTrackingUpdateForm

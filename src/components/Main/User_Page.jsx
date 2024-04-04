@@ -17,7 +17,7 @@ import CircularProgress from "@mui/joy/CircularProgress";
 const User_Page = () => {
 	const [isLoading, setLoading] = useState(true);
 	const { userData } = useAppContext();
-	const navogate = useNavigate();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const isUser = localStorage.getItem("isLoggedIn");
@@ -35,7 +35,7 @@ const User_Page = () => {
 			});
 
 			setTimeout(() => {
-				navogate("/admin/login");
+				navigate("/admin/login");
 			}, 500);
 		}
 
@@ -83,7 +83,7 @@ const User_Page = () => {
 												<FaCashRegister />
 											</article>
 											<h4 className="fw-bold" style={{ zIndex: 10 }}>
-												Book a Parcels
+												Book a Parcel
 											</h4>
 										</article>
 
@@ -129,7 +129,7 @@ const User_Page = () => {
 						</article>
 
 						<article>
-							<a href="/tracking">
+							<a href="/admin/staff_page/all_bookings">
 								<article className="user_page_cards_for_list">
 									<article
 										className="d-flex justify-content-center align-items-center"

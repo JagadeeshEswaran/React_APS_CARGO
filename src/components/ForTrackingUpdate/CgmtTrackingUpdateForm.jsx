@@ -77,7 +77,7 @@ const CgmtTrackingUpdateForm = ({
 
 	setTimeout(() => {
 		setLoading(false);
-	}, 1200);
+	}, 1700);
 
 	useEffect(() => {
 		setLoading(true);
@@ -90,7 +90,7 @@ const CgmtTrackingUpdateForm = ({
 
 		setTimeout(() => {
 			setLoading(false);
-		}, 1200);
+		}, 1750);
 	}, [tracking_data_1]);
 
 	// console.log(currStatusToBeUpdated);

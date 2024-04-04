@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "../styles/Login.module.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -105,6 +105,14 @@ const Login = () => {
 			});
 		}
 	};
+
+	useEffect(() => {
+		const isLogged = localStorage.getItem("isLoggedIn");
+
+		if (isLogged) {
+			navigate("/admin/staff_page");
+		}
+	}, []);
 
 	return (
 		<>

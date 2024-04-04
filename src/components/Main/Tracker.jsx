@@ -34,9 +34,9 @@ const Tracker = () => {
 
 					<a href={`/tracking/${tracking_id}`}>
 						<article
-							className="search_icons"
+							className=""
 							onClick={() => handleSearchButton(tracking_id)}>
-							<IoSearchCircle />
+							<IoSearchCircle className="search_icons  rounded-circle" />
 						</article>
 					</a>
 				</form>

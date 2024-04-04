@@ -1,0 +1,32 @@
+.list_view_page_list_item {
+	cursor: pointer;
+	background: #82a9fc48;
+	color: rgb(19, 20, 59);
+	transition: 0.35s;
+}
+
+.list_item_update_icon,
+.list_item_track_icon {
+	color: rgba(3, 59, 109, 0.75);
+	transition: 0.3s;
+}
+
+.list_item_update_icon:hover,
+.list_item_track_icon:hover {
+	color: rgba(7, 54, 95);
+}
+
+.icon_font {
+	cursor: pointer;
+	padding: 2px;
+	border: 2px solid rgba(7, 54, 95);
+
+	transition: 0.2s;
+}
+
+.list_item_update_icon:hover .icon_font,
+.list_item_track_icon:hover .icon_font {
+	transform: scale(1.1);
+	box-shadow: rgba(51, 18, 170, 0.25) 0px 14px 28px,
+		rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}

@@ -13,6 +13,8 @@ import "react-toastify/dist/ReactToastify.css";
 import User_Page from "./components/Main/User_Page";
 import Booking from "./components/Data_Entry/Booking";
 import ConsignmentUpdate from "./Pages/ConsignmentUpdate";
+import ListItems from "./components/UserUtils/ListItems";
+import AboutUs from "./Pages/AboutUs";
 
 const router = createBrowserRouter([
 	{
@@ -22,6 +24,10 @@ const router = createBrowserRouter([
 	{
 		path: "/test",
 		element: <div>Hello world!</div>,
+	},
+	{
+		path: "/about",
+		element: <AboutUs />,
 	},
 	{
 		path: "/tracking/:id",
@@ -44,6 +50,10 @@ const router = createBrowserRouter([
 		element: <User_Page />,
 	},
 	{
+		path: "/admin/staff_page/all_bookings",
+		element: <ListItems />,
+	},
+	{
 		path: "/admin/book_parcel",
 		element: <Booking />,
 	},
@@ -51,7 +61,68 @@ const router = createBrowserRouter([
 		path: "/admin/tracking_update",
 		element: <ConsignmentUpdate />,
 	},
+	{
+		path: "/admin/tracking_update/:id",
+		element: <ConsignmentUpdate />,
+	},
 ]);
+
+// const router = createBrowserRouter([
+// 	{
+// 		path: "/",
+// 		element: <Main_Section />,
+// 	},
+// 	{
+// 		path: "/test",
+// 		element: <div>Hello world!</div>,
+// 	},
+// 	{
+// 		path: "/tracking",
+// 		element: <Tracking_Page />,
+// 		children: [
+// 			{
+// 				path: "/",
+// 				element: <Tracking_Page />,
+// 			},
+// 			{
+// 				path: ":id",
+// 				element: <Tracking_Page />,
+// 			},
+// 		],
+// 	},
+// 	{
+// 		path: "/admin",
+// 		element: <Login />,
+// 		children: [
+// 			{
+// 				path: "login",
+// 				element: <Login />,
+// 			},
+// 			{
+// 				path: "register",
+// 				element: <Register />,
+// 			},
+// 			{
+// 				path: "staff_page",
+// 				element: <User_Page />,
+// 				children: [
+// 					{
+// 						path: "all_bookings",
+// 						element: <ListItems />,
+// 					},
+// 				],
+// 			},
+// 			{
+// 				path: "book_parcel",
+// 				element: <Booking />,
+// 			},
+// 			{
+// 				path: "tracking_update",
+// 				element: <ConsignmentUpdate />,
+// 			},
+// 		],
+// 	},
+// ]);
 
 const App = () => {
 	return (

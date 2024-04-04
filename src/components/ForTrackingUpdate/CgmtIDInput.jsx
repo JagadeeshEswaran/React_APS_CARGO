@@ -1,28 +1,47 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import ConsignmentInfo from "./ConsignmentInfo";
 
 import "../../styles/ConsignmentUpdate.css";
 import { toast } from "react-toastify";
 import CircularProgress from "@mui/joy/CircularProgress";
 
-const CgmtIDInput = ({ handleUserInput, consignment_data, errorMsg }) => {
+const CgmtIDInput = ({
+	handleUserInput,
+	consignment_data,
+	errorMsg,
+	cgmtId,
+}) => {
 	const [isLoading, setLoading] = useState(false);
-	const cgmtID = useRef();
+	const [cgmtID, setCgmtID] = useState();
 
-	const handleCgmtSearch = async () => {
+	const handleCgmtSearch = async (trackingIdFromURL) => {
 		setLoading(true);
 
-		handleUserInput(cgmtID.current.value);
+		handleUserInput(trackingIdFromURL ? trackingIdFromURL : cgmtID);
 
 		setTimeout(() => {
 			setLoading(false);
 		}, 900);
 	};
 
-	// console.log(consignment_data);
+	useEffect(() => {
+		const params = window.location.pathname;
+		const paramsArr = params.split("/");
+
+		const trackingIdFromURL = +paramsArr[paramsArr.length - 1];
+
+		setCgmtID(trackingIdFromURL);
+
+		if (trackingIdFromURL) {
+			setTimeout(() => {
+				handleCgmtSearch(trackingIdFromURL);
+			}, 1500);
+		}
+		// handleConsignmentData(trackingIdFromURL);
+	}, []);
 
 	if (consignment_data || errorMsg) {
 		return (
@@ -39,7 +58,8 @@ const CgmtIDInput = ({ handleUserInput, consignment_data, errorMsg }) => {
 							style={{ height: "3.5rem" }}
 							placeholder="Consignment ID"
 							aria-describedby="button-addon2"
-							ref={cgmtID}
+							value={cgmtID}
+							onChange={(e) => setCgmtID(e.target.value)}
 						/>
 
 						<button
@@ -146,15 +166,15 @@ const CgmtIDInput = ({ handleUserInput, consignment_data, errorMsg }) => {
 									<article
 										className="card px-3 py-4 d-flex justify-content-evenly align-items-center col-6 bg-info shadow"
 										style={{ width: "47.5%", height: "95%" }}>
-										<p className="p-0 m-0 fs-5 fw-semibold">Gross Weight : </p>
+										<p className="p-0 m-0 fs-5 fw-semibold">Gross Weight </p>
 										<p
-											className="p-0 m-0 fs-6 fw-normal ms-2 mb-3 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
+											className="p-0 m-0 fs-6 fw-semibold ms-2 mb-3 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
 											style={{ textTransform: "capitalize" }}>
 											{consignment_data.consignment_data[0].gross_weight}
 										</p>
-										<p className="p-0 m-0 fs-5 fw-semibold">Goods Type : </p>
+										<p className="p-0 m-0 fs-5 fw-semibold">Goods Type </p>
 										<p
-											className="p-0 m-0 fs-6 fw-normal ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
+											className="p-0 m-0 fs-6 fw-semibold ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
 											style={{ textTransform: "capitalize" }}>
 											{consignment_data.consignment_data[0].type_of_goods}
 										</p>
@@ -164,18 +184,16 @@ const CgmtIDInput = ({ handleUserInput, consignment_data, errorMsg }) => {
 									<article
 										className="card px-3 py-4 d-flex justify-content-evenly align-items-center col-6 bg-info shadow"
 										style={{ width: "47.5%", height: "95%" }}>
-										<p className="p-0 m-0 fs-5 fw-semibold">
-											Box / Pack Qty :{" "}
-										</p>
+										<p className="p-0 m-0 fs-5 fw-semibold">Box / Pack Qty </p>
 										<p
-											className="p-0 m-0 fs-6 fw-normal ms-2 mb-3 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
+											className="p-0 m-0 fs-6 fw-semibold ms-2 mb-3 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
 											style={{ textTransform: "capitalize" }}>
 											{consignment_data.consignment_data[0].package_qty}
 										</p>
 
-										<p className="p-0 m-0 fs-5 fw-semibold">Handled By : </p>
+										<p className="p-0 m-0 fs-5 fw-semibold">Handled By </p>
 										<p
-											className="p-0 m-0 fs-6 fw-normal ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
+											className="p-0 m-0 fs-6 fw-semibold ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
 											style={{ textTransform: "capitalize" }}>
 											{consignment_data.consignment_data[0].delivery_agent}
 										</p>
