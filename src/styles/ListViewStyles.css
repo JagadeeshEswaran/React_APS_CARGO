@@ -1,0 +1,19 @@
+.list_reset_button {
+	transition: 0.3s;
+	color: orange;
+}
+
+.list_reset_button:hover {
+	transform: scale(1.1);
+	color: rgb(2, 34, 99) !important;
+	font-weight: 600;
+
+	background: rgba(121, 153, 249, 0.32);
+	border-radius: 7px;
+	backdrop-filter: blur(12.2px);
+	-webkit-backdrop-filter: blur(12.2px);
+	border: 1px solid rgba(121, 153, 249, 0.43);
+
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+		rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}

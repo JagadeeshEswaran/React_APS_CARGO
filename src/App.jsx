@@ -15,6 +15,12 @@ import Booking from "./components/Data_Entry/Booking";
 import ConsignmentUpdate from "./Pages/ConsignmentUpdate";
 import ListItems from "./components/UserUtils/ListItems";
 import AboutUs from "./Pages/AboutUs";
+import OurTeam from "./Pages/OurTeam";
+import ContactUs from "./Pages/Customer Pages/ContactUs";
+import Services from "./Pages/Services";
+import ShipNow from "./Pages/Customer Pages/ShipNow";
+import GetQutoe from "./Pages/Customer Pages/GetQutoe";
+import AllUsersPage from "./Pages/Admin/AllUsersPage";
 
 const router = createBrowserRouter([
 	{
@@ -30,6 +36,26 @@ const router = createBrowserRouter([
 		element: <AboutUs />,
 	},
 	{
+		path: "/ourTeam",
+		element: <OurTeam />,
+	},
+	{
+		path: "/contact",
+		element: <ContactUs />,
+	},
+	{
+		path: "/services",
+		element: <Services />,
+	},
+	{
+		path: "/services/ship_now",
+		element: <ShipNow />,
+	},
+	{
+		path: "/services/get_quote",
+		element: <GetQutoe />,
+	},
+	{
 		path: "/tracking/:id",
 		element: <Tracking_Page />,
 	},
@@ -42,7 +68,7 @@ const router = createBrowserRouter([
 		element: <Login />,
 	},
 	{
-		path: "/admin/register",
+		path: "/user/register",
 		element: <Register />,
 	},
 	{
@@ -64,6 +90,10 @@ const router = createBrowserRouter([
 	{
 		path: "/admin/tracking_update/:id",
 		element: <ConsignmentUpdate />,
+	},
+	{
+		path: "/admin/all_users",
+		element: <AllUsersPage />,
 	},
 ]);
 

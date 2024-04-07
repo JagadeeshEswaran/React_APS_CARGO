@@ -152,7 +152,7 @@ const Booking = () => {
 							{/* Date Component	 */}
 							<article className={styles.form_date_ele}>
 								<section className="row mb-2">
-									<article className="col-6">
+									<article className="col-6 me-3">
 										<label htmlFor="">
 											Date : <span className={styles.man_span}>*</span>{" "}
 										</label>
@@ -174,7 +174,9 @@ const Booking = () => {
 										/>
 									</article>
 
-									<article className="col-6" style={{ color: "#182454" }}>
+									<article
+										className="col-5 ms-5 booking_banner d-flex justify-content-center align-items-center"
+										style={{ color: "#182454" }}>
 										<h3 className="fw-bold text-end">Consignment Booking</h3>
 									</article>
 								</section>

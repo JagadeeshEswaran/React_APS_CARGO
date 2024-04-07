@@ -47,6 +47,12 @@ const User_Page = () => {
 	return (
 		<>
 			<section className="user_page_cards_container">
+				<article
+					className="border-dark position-absolute"
+					style={{ opacity: "10%" }}>
+					<img src={icons_PNG} alt="APS Cargo Icon" height={500} />
+				</article>
+
 				{isLoading ? (
 					<CircularProgress color="primary" size="lg" variant="soft" />
 				) : (
@@ -128,7 +134,7 @@ const User_Page = () => {
 							</article>
 						</article>
 
-						<article>
+						<article type="button">
 							<a href="/admin/staff_page/all_bookings">
 								<article className="user_page_cards_for_list">
 									<article
@@ -137,7 +143,7 @@ const User_Page = () => {
 										<article className="text-center fs-1 pb-3 me-4">
 											<FaRegRectangleList />
 										</article>
-										<h4 className="fw-bold" style={{ zIndex: 10 }}>
+										<h4 className="fw-bold p-0 m-0" style={{ zIndex: 10 }}>
 											View All Consignments
 										</h4>
 									</article>

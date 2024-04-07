@@ -17,39 +17,50 @@ const Services = () => {
 				style={{ height: "auto", maxHeight: "110vh" }}>
 				{/* Top Services Tabs */}
 				<article className="top_services_container position-relative d-flex">
-					<article
-						className="border top_services_card flex-column"
-						style={{ height: "10rem", width: "20rem" }}>
-						<article className="mb-3 fs-1">
-							<FaCalendarCheck />
+					{/* ShipNow */}
+					<a href="/services/ship_now">
+						<article
+							className="border top_services_card flex-column"
+							style={{ height: "10rem", width: "20rem" }}>
+							<article className="mb-3 fs-1">
+								<FaCalendarCheck />
+							</article>
+							<article>
+								<h5 className="text-center">Ship Now</h5>
+								<p>Anytime, Anywhere</p>
+							</article>
 						</article>
-						<article>
-							<h5 className="text-center">Ship Now</h5>
-							<p>Anytime, Anywhere</p>
+					</a>
+
+					{/* GetQuote */}
+					<a href="/services/get_quote">
+						<article
+							className="border top_services_card flex-column"
+							style={{ height: "10rem", width: "20rem" }}>
+							<article className="mb-3 fs-1">
+								<MdEditDocument />
+							</article>
+							<article>
+								<h5 className="text-center">Get Quotes</h5>
+								<p>Bettwe Price, for Sure</p>
+							</article>
 						</article>
-					</article>
-					<article
-						className="border top_services_card flex-column"
-						style={{ height: "10rem", width: "20rem" }}>
-						<article className="mb-3 fs-1">
-							<MdEditDocument />
+					</a>
+
+					{/* ContactUs */}
+					<a href="/contact">
+						<article
+							className="border top_services_card flex-column"
+							style={{ height: "10rem", width: "20rem" }}>
+							<article className="mb-3 fs-1">
+								<LuPhoneCall />
+							</article>
+							<article>
+								<h5 className="text-center">Contact Us</h5>
+								<p>Get in Touch with Us</p>
+							</article>
 						</article>
-						<article>
-							<h5 className="text-center">Get Quotes</h5>
-							<p>Bettwe Price, for Sure</p>
-						</article>
-					</article>
-					<article
-						className="border top_services_card flex-column"
-						style={{ height: "10rem", width: "20rem" }}>
-						<article className="mb-3 fs-1">
-							<LuPhoneCall />
-						</article>
-						<article>
-							<h5 className="text-center">Contact Us</h5>
-							<p>Get in Touch with Us</p>
-						</article>
-					</article>
+					</a>
 				</article>
 
 				<article className="all_services_container d-flex  mt-5">

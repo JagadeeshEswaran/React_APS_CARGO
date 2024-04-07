@@ -3,13 +3,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import CircularProgress from "@mui/joy/CircularProgress";
-import icon_logo from "../assets/Company Icons/Figma/IconPNG.png";
 
 import TimeLinePtr2 from "../components/ForTrackingUpdate/TimeLinePts2";
 
 import styles from "../styles/Tracking_page.module.css";
 import { tracking_data } from "../data/consignment_data";
 import { toast } from "react-toastify";
+
+import icons_PNG from "../assets/Company Icons/Figma/Icon_final.svg";
 
 const Tracking_Page = () => {
 	const [new_tracking_data, setTracking_data] = useState(tracking_data);
@@ -100,8 +101,10 @@ const Tracking_Page = () => {
 
 		const trackingIdFromURL = +paramsArr[paramsArr.length - 1];
 
-		setIdFromURL(trackingIdFromURL);
-		handleConsignmentData(trackingIdFromURL);
+		if (trackingIdFromURL) {
+			setTrackingId(trackingIdFromURL);
+			handleAxiosRequest(trackingIdFromURL);
+		}
 	}, []);
 
 	// console.log(consignment_data);
@@ -118,6 +121,17 @@ const Tracking_Page = () => {
 				<h3 className="m-0 fw-semibold" style={{ color: "rgb(5, 52, 119)" }}>
 					TRACK CONSIGNMENTS
 				</h3>
+
+				<article
+					className=" border-dark position-absolute	"
+					style={{
+						marginTop: "7rem",
+						marginRight: "7rem",
+						// zIndex: "-10",
+						opacity: "10%",
+					}}>
+					<img src={icons_PNG} alt="APS Cargo Icon" height={500} />
+				</article>
 
 				{/* Trackign ID Input Form */}
 				<article className={styles.tracingID_input}>

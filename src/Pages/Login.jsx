@@ -7,6 +7,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../GlobalContext/AppContext";
 
+import icons_PNG from "../assets/Company Icons/Figma/Icon_final.svg";
+
 const Login = () => {
 	const [userData, setUserData_] = useState({
 		username: "",
@@ -14,9 +16,7 @@ const Login = () => {
 	});
 	const [errorMsg, setErrorMsg] = useState("");
 	const navigate = useNavigate();
-	const { setUserData } = useAppContext();
-
-	const testUserData = { username: "TestUser", token: "BlahBlahBlah" };
+	const { username } = useAppContext();
 
 	const handleLogin = (e) => {
 		e.preventDefault();
@@ -60,23 +60,25 @@ const Login = () => {
 	};
 
 	const handleSuccess = async () => {
+		console.log(userData);
+
 		try {
 			const response = await axios.post(
-				"http://localhost:3000/admin/login",
+				// "http://localhost:3000/admin/login",
+				"http://localhost:3000/user/login",
 				userData
 			);
-
-			console.log(response);
 
 			if (response.data.success) {
 				console.log(response.data.msg);
 
-				setUserData(testUserData);
-
 				localStorage.setItem("isLoggedIn", true);
+				localStorage.setItem("username", userData.username);
+				localStorage.setItem("token", response.data.token);
 
 				setTimeout(() => {
 					navigate("/admin/staff_page");
+					location.reload();
 				}, 1500);
 
 				toast.success(`${response.data.msg}, Please wait...`, {
@@ -117,6 +119,12 @@ const Login = () => {
 	return (
 		<>
 			<section className={styles.register_main_container}>
+				<article
+					className="border-dark"
+					style={{ marginLeft: "20rem", zIndex: "-10", opacity: "10%" }}>
+					<img src={icons_PNG} alt="APS Cargo Icon" height={500} />
+				</article>
+
 				<article className={styles.sign_up_form_container}>
 					<form
 						action="login"
@@ -158,17 +166,17 @@ const Login = () => {
 							<button>Cancel</button>
 						</article>
 
-						<article className={styles.alert_subtle_container}>
+						{/* <article className={styles.alert_subtle_container}>
 							<p className={styles.alert_subtle_2}>
 								If not Registered, Click hear to{" "}
 								<span>
 									<a href="/admin/register">Register</a>
 								</span>
 							</p>
-						</article>
+						</article> */}
 
 						<p className={styles.alert_subtle_1}>
-							<span>* </span>Please contact Admin, if unable to Login
+							Please contact Admin, if unable to Login
 						</p>
 					</form>
 				</article>

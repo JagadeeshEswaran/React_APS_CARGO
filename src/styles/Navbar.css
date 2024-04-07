@@ -1,12 +1,12 @@
 .navbar_container {
 	/* border: 1px dotted blue; */
-	background: rgb(22, 29, 70);
+	background: rgb(175, 231, 253);
 	color: rgb(225, 238, 255) !important;
 
 	text-decoration: none;
 	list-style: none;
 
-	height: 7vh;
+	height: 8.5vh;
 	/* width: 100vw; */
 
 	display: flex;
@@ -26,9 +26,19 @@
 .logo {
 	font-size: large;
 	font-weight: bolder;
-	padding-left: 8%;
+	padding-left: 2%;
 
 	color: rgb(225, 238, 255) !important;
+}
+
+.Navbar_menu_items {
+	background: rgb(22, 29, 70);
+
+	border: 2px solid rgb(79, 185, 247);
+
+	box-shadow: rgba(2, 18, 94, 0.6) 0px -10px 20px,
+		rgba(2, 18, 94, 0.3) -0px 10px 10px, rgba(6, 37, 95, 0.5) 0px 6px 6px;
+	margin-bottom: 0.75rem;
 }
 
 .Navbar_menu_items menu {
@@ -55,28 +65,92 @@
 }
 
 .Navbar_menu_items menu article a:hover {
-	font-weight: bold;
+	transform: scale(1.1);
 
-	background: rgb(175, 208, 255) !important;
+	background: rgb(255, 255, 255) !important;
 	color: rgb(12, 32, 87);
-	padding: 0.5rem 2.5rem;
-
-	border-radius: 7px;
+	border-radius: 4px;
 
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
 		rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-
-	/* margin: 2.5rem; */
 }
 
 .user_icon {
+	margin-left: 5rem;
 	transition: 0.3s;
 	background: rgba(18, 240, 248, 0.192);
 }
 
 .user_icon:hover {
-	background: rgba(248, 18, 76, 0.945);
+	background: rgba(216, 236, 255, 0.945);
 	color: rgb(8, 100, 236);
 	transform: scale(1.1);
 	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.user_canvas {
+	background: rgba(165, 187, 255, 0.85);
+	border-radius: 16px;
+	backdrop-filter: blur(8.9px);
+	-webkit-backdrop-filter: blur(8.9px);
+	border: 1px solid rgba(165, 187, 255, 0.43);
+
+	box-shadow: rgba(39, 39, 85, 0.19) 0px 10px 20px,
+		rgba(64, 92, 250, 0.23) 0px 6px 6px;
+}
+
+.username_pill {
+	background: rgba(74, 118, 250, 0.589);
+	border-radius: 7px;
+	backdrop-filter: blur(8.9px);
+	-webkit-backdrop-filter: blur(8.9px);
+	border: 1px solid rgba(165, 187, 255, 0.43);
+
+	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+	color: rgb(23, 23, 75);
+	font-weight: 700;
+}
+
+.user_canvas_link {
+	border: 1px solid transparent;
+	border-radius: 5px;
+	transition: 0.2s;
+}
+
+.user_canvas_link:hover {
+	background: rgb(25, 25, 94);
+	border-radius: 6px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(12.2px);
+	-webkit-backdrop-filter: blur(12.2px);
+	border: 1px solid rgba(121, 153, 249, 0.43);
+	padding: 0.25rem 0;
+
+	transform: scale(1.06);
+	width: 80%;
+	color: aliceblue;
+}
+
+.logout_canvas_btn {
+	background: rgba(74, 118, 250, 0.589);
+	border-radius: 7px;
+	backdrop-filter: blur(8.9px);
+	-webkit-backdrop-filter: blur(8.9px);
+	border: 1px solid rgba(165, 187, 255, 0.43);
+
+	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+	color: rgb(23, 23, 75);
+	font-weight: 700;
+
+	transition: 0.5s;
+}
+
+.logout_canvas_btn:hover {
+	background-color: rgb(255, 50, 43);
+	color: aliceblue;
+	border: 1px solid red;
+	transform: scale(1.1);
+	/* margin-bottom: 0.5rem; */
 }

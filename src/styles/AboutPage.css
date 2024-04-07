@@ -1,5 +1,5 @@
 .aboutUs_main_container {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+	background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
 		url("../assets/collections/World_map_blue_dots.svg");
 	background-size: contain;
 	background-repeat: no-repeat;

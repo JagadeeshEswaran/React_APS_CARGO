@@ -1,17 +1,23 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "../styles/Register.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+import icons_PNG from "../assets/Company Icons/Figma/Icon_final.svg";
+
+import CircularProgress from "@mui/joy/CircularProgress";
+
 const Register = () => {
+	const [isLoading, setLoading] = useState(true);
 	const [userData, setUserData] = useState({
 		username: "",
 		password: "",
 		c_password: "",
+		access_priviliges: "",
 	});
 	const [errorMsg, setErrorMsg] = useState("");
 	const navigate = useNavigate();
@@ -56,12 +62,15 @@ const Register = () => {
 	};
 
 	const handleSuccess = async () => {
-		console.log(userData);
-
 		try {
 			const resp = await axios.post(
-				"http://localhost:3000/admin/register",
-				userData
+				// "http://localhost:3000/admin/register",
+				"http://localhost:3000/user/register",
+				{
+					username: userData.username,
+					password: userData.password,
+					access_privileges: userData.access_priviliges,
+				}
 			);
 
 			// console.log(resp);
@@ -100,73 +109,161 @@ const Register = () => {
 		}
 	};
 
+	useEffect(() => {
+		const admin_token = localStorage.getItem("token");
+		const db_token = "4bdf3d11b0b33f7420cee64b888285ed3a155610";
+
+		if (admin_token !== db_token) {
+			toast.warning("Administrator can Access this page !!", {
+				position: "bottom-right",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "colored",
+			});
+
+			setTimeout(() => {
+				setLoading(false);
+			}, 1500);
+
+			navigate("/admin/staff_page");
+		}
+
+		setTimeout(() => {
+			setLoading(false);
+		}, 1500);
+	}, []);
+
+	// console.log(userData);
+
 	return (
 		<>
 			<section className={styles.register_main_container}>
-				<article className={styles.sign_up_form_container}>
-					<form
-						action=""
-						className={styles.signUp_form}
-						onSubmit={handleRegFormSubmit}>
-						<h2>APS Cargo Sign Up</h2>
-
-						<label htmlFor="username">
-							Create Username <span>*</span> :{" "}
-						</label>
-						<input
-							type="text"
-							placeholder="Type your desired Username"
-							value={userData.username}
-							onChange={(e) =>
-								setUserData({ ...userData, username: e.target.value })
-							}
-						/>
-
-						<label htmlFor="password">
-							Enter your Password <span>*</span> :{" "}
-						</label>
-						<input
-							type="password"
-							placeholder="Please create a safe password"
-							value={userData.password}
-							onChange={(e) =>
-								setUserData({ ...userData, password: e.target.value })
-							}
-						/>
-
-						<label htmlFor="c_password">
-							Confirm your Password <span>*</span> :{" "}
-						</label>
-						<input
-							type="password"
-							placeholder="Please repeat password"
-							value={userData.c_password}
-							onChange={(e) =>
-								setUserData({ ...userData, c_password: e.target.value })
-							}
-						/>
-
-						<article className={styles.signUp_form_btn_container}>
-							<button>Register</button>
-							<button>Cancel</button>
+				{isLoading ? (
+					<section className=" d-flex justify-content-center align-items-center w-100">
+						<CircularProgress color="primary" size="lg" variant="soft" />
+					</section>
+				) : (
+					<>
+						<article
+							className="border-dark"
+							style={{ marginLeft: "20rem", zIndex: "-10", opacity: "10%" }}>
+							<img src={icons_PNG} alt="APS Cargo Icon" height={500} />
 						</article>
 
-						<article className={styles.alert_subtle_container}>
-							<p className={styles.alert_subtle_2}>
-								Already have an Account, Click hear to{" "}
-								<span>
-									<a href="/admin/login">Login</a>
-								</span>
-							</p>
-						</article>
-					</form>
+						<article className={styles.sign_up_form_container}>
+							<form
+								action=""
+								className={styles.signUp_form}
+								onSubmit={handleRegFormSubmit}>
+								<h2>APS Cargo Sign Up</h2>
 
-					<article className={styles.alert_subtle_container_2}>
-						<p className={styles.alert_subtle_1}>
-							<span>* </span>Please contact Admin, if unable to Register
-						</p>
-					</article>
-				</article>
+								<label htmlFor="username">
+									Create Username <span>*</span> :{" "}
+								</label>
+								<input
+									type="text"
+									placeholder="Type your desired Username"
+									value={userData.username}
+									onChange={(e) =>
+										setUserData({ ...userData, username: e.target.value })
+									}
+								/>
+
+								<label htmlFor="password">
+									Enter your Password <span>*</span> :{" "}
+								</label>
+								<input
+									type="password"
+									placeholder="Please create a safe password"
+									value={userData.password}
+									onChange={(e) =>
+										setUserData({ ...userData, password: e.target.value })
+									}
+								/>
+
+								<label htmlFor="c_password">
+									Confirm your Password <span>*</span> :{" "}
+								</label>
+								<input
+									type="password"
+									placeholder="Please repeat password"
+									value={userData.c_password}
+									onChange={(e) =>
+										setUserData({ ...userData, c_password: e.target.value })
+									}
+								/>
+
+								<div className="dropdown mt-4">
+									<button
+										className="btn btn-secondary dropdown-toggle bg-info border-light  w-50"
+										type="button"
+										data-bs-toggle="dropdown"
+										aria-expanded="false">
+										{userData.access_priviliges
+											? userData.access_priviliges
+											: "Select User Type"}
+									</button>
+									<ul className="dropdown-menu dropdown-menu-dark">
+										<li>
+											<a
+												className="dropdown-item"
+												href="#"
+												onClick={() =>
+													setUserData({
+														...userData,
+														access_priviliges: "User",
+													})
+												}>
+												User
+											</a>
+										</li>
+										<li>
+											<a
+												className="dropdown-item"
+												href="#"
+												onClick={() =>
+													setUserData({
+														...userData,
+														access_priviliges: "Admin",
+													})
+												}>
+												Admin
+											</a>
+										</li>
+									</ul>
+								</div>
+
+								<article className={styles.signUp_form_btn_container}>
+									<button onClick={() => handleRegFormSubmit()}>
+										Register
+									</button>
+									<button onClick={() => navigate("/admin/staff_page")}>
+										Cancel
+									</button>
+								</article>
+
+								<article className={styles.alert_subtle_container}>
+									<p className={styles.alert_subtle_2}>
+										Already have an Account, Click hear to{" "}
+										<span>
+											<a href="/admin/login">Login</a>
+										</span>
+									</p>
+								</article>
+							</form>
+
+							<article className={styles.alert_subtle_container_2}>
+								<p className={styles.alert_subtle_1}>
+									<span>* </span>Please contact Admin, if unable to Register
+								</p>
+							</article>
+						</article>
+					</>
+				)}
 			</section>
 
 			<ToastContainer />

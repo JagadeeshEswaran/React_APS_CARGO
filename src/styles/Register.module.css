@@ -2,20 +2,15 @@
 	height: 80svh;
 
 	display: flex;
-	justify-content: flex-end;
-
-	background-image: url("../assets/Icon_final.svg");
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: inherit;
-	background-position-x: 30%;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .sign_up_form_container {
 	height: 65vh;
 	width: 30rem;
 
-	margin: 5rem 10rem 5rem 0;
+	margin: 2rem 10rem 5rem 0;
 
 	/* border: 1px dotted red; */
 	border-radius: 5px;

@@ -33,11 +33,12 @@ const CgmtIDInput = ({
 
 		const trackingIdFromURL = +paramsArr[paramsArr.length - 1];
 
-		setCgmtID(trackingIdFromURL);
-
 		if (trackingIdFromURL) {
+			setCgmtID(trackingIdFromURL);
+			handleCgmtSearch(trackingIdFromURL);
+
 			setTimeout(() => {
-				handleCgmtSearch(trackingIdFromURL);
+				setLoading(false);
 			}, 1500);
 		}
 		// handleConsignmentData(trackingIdFromURL);

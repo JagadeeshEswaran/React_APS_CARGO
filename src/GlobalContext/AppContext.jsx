@@ -13,12 +13,21 @@ export const AppContextProvider = ({ children }) => {
 		token: "",
 	});
 	const [consignment_data, setConsignmentData] = useState({});
-	const [userAuth, setUserAuth] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [username, setUsername] = useState("");
+	const [isAdminUser, setIsAdminUser] = useState(false);
 
 	useEffect(() => {
 		const isUserLoggedIn = localStorage.getItem("isLoggedIn");
+		const username = localStorage.getItem("username");
+		const userType =
+			localStorage.getItem("token") ===
+			"4bdf3d11b0b33f7420cee64b888285ed3a155610";
+
 		if (isUserLoggedIn) {
-			setUserAuth(true);
+			setIsLoggedIn(true);
+			setUsername(username);
+			setIsAdminUser(userType);
 		}
 	}, []);
 
@@ -29,8 +38,9 @@ export const AppContextProvider = ({ children }) => {
 				setUserData,
 				consignment_data,
 				setConsignmentData,
-				userAuth,
-				setUserAuth,
+				isLoggedIn,
+				username,
+				isAdminUser,
 			}}>
 			{children}
 		</GlobalContextProvider.Provider>

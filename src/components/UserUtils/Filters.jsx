@@ -1,6 +1,9 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
+
+import "../../styles/ListViewStyles.css";
 
 const Filters = ({ consignmentData, setFilteredData }) => {
 	const [placeHolderAgentFilter, setPlaceHolderFilter] =
@@ -9,23 +12,46 @@ const Filters = ({ consignmentData, setFilteredData }) => {
 		useState("Select Status");
 
 	const handleFilter = () => {
-		const clonedConsignmentData = consignmentData.map((item) => ({
-			...item,
-		}));
-
-		const newData = clonedConsignmentData.filter((item) => {
+		const newData = consignmentData.filter((item) => {
 			const agentMatch =
+				placeHolderAgentFilter === "Select Agent" ||
 				item.consignmentDetails[0].delivery_agent === placeHolderAgentFilter;
 			const statusMatch =
+				filterByStatusString === "Select Status" ||
 				item.trackingDetails[0].curr_status === filterByStatusString;
 			return agentMatch && statusMatch;
 		});
+
+		console.log(newData);
+
+		setFilteredData(() => (newData.length < 1 ? [] : newData));
 
 		if (newData.length < 1) {
 			setFilteredData(-1);
 		} else {
 			setFilteredData(newData);
 		}
+	};
+
+	const handleReset = () => {
+		setFilteredData(consignmentData);
+
+		setPlaceHolderFilter("Select Agent");
+		setFilterByStatusString("Select Status");
+	};
+
+	const handleClear = (id) => {
+		id === 1
+			? () => {
+					setPlaceHolderFilter("Select Agent");
+					handleFilter();
+			  }
+			: id === 2
+			? () => {
+					setFilterByStatusString("Select Status");
+					handleFilter();
+			  }
+			: null;
 	};
 
 	useEffect(() => {
@@ -40,10 +66,10 @@ const Filters = ({ consignmentData, setFilteredData }) => {
 	return (
 		<>
 			<section>
-				<article>
+				<article className=" d-flex justify-content-evenly">
 					{/* Filter By Agent */}
 					<div
-						className="btn-group ms-3"
+						className="btn-group mx-3"
 						style={{
 							width: "12rem",
 							boxShadow:
@@ -89,17 +115,15 @@ const Filters = ({ consignmentData, setFilteredData }) => {
 								className="dropdown-item p-0 m-0 text-center "
 								data-value="Others"
 								href="#"
-								onClick={(e) =>
-									setPlaceHolderFilter(e.target.getAttribute("data-value"))
-								}>
-								Others
+								onClick={() => handleClear(2)}>
+								Clear
 							</a>
 						</div>
 					</div>
 
 					{/* Filter By Status */}
 					<div
-						className="btn-group ms-3"
+						className="btn-group mx-3"
 						style={{
 							width: "12rem",
 							boxShadow:
@@ -177,13 +201,19 @@ const Filters = ({ consignmentData, setFilteredData }) => {
 								className="dropdown-item p-0 m-0 text-center "
 								data-value="query"
 								href="#"
-								onClick={(e) =>
-									setFilterByStatusString(e.target.getAttribute("data-value"))
-								}>
-								query
+								onClick={() => handleClear(1)}>
+								clear
 							</a>
 						</div>
 					</div>
+
+					<article
+						className="p-0 m-0 ms-4 list_reset_button d-flex justify-content-center align-items-center px-3 py-1"
+						type="button">
+						<h5 className="p-0 m-0" onClick={() => handleReset()}>
+							Reset List
+						</h5>
+					</article>
 				</article>
 			</section>
 		</>

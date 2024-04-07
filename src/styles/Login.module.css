@@ -3,22 +3,16 @@
 	min-height: 72svh;
 
 	display: flex;
-	/* justify-content: flex-end;    */
-	align-items: flex-end;
-	flex-direction: column;
-
-	background-image: url("../assets/Icon_final.svg");
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: inherit;
-	background-position-x: 30%;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .sign_up_form_container {
 	height: 55vh;
 	width: 30rem;
 
-	margin: 5rem 10rem 0 0;
+	margin: 0rem 10rem 0 0;
 
 	/* border: 1px dotted red; */
 	border-radius: 5px;
@@ -26,10 +20,6 @@
 	box-shadow: rgba(16, 99, 252, 0.3) 0px 14px 28px,
 		rgba(38, 16, 241, 0.5) 0px 10px 10px;
 
-	background-image: url("../assets/IconPNG.png");
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: inherit;
 	background: rgba(32, 108, 248, 0.651);
 }
 
@@ -158,12 +148,13 @@
 }
 
 .alert_subtle_1 {
-	color: rgb(248, 63, 63);
+	color: rgb(158, 9, 9);
 	font-size: medium;
-	margin-top: 0.5rem;
+	margin-top: 6rem;
 	margin-right: 18.5rem;
 
 	/* margin-bottom: 2rem; */
+	font-weight: 600;
 
 	display: flex;
 	align-items: center;

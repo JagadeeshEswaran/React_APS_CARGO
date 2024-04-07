@@ -1,16 +1,21 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
+import { IoIosApps } from "react-icons/io";
 
-import main_icon from "../../assets/Company Icons/Figma/Icon_Full_Light.svg";
+import main_icon from "../../assets/Company Icons/Final/Icon_Full_Final.svg";
 import "../../styles/Navbar.css";
 import { useAppContext } from "../../GlobalContext/AppContext";
-import { FaUserAlt } from "react-icons/fa";
+import UserControl from "../../Utils/Convas/UserControl";
 
 const Navbar = () => {
-	const { userAuth } = useAppContext();
+	const { isLoggedIn, username } = useAppContext();
 
 	const handleSignOut = () => {
 		localStorage.clear();
+
+		// setTimeout(() => {
+		location.reload();
+		// }, 1000);
 	};
 
 	return (
@@ -22,19 +27,32 @@ const Navbar = () => {
 					</a>
 				</article>
 
-				<article className="Navbar_menu_items">
+				<article
+					className="Navbar_menu_items rounded me-4 mt-2"
+					style={{ width: "auto", minWidth: "70vw" }}>
 					<menu>
+						{isLoggedIn ? (
+							<article>
+								<a href="/">Home</a>
+							</article>
+						) : (
+							<></>
+						)}
+
 						<article>
 							<a href="/about">About Us</a>
+						</article>
+						<article>
+							<a href="/services">Our Services</a>
 						</article>
 						<article>
 							<a href="/tracking">Track</a>
 						</article>
 						<article>
-							<a href="">Our Team</a>
+							<a href="/ourTeam">Management</a>
 						</article>
 
-						{userAuth ? (
+						{isLoggedIn ? (
 							<article>
 								<a href="/" onClick={() => handleSignOut()}>
 									Sign out
@@ -46,22 +64,29 @@ const Navbar = () => {
 							</article>
 						)}
 
-						<article>
-							<a href="/contacts">Contacts</a>
-						</article>
+						{!isLoggedIn ? (
+							<article>
+								<a href="/contact">Contacts</a>
+							</article>
+						) : (
+							<article
+								className="d-flex justify-content-center align-items-center me-2"
+								style={{ width: "auto", height: "auto" }}>
+								<article
+									className="fs-2 rounded-circle object-fit-cover d-flex justify-content-center align-items-center user_icon"
+									type="button"
+									data-bs-toggle="offcanvas"
+									data-bs-target="#user_canvas"
+									aria-controls="user_canvas"
+									style={{ height: "2.5rem", width: "2.5rem" }}>
+									<IoIosApps />
+								</article>
+							</article>
+						)}
 					</menu>
 				</article>
 
-				<article
-					className="d-flex justify-content-center align-items-center me-5 "
-					style={{ width: "auto", height: "auto" }}>
-					<article
-						className="fs-2 border rounded-circle object-fit-cover d-flex justify-content-center align-items-center user_icon"
-						type="button"
-						style={{ height: "3rem", width: "3rem" }}>
-						<FaUserAlt />
-					</article>
-				</article>
+				{isLoggedIn ? <UserControl /> : <></>}
 			</section>
 		</>
 	);

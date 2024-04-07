@@ -4,6 +4,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ItemsOfList from "./ItemsOfList";
 
+import icons_PNG from "../../assets/Company Icons/Figma/Icon_final.svg";
+
 import "./ListItem.css";
 import Filters from "./Filters";
 
@@ -31,18 +33,27 @@ const ListItems = () => {
 		handleAxiosForFetchRequest();
 	}, []);
 
-	console.log(filteredData);
-
 	return (
 		<section
 			className="d-flex flex-column justify-content-center align-items-center h-100"
 			style={{ height: "auto", minHeight: "72vh" }}>
-			<article className="card w-25 my-3 py-3 d-flex justify-content-center align-items-center ">
+			<article className="card w-50 my-3 py-3 d-flex justify-content-evenly align-items-center ">
 				<Filters
 					consignmentData={consignmentData}
 					setConsignmentData={setConsignmentData}
 					setFilteredData={setFilteredData}
 				/>
+			</article>
+
+			<article
+				className=" border-dark position-absolute	"
+				style={{
+					marginTop: "7rem",
+					marginRight: "7rem",
+					zIndex: "-10",
+					opacity: "5%",
+				}}>
+				<img src={icons_PNG} alt="APS Cargo Icon" height={500} />
 			</article>
 
 			<article

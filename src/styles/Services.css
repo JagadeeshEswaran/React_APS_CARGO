@@ -1,0 +1,21 @@
+.services_card {
+	background: rgba(220, 228, 255, 0.2);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(6.5px);
+	-webkit-backdrop-filter: blur(6.5px);
+	border: 1px solid rgba(220, 228, 255, 0.37);
+
+	transition: 0.35s;
+}
+
+.services_card:hover {
+	background: rgba(51, 95, 243, 0.44);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(8.3px);
+	-webkit-backdrop-filter: blur(8.3px);
+	border: 1px solid rgba(51, 95, 243, 0.37);
+
+	transform: scale(1.05);
+}

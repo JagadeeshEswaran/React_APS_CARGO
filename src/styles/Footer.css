@@ -17,10 +17,22 @@
 	color: rgb(225, 238, 255);
 }
 
+.navbar1_links_container {
+	height: 30svh;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.navbar1_partition {
+	border: 2px solid rgb(225, 238, 255);
+}
+
 .footer_container_2 {
 	/* border: 1px dotted blue; */
 
-	height: 15vh;
+	height: 6vh;
 
 	display: flex;
 	justify-content: center;
@@ -30,12 +42,12 @@
 
 	font-size: 2rem;
 	color: rgb(5, 52, 119);
-	background: #334e8d;
+	background: rgb(175, 231, 253);
 }
 
 .footer_2_h1 {
 	font-size: 1rem;
-	color: rgb(191, 218, 255);
+	color: rgb(5, 52, 119);
 
 	text-align: end;
 
