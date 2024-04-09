@@ -97,69 +97,70 @@ const CgmtIDInput = ({
 					{/* Devider */}
 					<article className="border-2 border-bottom my-3 mx-4"></article>
 
+					{/* Component to Showcase Consignment Data */}
 					{isLoading ? (
 						<article className="mt-5 text-center">
-							<CircularProgress color="primary" value={255} variant="soft" />
+							<CircularProgress color="primary" value={55} variant="soft" />
 						</article>
-					) : consignment_data.booking_data &&
-					  consignment_data.consignment_data &&
-					  consignment_data.tracking_data ? (
+					) : consignment_data.sender && consignment_data.receiver ? (
 						<>
 							{/* To Display consignment Data for Reference */}
 							<article className="card h-75 mt-3 p-4 bg-light bg-gradient bg-opacity-25 shadow-large ">
+								{/* Sender & Receiver's Info */}
 								<article>
 									<p className="fs-5 fw-semibold">
-										Consignment ID :{" "}
+										Consignment ID:&nbsp;
 										<span
-											className="fs-6 fw-normal ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
+											className="fs-6 fw-semibold ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
 											style={{ textTransform: "capitalize" }}>
-											{consignment_data.booking_data[0].booking_id}
+											{consignment_data.cgmtId}
 										</span>
 									</p>
 									<p className="fs-5 fw-semibold">
-										Sender :{" "}
+										Sender:&nbsp;
 										<span
-											className="fs-6 fw-normal ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
+											className="fs-6 fw-semibold ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
 											style={{ textTransform: "capitalize" }}>
-											{consignment_data.booking_data[0].sender_F_Name}{" "}
-											{consignment_data.booking_data[0].sender_L_Name}
+											{consignment_data.sender.first_name}{" "}
+											{consignment_data.sender.last_name}
 										</span>
 									</p>
 									<p className="fs-5 fw-semibold">
-										Receiver :{" "}
+										Receiver:&nbsp;
 										<span
-											className="fs-6 fw-normal ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
+											className="fs-6 fw-semibold ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
 											style={{ textTransform: "capitalize" }}>
-											{consignment_data.booking_data[0].receiver_F_Name}{" "}
-											{consignment_data.booking_data[0].receiver_L_Name}
+											{consignment_data.receiver.first_name}{" "}
+											{consignment_data.receiver.last_name}
 										</span>
 									</p>
 									<p className="fs-5 fw-semibold">
-										Origin :{" "}
+										Origin:&nbsp;
 										<span
-											className="fs-6 fw-normal ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
+											className="fs-6 fw-semibold ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
 											style={{ textTransform: "capitalize" }}>
-											{consignment_data.booking_data[0].sender_addr_town}
+											{consignment_data.sender.address.town}
 											{", "}
-											{consignment_data.booking_data[0].sender_addr_country}
+											{consignment_data.sender.address.state}
 											{", "}
-											{consignment_data.booking_data[0].sender_addr_pincode}
+											{consignment_data.sender.address.pincode}
 										</span>
 									</p>
 									<p className="fs-5 fw-semibold">
-										Destination :{" "}
+										Destination:{" "}
 										<span
-											className="fs-6 fw-normal ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
+											className="fs-6 fw-semibold ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
 											style={{ textTransform: "capitalize" }}>
-											{consignment_data.booking_data[0].receiver_addr_town}
+											{consignment_data.receiver.address.town}
 											{", "}
-											{consignment_data.booking_data[0].receiver_addr_country}
+											{consignment_data.receiver.address.state}
 											{", "}
-											{consignment_data.booking_data[0].receiver_addr_pincode}
+											{consignment_data.receiver.address.pincode}
 										</span>
 									</p>
 								</article>
 
+								{/* Consignment Info */}
 								<article
 									className=" row d-flex flex-row justify-content-evenly align-items-center"
 									style={{ width: "100%", height: "100%" }}>
@@ -171,13 +172,13 @@ const CgmtIDInput = ({
 										<p
 											className="p-0 m-0 fs-6 fw-semibold ms-2 mb-3 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
 											style={{ textTransform: "capitalize" }}>
-											{consignment_data.consignment_data[0].gross_weight}
+											{consignment_data.details.gross_weight}
 										</p>
 										<p className="p-0 m-0 fs-5 fw-semibold">Goods Type </p>
 										<p
 											className="p-0 m-0 fs-6 fw-semibold ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
 											style={{ textTransform: "capitalize" }}>
-											{consignment_data.consignment_data[0].type_of_goods}
+											{consignment_data.details.type_of_goods}
 										</p>
 									</article>
 
@@ -189,14 +190,14 @@ const CgmtIDInput = ({
 										<p
 											className="p-0 m-0 fs-6 fw-semibold ms-2 mb-3 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
 											style={{ textTransform: "capitalize" }}>
-											{consignment_data.consignment_data[0].package_qty}
+											{consignment_data.details.package_qty}
 										</p>
 
 										<p className="p-0 m-0 fs-5 fw-semibold">Handled By </p>
 										<p
 											className="p-0 m-0 fs-6 fw-semibold ms-2 px-3 py-1 bg-light bg-opacity-50 shadow-sm rounded border border-1"
 											style={{ textTransform: "capitalize" }}>
-											{consignment_data.consignment_data[0].delivery_agent}
+											{consignment_data.details.delivery_agent}
 										</p>
 									</article>
 								</article>

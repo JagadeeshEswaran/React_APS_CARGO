@@ -7,22 +7,23 @@ import CgmtIDInput from "../components/ForTrackingUpdate/CgmtIDInput";
 import CgmtTrackingUpdateForm from "../components/ForTrackingUpdate/CgmtTrackingUpdateForm";
 import { toast } from "react-toastify";
 import { useAppContext } from "../GlobalContext/AppContext";
+import { globalInstanceForAxios } from "../../Axios/GlobalInstance";
 
 const ConsignmentUpdate = () => {
 	const [errorMsg, setErrorMsg] = useState("");
 	const { consignment_data, setConsignmentData } = useAppContext([]);
-	const [cgmtUpdateFlag, setCgmtUpdateFlag] = useState(true);
+	const [cgmtUpdateFlag, setCgmtUpdateFlag] = useState(false);
 	const [cgmtId, serCgmtId] = useState();
 
 	const handleAxiosRequest = async (trackingId) => {
 		// console.log(trackingId);
 
 		try {
-			const response = await axios.get(
-				`http://localhost:3000/api/tracking/${trackingId}`
+			const response = await globalInstanceForAxios.get(
+				`/consignment/${trackingId}`
 			);
 
-			// console.log(response);
+			console.log(response);
 
 			if (response.data.success === true) {
 				setConsignmentData(response.data.data);
@@ -72,8 +73,7 @@ const ConsignmentUpdate = () => {
 	};
 
 	useEffect(() => {
-		consignment_data.booking_data &&
-			handleAxiosRequest(consignment_data.booking_data[0].booking_id);
+		consignment_data.cgmtId && handleAxiosRequest(consignment_data.cgmtId);
 	}, [cgmtUpdateFlag]);
 
 	return (
@@ -108,10 +108,10 @@ const ConsignmentUpdate = () => {
 						setCgmtUpdateFlag={setCgmtUpdateFlag}
 						cgmtUpdateFlag={cgmtUpdateFlag}
 						tracking_data_1={
-							consignment_data.tracking_data
-								? consignment_data.tracking_data[0]
-								: []
+							consignment_data.tracking ? consignment_data.tracking : []
 						}
+						cgmtToken={consignment_data._id}
+						prevTracking={consignment_data.tracking}
 					/>
 				</article>
 			</section>

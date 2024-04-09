@@ -8,11 +8,14 @@ import { tracking_data } from "../../data/consignment_data";
 import TimeLinePtr from "./TimeLinePtr";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { globalInstanceForAxios } from "../../../Axios/GlobalInstance";
 
 const CgmtTrackingUpdateForm = ({
 	tracking_data_1,
 	setCgmtUpdateFlag,
 	cgmtUpdateFlag,
+	cgmtToken,
+	prevTracking,
 }) => {
 	const [currStatusToBeUpdated, setCurrentStatusToBeUpdated] = useState(
 		tracking_data_1.curr_status
@@ -27,19 +30,30 @@ const CgmtTrackingUpdateForm = ({
 		}, 3000);
 	}
 
+	// Sending updated data to Back-end
 	const handleAxiosCall = async () => {
 		console.log(trackingUpdate);
 		setSubmitLoading(true);
 
 		try {
-			const response = await axios.put(
-				"http://localhost:3000/api/admin/cgmtUpdate",
+			const response = await globalInstanceForAxios.put(
+				`/consignment/${cgmtToken}`,
 				trackingUpdate
 			);
+
 			console.log(response);
 
 			if (response.data.success) {
-				toast.success(response.data.msg);
+				toast.success(response.data.message, {
+					position: "top-right",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
+				});
 
 				setTimeout(() => {
 					setSubmitLoading(false);
@@ -56,19 +70,25 @@ const CgmtTrackingUpdateForm = ({
 		}
 	};
 
-	const handleStatusUpate = (newStat) => {
-		console.log(newStat);
+	// Preparing and Sanitizing Updated Date
+	const handleStatusUpate = (newStat, new_curr_stats) => {
+		// alert(newStat);
 		setCurrentStatusToBeUpdated(newStat);
 
-		const curr_status = newStat;
-		const dataOfUpdate = new Date().getTime();
-		const cgmtIdToString = tracking_data_1.cgmt_id.toString();
+		const currDateTime = new Date().toISOString();
 
 		const dataToBackend = {
-			cgmtId: cgmtIdToString,
-			curr_status: curr_status,
-			dataOfUpdate: dataOfUpdate,
+			tracking: {
+				...prevTracking,
+				curr_status: new_curr_stats,
+				[newStat]: {
+					date: currDateTime,
+					status: true,
+				},
+			},
 		};
+
+		// console.log(dataToBackend);
 
 		setTrackingUpdate(dataToBackend);
 	};
@@ -93,7 +113,8 @@ const CgmtTrackingUpdateForm = ({
 		}, 1750);
 	}, [tracking_data_1]);
 
-	// console.log(currStatusToBeUpdated);
+	// alert(cgmtId);
+	// console.log(prevTracking);
 
 	return (
 		<>
@@ -103,9 +124,9 @@ const CgmtTrackingUpdateForm = ({
 				{isLoading ? (
 					<CircularProgress
 						color="primary"
-						value={255}
-						variant="soft"
-						size="lg"
+						value={55}
+						variant="plain"
+						size="md"
 					/>
 				) : tracking_data_1.curr_status ? (
 					<>
@@ -117,46 +138,46 @@ const CgmtTrackingUpdateForm = ({
 								minHeight: "96%",
 								height: "auto",
 							}}>
-							{tracking_data_1.booked_date ? (
+							{tracking_data_1.booked ? (
 								<TimeLinePtr
 									title="Booked"
-									date={tracking_data_1.booked_date}
+									date={tracking_data_1.booked.date}
 								/>
 							) : (
 								<></>
 							)}
 
-							{tracking_data_1.stat_dispatched === "1" ? (
+							{tracking_data_1.dispatch.status ? (
 								<TimeLinePtr
 									title="Dispatched"
-									date={tracking_data_1.dispatch_date}
+									date={tracking_data_1.dispatch.date}
 								/>
 							) : (
 								<></>
 							)}
 
-							{tracking_data_1.stat_inTransit === "1" ? (
+							{tracking_data_1.in_transit.status ? (
 								<TimeLinePtr
 									title="In-Transit"
-									date={tracking_data_1.dispatch_date}
+									date={tracking_data_1.in_transit.date}
 								/>
 							) : (
 								<></>
 							)}
 
-							{tracking_data_1.stat_outForDeliver === "1" ? (
+							{tracking_data_1.out_for_delivery.status ? (
 								<TimeLinePtr
 									title="Out-For-Delivery"
-									date={tracking_data_1.ofd_date}
+									date={tracking_data_1.out_for_delivery.date}
 								/>
 							) : (
 								<></>
 							)}
 
-							{tracking_data_1.stat_delivered === "1" ? (
+							{tracking_data_1.delivered.status ? (
 								<TimeLinePtr
 									title="Delivered"
-									date={tracking_data_1.delivery_date}
+									date={tracking_data_1.delivered.date}
 								/>
 							) : (
 								<></>
@@ -189,7 +210,9 @@ const CgmtTrackingUpdateForm = ({
 											<a
 												className="dropdown-item fw-semibold opacity-75"
 												href="#"
-												onClick={() => handleStatusUpate("Dispatched")}>
+												onClick={() =>
+													handleStatusUpate("dispatch", "Dispatched")
+												}>
 												Dispatched
 											</a>
 										</li>
@@ -197,7 +220,9 @@ const CgmtTrackingUpdateForm = ({
 											<a
 												className="dropdown-item fw-semibold opacity-75"
 												href="#"
-												onClick={() => handleStatusUpate("In-Transit")}>
+												onClick={() =>
+													handleStatusUpate("in_transit", "In-Transit")
+												}>
 												In-Transit
 											</a>
 										</li>
@@ -205,7 +230,12 @@ const CgmtTrackingUpdateForm = ({
 											<a
 												className="dropdown-item fw-semibold opacity-75"
 												href="#"
-												onClick={() => handleStatusUpate("Out-For-Delivery")}>
+												onClick={() =>
+													handleStatusUpate(
+														"out_for_delivery",
+														"Out-For-Delivery"
+													)
+												}>
 												Out-For-Delivery
 											</a>
 										</li>
@@ -216,7 +246,9 @@ const CgmtTrackingUpdateForm = ({
 											<a
 												className="dropdown-item fw-semibold opacity-75"
 												href="#"
-												onClick={() => handleStatusUpate("Delivered")}>
+												onClick={() =>
+													handleStatusUpate("delivered", "Delivered")
+												}>
 												Delivered
 											</a>
 										</li>
@@ -232,7 +264,7 @@ const CgmtTrackingUpdateForm = ({
 										<button
 											className="btn btn-info px-4 my-3 border border-light border-2 shadow-lg fs-5 fw-semibold border-opacity-75"
 											style={{ width: "8.5rem" }}
-											onClick={handleAxiosCall}>
+											onClick={() => handleAxiosCall()}>
 											Submit
 										</button>
 										<button

@@ -4,12 +4,15 @@ import React from "react";
 
 const TimeLinePtr = ({ title, date }) => {
 	return (
-		<article className="border border-0 border-start py-2 w-50 h-25 ps-4 position-relative">
+		<article
+			className={`border border-0 d-flex justify-content-start align-items-center py-2 w-50 h-25 ps-4 position-relative ${
+				title === "Delivered" ? "border-start" : " border-start"
+			}`}>
 			<article
-				className="border border-2 rounded-circle position-absolute"
+				className="border border-2 border-warning rounded-circle position-absolute"
 				style={{
 					left: "-12px",
-					top: "12px",
+					top: "47px",
 					height: "1.5rem",
 					width: "1.5rem",
 				}}>
@@ -22,8 +25,11 @@ const TimeLinePtr = ({ title, date }) => {
 						width: "1rem",
 					}}></article>
 			</article>
-			<h3>{title}</h3>
-			<h5>{new Date(date).toLocaleString()}</h5>
+
+			<article>
+				<h5 className="fw-semibold">{title}</h5>
+				<h6 className="fw-semibold">{new Date(date).toLocaleString()}</h6>
+			</article>
 		</article>
 	);
 };

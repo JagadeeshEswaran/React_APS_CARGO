@@ -17,6 +17,17 @@
 	color: rgb(225, 238, 255);
 }
 
+.footer_socialmedia_icons {
+	transition: 0.5s;
+	background: none !important;
+}
+
+.footer_socialmedia_icons:hover {
+	color: aqua;
+	transform: scale(1.1);
+	box-shadow: rgba(11, 253, 241, 0.678) 0px 5px 15px;
+}
+
 .navbar1_links_container {
 	height: 30svh;
 

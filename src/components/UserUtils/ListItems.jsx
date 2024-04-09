@@ -1,28 +1,56 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-unused-vars */
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+
+import CircularProgress from "@mui/joy/CircularProgress";
+import React, { useCallback, useEffect, useState } from "react";
 import ItemsOfList from "./ItemsOfList";
+import { toast } from "react-toastify";
 
 import icons_PNG from "../../assets/Company Icons/Figma/Icon_final.svg";
 
 import "./ListItem.css";
 import Filters from "./Filters";
+import { globalInstanceForAxios } from "../../../Axios/GlobalInstance";
 
 const ListItems = () => {
+	const [isLoading, setLoading] = useState(true);
 	const [consignmentData, setConsignmentData] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
 
 	const handleAxiosForFetchRequest = async () => {
 		try {
-			const response = await axios.get(
-				"http://localhost:3000/admin/staff_page/all_bookings"
+			const response = await globalInstanceForAxios.get("consignment/");
+
+			// console.log(response);
+
+			if (response.status === 200) {
+				setConsignmentData(response.data);
+
+				toast.warning(response.data.message, {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				});
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleDeleteItem = async (id) => {
+		try {
+			const response = await globalInstanceForAxios.delete(
+				`/consignment/remove/${id}`
 			);
 
-			// console.log(response.data.success);
-
-			if (response.data.success) {
-				setConsignmentData(response.data.data.reverse());
+			if (response.status === 200) {
+				setFilteredData(consignmentData);
+				location.reload();
 			}
 		} catch (error) {
 			console.log(error);
@@ -58,12 +86,12 @@ const ListItems = () => {
 
 			<article
 				className="rounded shadow mb-4 "
-				style={{ height: "auto", minHeight: "65vh", width: "80vw" }}>
-				<table className="rounded m-1" style={{ width: "79.5vw" }}>
-					<tr className="text-center">
-						<th className="border border-dark-subtle col-1 py-2 bg-primary-subtle">
+				style={{ height: "auto", minHeight: "65vh", width: "85.5vw" }}>
+				<table className="rounded m-1" style={{ width: "85vw" }}>
+					<thead className="text-center">
+						{/* <th className="border border-dark-subtle py-2 col-1 bg-primary-subtle">
 							S.No
-						</th>
+						</th> */}
 						<th className="border border-dark-subtle col-1 py-2 bg-primary-subtle">
 							POD No.
 						</th>
@@ -88,28 +116,38 @@ const ListItems = () => {
 						<th className="border border-dark-subtle col-1 py-2 bg-primary-subtle">
 							Update / Track
 						</th>
-					</tr>
+					</thead>
 
 					{filteredData.length > 0 ? (
-						filteredData.map((item, idx) => (
-							<ItemsOfList
-								key={item.bookingDetails.booking_id}
-								item={item}
-								idx={idx}
-							/>
-						))
+						filteredData.map(
+							(item, idx) => (
+								<ItemsOfList
+									key={item._id}
+									item={item}
+									idx={idx}
+									handleDeleteItem={handleDeleteItem}
+								/>
+							)
+
+							// console.log(item)
+						)
 					) : filteredData === -1 ? (
-						<tr className="col-12 border fs-6 fw-semibold m-3">
+						<tbody className="col-12 border fs-6 fw-semibold m-3">
 							<p>No data Found</p>
-						</tr>
+						</tbody>
 					) : (
-						consignmentData.map((item, idx) => (
-							<ItemsOfList
-								key={item.bookingDetails.booking_id}
-								item={item}
-								idx={idx}
-							/>
-						))
+						consignmentData.map(
+							(item, idx) => (
+								<ItemsOfList
+									key={item._id}
+									item={item}
+									idx={idx}
+									handleDeleteItem={handleDeleteItem}
+								/>
+							)
+
+							// console.log(item)
+						)
 					)}
 				</table>
 			</article>

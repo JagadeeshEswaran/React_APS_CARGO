@@ -7,48 +7,92 @@ import icons_PNG from "../../assets/Company Icons/Figma/Icon_final.svg";
 import AddrInputs from "./AddrInputs";
 import Buttons from "./Buttons";
 import { toast } from "react-toastify";
+import { globalInstanceForAxios } from "../../../Axios/GlobalInstance";
 
 const Booking = () => {
 	const [bookingDetails, setBookingDetails] = useState({
-		booking_date: "",
-		booking_date_ms: "",
-		sender_F_name: "",
-		sender_L_name: "",
-		receiver_Ph_num: "",
-		sender_addr_DNo: "",
-		sender_addr_street: "",
-		sender_addr_town: "",
-		sender_addr_Dt: "",
-		sender_addr_state: "",
-		sender_addr_country: "",
-		sender_addr_pincode: "",
-		sender_Ph_num: "",
-		receiver_F_name: "",
-		receiver_L_name: "",
-		receiver_addr_DNo: "",
-		receiver_addr_street: "",
-		receiver_addr_town: "",
-		receiver_addr_Dt: "",
-		receiver_addr_state: "",
-		receiver_addr_country: "",
-		receiver_addr_pincode: "",
-		consignment_data: {
+		sender: {
+			first_name: "",
+			last_name: "",
+			phone_number: "",
+			address: {
+				door_number: "",
+				street: "",
+				town: "",
+				district: "",
+				state: "",
+				country: "",
+				pincode: "",
+			},
+		},
+		receiver: {
+			first_name: "",
+			last_name: "",
+			phone_number: "",
+			address: {
+				door_number: "",
+				street: "",
+				town: "",
+				district: "",
+				state: "",
+				country: "",
+				pincode: "",
+			},
+		},
+		details: {
 			gross_weight: "",
 			type_of_goods: "",
 			package_type: "",
-			package_qty: 1,
-			delivery_agent: "APS Cargo",
+			package_qty: "",
+			delivery_agent: "",
+		},
+		tracking: {
+			curr_status: "booked",
+			booked: {
+				date: new Date().getTime(),
+				status: true,
+			},
+			dispatch: {
+				date: null,
+				status: false,
+			},
+			in_transit: {
+				date: null,
+				status: false,
+			},
+			out_for_delivery: {
+				date: null,
+				status: false,
+			},
+			delivered: {
+				date: null,
+				status: false,
+			},
 		},
 	});
 
 	const handleSubmitBtn = async () => {
+		setBookingDetails({
+			...bookingDetails,
+			tracking: {
+				...bookingDetails.tracking,
+				curr_status: "booked",
+				booked: {
+					...bookingDetails.tracking.booked,
+					status: true,
+				},
+			},
+		});
+
 		console.log(bookingDetails);
 
 		try {
-			const response = await axios.post(
-				"http://localhost:3000/admin/book_parcel",
+			const response = await globalInstanceForAxios.post(
+				"/consignment/create",
 				bookingDetails
 			);
+
+			console.log(response);
 
 			if (response.data.success === true) {
 				console.log(response);
@@ -67,50 +111,77 @@ const Booking = () => {
 				if (
 					// response.data.data.consignment_id === response.data.data.booking_id &&
 					// response.data.data.consignment_id === response.data.data.tracking_id
-					response.data.data.consignment_id === response.data.data.booking_id
+					// response.data.data.consignment_id === response.data.data.booking_id
+					response.data.cgmtId
 				) {
-					toast.success(
-						`Consignment ID : ${response.data.data.booking_data_id}`,
-						{
-							position: "bottom-right",
-							autoClose: 100000,
-							hideProgressBar: false,
-							closeOnClick: true,
-							pauseOnHover: true,
-							draggable: true,
-							progress: undefined,
-							theme: "colored",
-						}
-					);
+					toast.success(`Consignment ID : ${response.data.cgmtId}`, {
+						position: "bottom-right",
+						autoClose: 100000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+						theme: "colored",
+					});
 
 					setBookingDetails({
-						booking_date: "",
-						booking_date_ms: "",
-						sender_F_name: "",
-						sender_L_name: "",
-						receiver_Ph_num: "",
-						sender_addr_DNo: "",
-						sender_addr_street: "",
-						sender_addr_town: "",
-						sender_addr_Dt: "",
-						sender_addr_state: "",
-						sender_addr_country: "",
-						sender_addr_pincode: "",
-						sender_Ph_num: "",
-						receiver_F_name: "",
-						receiver_L_name: "",
-						receiver_addr_DNo: "",
-						receiver_addr_street: "",
-						receiver_addr_town: "",
-						receiver_addr_Dt: "",
-						receiver_addr_state: "",
-						receiver_addr_country: "",
-						receiver_addr_pincode: "",
-						consignment_data: {
+						sender: {
+							first_name: "",
+							last_name: "",
+							phone_number: "",
+							address: {
+								door_number: "",
+								street: "",
+								town: "",
+								district: "",
+								state: "",
+								country: "",
+								pincode: "",
+							},
+						},
+						receiver: {
+							first_name: "",
+							last_name: "",
+							phone_number: "",
+							address: {
+								door_number: "",
+								street: "",
+								town: "",
+								district: "",
+								state: "",
+								country: "",
+								pincode: "",
+							},
+						},
+						details: {
 							gross_weight: "",
 							type_of_goods: "",
 							package_type: "",
 							package_qty: "",
+							delivery_agent: "",
+						},
+						tracking: {
+							curr_status: "",
+							booked: {
+								status: false,
+							},
+							dispatch: {
+								date: null,
+								status: false,
+							},
+							in_transit: {
+								date: null,
+								status: false,
+							},
+							out_for_delivery: {
+								date: null,
+								status: false,
+							},
+							delivered: {
+								date: null,
+								status: false,
+							},
 						},
 					});
 				} else {
@@ -142,6 +213,8 @@ const Booking = () => {
 		}
 	};
 
+	// console.log(bookingDetails);
+
 	return (
 		<>
 			<section className={styles.booking_form_container}>
@@ -168,7 +241,6 @@ const Booking = () => {
 												setBookingDetails({
 													...bookingDetails,
 													booking_date_ms: inMilliSec,
-													booking_date: e.target.value,
 												});
 											}}
 										/>
@@ -196,7 +268,6 @@ const Booking = () => {
 							/>
 						</form>
 					</article>
-
 					{/* Consignment Details Component */}
 					<article>
 						<article
@@ -225,12 +296,12 @@ const Booking = () => {
 									name=""
 									id=""
 									placeholder="Weight"
-									value={bookingDetails.consignment_data.gross_weight}
+									value={bookingDetails.details.gross_weight}
 									onChange={(e) =>
 										setBookingDetails({
 											...bookingDetails,
-											consignment_data: {
-												...bookingDetails.consignment_data,
+											details: {
+												...bookingDetails.details,
 												gross_weight: e.target.value,
 											},
 										})
@@ -241,12 +312,12 @@ const Booking = () => {
 									name=""
 									id=""
 									placeholder="Type of Item in the Parcel"
-									value={bookingDetails.consignment_data.type_of_goods}
+									value={bookingDetails.details.type_of_goods}
 									onChange={(e) =>
 										setBookingDetails({
 											...bookingDetails,
-											consignment_data: {
-												...bookingDetails.consignment_data,
+											details: {
+												...bookingDetails.details,
 												type_of_goods: e.target.value,
 											},
 										})
@@ -265,8 +336,8 @@ const Booking = () => {
 											onChange={(e) =>
 												setBookingDetails({
 													...bookingDetails,
-													consignment_data: {
-														...bookingDetails.consignment_data,
+													details: {
+														...bookingDetails.details,
 														package_type: e.target.value,
 													},
 												})
@@ -284,8 +355,8 @@ const Booking = () => {
 											onChange={(e) =>
 												setBookingDetails({
 													...bookingDetails,
-													consignment_data: {
-														...bookingDetails.consignment_data,
+													details: {
+														...bookingDetails.details,
 														package_type: e.target.value,
 													},
 												})
@@ -303,8 +374,8 @@ const Booking = () => {
 											onChange={(e) =>
 												setBookingDetails({
 													...bookingDetails,
-													consignment_data: {
-														...bookingDetails.consignment_data,
+													details: {
+														...bookingDetails.details,
 														package_type: e.target.value,
 													},
 												})
@@ -320,12 +391,12 @@ const Booking = () => {
 									name=""
 									id=""
 									placeholder="Nos"
-									value={bookingDetails.consignment_data.package_qty}
+									value={bookingDetails.details.package_qty}
 									onChange={(e) =>
 										setBookingDetails({
 											...bookingDetails,
-											consignment_data: {
-												...bookingDetails.consignment_data,
+											details: {
+												...bookingDetails.details,
 												package_qty: +e.target.value,
 											},
 										})
@@ -343,8 +414,8 @@ const Booking = () => {
 											onChange={(e) =>
 												setBookingDetails({
 													...bookingDetails,
-													consignment_data: {
-														...bookingDetails.consignment_data,
+													details: {
+														...bookingDetails.details,
 														delivery_agent: e.target.value,
 													},
 												})
@@ -362,8 +433,8 @@ const Booking = () => {
 											onChange={(e) =>
 												setBookingDetails({
 													...bookingDetails,
-													consignment_data: {
-														...bookingDetails.consignment_data,
+													details: {
+														...bookingDetails.details,
 														delivery_agent: e.target.value,
 													},
 												})
@@ -381,8 +452,8 @@ const Booking = () => {
 											onChange={(e) =>
 												setBookingDetails({
 													...bookingDetails,
-													consignment_data: {
-														...bookingDetails.consignment_data,
+													details: {
+														...bookingDetails.details,
 														delivery_agent: e.target.value,
 													},
 												})
@@ -408,6 +479,7 @@ const Booking = () => {
 							<img src={icons_PNG} alt="APS Cargo Icon" height={280} />
 						</article>
 					</article>
+					;
 				</article>
 			</section>
 		</>

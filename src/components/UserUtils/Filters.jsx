@@ -15,10 +15,10 @@ const Filters = ({ consignmentData, setFilteredData }) => {
 		const newData = consignmentData.filter((item) => {
 			const agentMatch =
 				placeHolderAgentFilter === "Select Agent" ||
-				item.consignmentDetails[0].delivery_agent === placeHolderAgentFilter;
+				item.details.delivery_agent === placeHolderAgentFilter;
 			const statusMatch =
 				filterByStatusString === "Select Status" ||
-				item.trackingDetails[0].curr_status === filterByStatusString;
+				item.tracking.curr_status === filterByStatusString;
 			return agentMatch && statusMatch;
 		});
 

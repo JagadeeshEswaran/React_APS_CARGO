@@ -11,6 +11,7 @@ import { tracking_data } from "../data/consignment_data";
 import { toast } from "react-toastify";
 
 import icons_PNG from "../assets/Company Icons/Figma/Icon_final.svg";
+import { globalInstanceForAxios } from "../../Axios/GlobalInstance";
 
 const Tracking_Page = () => {
 	const [new_tracking_data, setTracking_data] = useState(tracking_data);
@@ -51,16 +52,14 @@ const Tracking_Page = () => {
 	const handleAxiosRequest = async (id) => {
 		setLoading(true);
 		setShowAllTrackingUpdates(false);
-		setConsignmentData();
+
+		// alert(id);
 
 		try {
-			const response = await axios.get(
-				`http://localhost:3000/api/tracking/${id}`
-			);
-
-			// console.log(response);
+			const response = await globalInstanceForAxios.get(`/consignment/${id}`);
 
 			if (response.data.success === true) {
+				console.log(response.data.data);
 				setConsignmentData(response.data.data);
 
 				setTimeout(() => {
@@ -76,7 +75,7 @@ const Tracking_Page = () => {
 				console.log("Response data:", error.response.data);
 				// You can also access other properties such as error.response.headers, error.request, etc.
 
-				toast.error(error.response.data, {
+				toast.error(error.response.data.message, {
 					position: "top-right",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -171,43 +170,46 @@ const Tracking_Page = () => {
 						<article className={styles.tracking_data}>
 							<div>
 								<div style={{ paddingBottom: "0.5rem", display: "flex" }}>
-									Tracking ID :{" "}
+									Tracking ID: &nbsp;
 									<p
 										className="p-0 m-0"
 										style={{ fontWeight: "bold", paddingLeft: "0.5rem" }}>
-										{consignment_data?.booking_data[0]?.booking_id}
+										{" "}
+										{consignment_data?.cgmtId}
 									</p>
 								</div>
+
 								<div
 									style={{
 										paddingBottom: "0.5rem",
 										display: "flex",
 									}}>
-									Shipment Handled By :{" "}
+									Shipment Handled By: &nbsp;
 									<p
 										className="p-0 m-0"
 										style={{ fontWeight: "bold", paddingLeft: "0.5rem" }}>
-										{consignment_data?.consignment_data[0]?.delivery_agent}
+										{consignment_data?.details?.delivery_agent}
 									</p>
 								</div>
 
 								<div style={{ paddingBottom: "0.5rem", display: "flex" }}>
-									Weight :{" "}
+									Weight: &nbsp;
 									<p
 										className="p-0 m-0"
 										style={{ fontWeight: "bold", paddingLeft: "0.5rem" }}>
-										{consignment_data?.consignment_data[0]?.gross_weight} Kg
+										{consignment_data?.details?.gross_weight} Kg
 									</p>
 								</div>
+
 								<div style={{ paddingBottom: "0.5rem", display: "flex" }}>
-									Consignment Type :{" "}
+									Consignment Type: &nbsp;
 									<p
 										className="p-0 m-0"
 										style={{
 											fontWeight: "bold",
 											paddingLeft: "0.5rem",
 										}}>
-										{consignment_data?.consignment_data[0]?.type_of_goods}
+										{consignment_data?.details?.type_of_goods}
 									</p>
 								</div>
 							</div>
@@ -221,21 +223,21 @@ const Tracking_Page = () => {
 						<article className={styles.curr_status_container}>
 							<div>
 								<p className="p-0 m-0">
-									Source :{" "}
-									<span>{`${consignment_data?.booking_data[0]?.sender_addr_town}, ${consignment_data?.booking_data[0]?.sender_addr_Dt}, ${consignment_data?.booking_data[0]?.sender_addr_state}, ${consignment_data?.booking_data[0]?.sender_addr_country},  ${consignment_data?.booking_data[0]?.sender_addr_pincode}`}</span>
+									Source: &nbsp;
+									<span>{`${consignment_data?.sender.address.town}, ${consignment_data?.sender.address.state}, ${consignment_data?.sender.address.country}, ${consignment_data?.sender.address.pincode}`}</span>
 								</p>
 								<p className="p-0 m-0">
-									Destination :{" "}
+									Destination: &nbsp;
 									<span
 										style={{
 											color: "green",
-										}}>{`${consignment_data?.booking_data[0]?.receiver_addr_town}, ${consignment_data?.booking_data[0]?.receiver_addr_Dt}, ${consignment_data?.booking_data[0]?.receiver_addr_state}, ${consignment_data?.booking_data[0]?.receiver_addr_country}, ${consignment_data?.booking_data[0]?.receiver_addr_pincode}`}</span>
+										}}>{`${consignment_data?.receiver.address.town}, ${consignment_data?.receiver.address.state}, ${consignment_data?.receiver.address.country}, ${consignment_data?.receiver.address.pincode}`}</span>
 								</p>
 							</div>
 
 							<p className="p-0 m-0">
-								Current Status :{" "}
-								<span>{consignment_data?.tracking_data[0]?.curr_status}</span>
+								Current Status: &nbsp;
+								<span>{consignment_data?.tracking?.curr_status}</span>
 							</p>
 							<button onClick={handleShowAllUpdates} className="mt-3">
 								{!showAllTrackingUpdates
@@ -251,7 +253,7 @@ const Tracking_Page = () => {
 				{showAllTrackingUpdates ? (
 					<section className={styles.all_updates_container}>
 						<article className={styles.all_updates_data}>
-							<h5>Showing All Updates !!</h5>
+							<h5>Tracking details</h5>
 						</article>
 
 						{/* Consignment Timeline */}
@@ -263,47 +265,46 @@ const Tracking_Page = () => {
 								minHeight: "60%",
 								height: "auto",
 							}}>
-							{consignment_data?.tracking_data[0]?.booked_date ? (
+							{consignment_data?.tracking.booked.status ? (
 								<TimeLinePtr2
 									title="Booked"
-									date={consignment_data?.tracking_data[0]?.booked_date}
+									date={consignment_data?.tracking?.booked.date}
 								/>
 							) : (
 								<></>
 							)}
 
-							{consignment_data?.tracking_data[0]?.stat_dispatched === "1" ? (
+							{consignment_data?.tracking.dispatch.status ? (
 								<TimeLinePtr2
 									title="Dispatched"
-									date={consignment_data?.tracking_data[0]?.dispatch_date}
+									date={consignment_data?.tracking.dispatch.date}
 								/>
 							) : (
 								<></>
 							)}
 
-							{consignment_data?.tracking_data[0]?.stat_inTransit === "1" ? (
+							{consignment_data?.tracking.in_transit.status ? (
 								<TimeLinePtr2
 									title="In-Transit"
-									date={consignment_data?.tracking_data[0]?.dispatch_date}
+									date={consignment_data?.tracking.in_transit.date}
 								/>
 							) : (
 								<></>
 							)}
 
-							{consignment_data?.tracking_data[0]?.stat_outForDeliver ===
-							"1" ? (
+							{consignment_data?.tracking.out_for_delivery.status ? (
 								<TimeLinePtr2
 									title="Out-For-Delivery"
-									date={consignment_data?.tracking_data[0]?.ofd_date}
+									date={consignment_data?.tracking.out_for_delivery.status}
 								/>
 							) : (
 								<></>
 							)}
 
-							{consignment_data?.tracking_data[0]?.stat_delivered === "1" ? (
+							{consignment_data?.tracking.delivered.status ? (
 								<TimeLinePtr2
 									title="Delivered"
-									date={consignment_data?.tracking_data[0]?.delivery_date}
+									date={consignment_data?.tracking.delivered.date}
 								/>
 							) : (
 								<></>

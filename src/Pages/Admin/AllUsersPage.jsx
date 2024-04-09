@@ -9,6 +9,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useAppContext } from "../../GlobalContext/AppContext";
+import { globalInstanceForAxios } from "../../../Axios/GlobalInstance";
 
 const AllUsersPage = () => {
 	const { isAdminUser } = useAppContext();
@@ -18,7 +19,7 @@ const AllUsersPage = () => {
 
 	const fetchAllUsers = async () => {
 		try {
-			const response = await axios.get("http://localhost:3000/user/all_users");
+			const response = await globalInstanceForAxios.get("/admin/all_users");
 
 			if (response.status === 200) {
 				setAllUsers(response.data);
@@ -33,9 +34,9 @@ const AllUsersPage = () => {
 	const handleDeleteUser = useCallback(
 		async (userId) => {
 			try {
-				const response = await fetch(`/user/remove/${userId}`, {
-					method: "DELETE",
-				});
+				const response = await globalInstanceForAxios.delete(
+					`/admin/remove/${userId}`
+				);
 
 				if (response.status === 200) {
 					// User deleted successfully, update the state
@@ -99,7 +100,7 @@ const AllUsersPage = () => {
 		// }, 1500);
 	}, []);
 
-	console.log(allUsers);
+	// console.log(allUsers);
 
 	return (
 		<>

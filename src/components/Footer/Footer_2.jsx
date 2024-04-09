@@ -11,7 +11,8 @@ const Footer_2 = () => {
 			<div className="">
 				<h3 className="p-0 m-0 footer_2_h1 w-100" style={{ bottom: "0" }}>
 					APS Cargo &#169; <span className="me-4">{yearOfCR}</span>{" "}
-					<span className="me-4">|</span> All Copyrights Reserved
+					<span className="me-4">|</span> All Copyrights Reserved{" "}
+					<span className="mx-4">|</span> Designed & Developed by --sd--
 				</h3>
 			</div>
 		</section>

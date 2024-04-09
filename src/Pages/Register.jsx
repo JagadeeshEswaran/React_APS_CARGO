@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import icons_PNG from "../assets/Company Icons/Figma/Icon_final.svg";
 
 import CircularProgress from "@mui/joy/CircularProgress";
+import { globalInstanceForAxios } from "../../Axios/GlobalInstance";
 
 const Register = () => {
 	const [isLoading, setLoading] = useState(true);
@@ -63,15 +64,11 @@ const Register = () => {
 
 	const handleSuccess = async () => {
 		try {
-			const resp = await axios.post(
-				// "http://localhost:3000/admin/register",
-				"http://localhost:3000/user/register",
-				{
-					username: userData.username,
-					password: userData.password,
-					access_privileges: userData.access_priviliges,
-				}
-			);
+			const resp = await globalInstanceForAxios.post("/admin/register", {
+				username: userData.username,
+				password: userData.password,
+				access_privileges: userData.access_priviliges,
+			});
 
 			// console.log(resp);
 
@@ -90,7 +87,7 @@ const Register = () => {
 				setUserData({ username: "", password: "", c_password: "" });
 
 				setTimeout(() => {
-					navigate("/admin/login");
+					navigate("/admin/all_users");
 				}, 2000);
 			}
 		} catch (error) {

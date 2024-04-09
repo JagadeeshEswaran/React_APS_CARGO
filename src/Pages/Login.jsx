@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 
 import styles from "../styles/Login.module.css";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../GlobalContext/AppContext";
 
 import icons_PNG from "../assets/Company Icons/Figma/Icon_final.svg";
+import { globalInstanceForAxios } from "../../Axios/GlobalInstance";
 
 const Login = () => {
 	const [userData, setUserData_] = useState({
@@ -63,11 +63,10 @@ const Login = () => {
 		console.log(userData);
 
 		try {
-			const response = await axios.post(
-				// "http://localhost:3000/admin/login",
-				"http://localhost:3000/user/login",
-				userData
-			);
+			const response = await globalInstanceForAxios.post("/user/login", {
+				username: userData.username,
+				password: userData.password,
+			});
 
 			if (response.data.success) {
 				console.log(response.data.msg);
@@ -162,7 +161,7 @@ const Login = () => {
 						/>
 
 						<article className={styles.signUp_form_btn_container}>
-							<button>Login </button>
+							<button onClick={handleLogin}>Login </button>
 							<button>Cancel</button>
 						</article>
 
