@@ -24,75 +24,75 @@ import AllUsersPage from "./Pages/Admin/AllUsersPage";
 
 const router = createBrowserRouter([
 	{
-		path: "https://aps-test1.netlify.app/",
+		path: "/",
 		element: <Main_Section />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/test",
+		path: "/test",
 		element: <div>Hello world!</div>,
 	},
 	{
-		path: "https://aps-test1.netlify.app/about",
+		path: "/about",
 		element: <AboutUs />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/ourTeam",
+		path: "/ourTeam",
 		element: <OurTeam />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/contact",
+		path: "/contact",
 		element: <ContactUs />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/services",
+		path: "/services",
 		element: <Services />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/services/ship_now",
+		path: "/services/ship_now",
 		element: <ShipNow />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/services/get_quote",
+		path: "/services/get_quote",
 		element: <GetQutoe />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/tracking/:id",
+		path: "/tracking/:id",
 		element: <Tracking_Page />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/tracking",
+		path: "/tracking",
 		element: <Tracking_Page />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/admin/login",
+		path: "/admin/login",
 		element: <Login />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/user/register",
+		path: "/user/register",
 		element: <Register />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/admin/staff_page",
+		path: "/admin/staff_page",
 		element: <User_Page />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/admin/staff_page/all_bookings",
+		path: "/admin/staff_page/all_bookings",
 		element: <ListItems />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/admin/book_parcel",
+		path: "/admin/book_parcel",
 		element: <Booking />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/admin/tracking_update",
+		path: "/admin/tracking_update",
 		element: <ConsignmentUpdate />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/admin/tracking_update/:id",
+		path: "/admin/tracking_update/:id",
 		element: <ConsignmentUpdate />,
 	},
 	{
-		path: "https://aps-test1.netlify.app/admin/all_users",
+		path: "/admin/all_users",
 		element: <AllUsersPage />,
 	},
 ]);
