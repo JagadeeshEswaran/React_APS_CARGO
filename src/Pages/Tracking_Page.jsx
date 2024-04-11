@@ -133,10 +133,15 @@ const Tracking_Page = () => {
 				</article>
 
 				{/* Trackign ID Input Form */}
-				<article className={styles.tracingID_input}>
+				<form
+					action="#"
+					onSubmit={() => handleAxiosRequest(trackingId)}
+					className={styles.tracingID_input}>
 					{idFromURL ? (
 						<input
-							type="text"
+							type="number"
+							pattern="/^-?\d+\.?\d*$/"
+							onInput={(e) => (e.target.value = e.target.value.slice(0, 15))}
 							name="tracking_id"
 							id=""
 							placeholder="Please Enter the Tracking ID"
@@ -145,7 +150,9 @@ const Tracking_Page = () => {
 						/>
 					) : (
 						<input
-							type="text"
+							type="number"
+							pattern="/^-?\d+\.?\d*$/"
+							onInput={(e) => (e.target.value = e.target.value.slice(0, 15))}
 							name="tracking_id"
 							id=""
 							placeholder="Please Enter the Tracking ID"
@@ -157,7 +164,7 @@ const Tracking_Page = () => {
 					<button onClick={() => handleAxiosRequest(trackingId)}>
 						<p style={{ fontSize: "1.3rem" }}>Track</p>
 					</button>
-				</article>
+				</form>
 
 				{/* Message or Tracking Data to Display */}
 				{isLoading ? (

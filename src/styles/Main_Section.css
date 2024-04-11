@@ -151,8 +151,9 @@
 	position: absolute;
 
 	font-size: 3rem;
-	color: aliceblue;
-	top: 70px;
+	color: rgba(129, 194, 250, 0.8);
+
+	top: 68px;
 	right: 20px;
 
 	transition: 0.35s;
@@ -161,9 +162,16 @@
 }
 
 .search_icons:hover {
-	top: 68px;
+	/* top: 68px; */
 	transform: scale(1.2);
 	border: 2px solid aliceblue;
+	color: rgba(129, 194, 250, 0.8);
+	color: aliceblue;
+}
+
+.hero_tracker_alert_message {
+	/* color: rgb(19, 19, 85); */
+	color: rgb(17, 13, 252);
 }
 
 .user_page_cards_container {

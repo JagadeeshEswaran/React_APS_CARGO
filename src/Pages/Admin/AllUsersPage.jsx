@@ -189,12 +189,12 @@ const AllUsersPage = () => {
 												{item.access_privileges === "User" ||
 												item.access_privileges === "Admin" ? (
 													<>
-														<article
+														{/* <article
 															className="px-3"
 															type="button"
 															onClick={() => item._id}>
 															<MdLockReset className="fs-1" />
-														</article>
+														</article> */}
 
 														<article
 															className="px-3"

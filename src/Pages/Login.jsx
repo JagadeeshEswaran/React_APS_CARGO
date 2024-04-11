@@ -8,6 +8,7 @@ import { useAppContext } from "../GlobalContext/AppContext";
 
 import icons_PNG from "../assets/Company Icons/Figma/Icon_final.svg";
 import { globalInstanceForAxios } from "../../Axios/GlobalInstance";
+import { isValidUsername } from "../Helpers/isValidUsername";
 
 const Login = () => {
 	const [userData, setUserData_] = useState({
@@ -54,8 +55,19 @@ const Login = () => {
 				progress: undefined,
 				theme: "light",
 			});
+		} else if (!isValidUsername(userData.username)) {
+			toast.error(`Username contains Special Characters`, {
+				position: "top-right",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "light",
+			});
 		} else {
-			handleSuccess();
+			return handleSuccess();
 		}
 	};
 
@@ -107,6 +119,10 @@ const Login = () => {
 		}
 	};
 
+	const handleCancel = () => {
+		navigate("/");
+	};
+
 	useEffect(() => {
 		const isLogged = localStorage.getItem("isLoggedIn");
 
@@ -143,6 +159,7 @@ const Login = () => {
 						</label>
 						<input
 							type="text"
+							onInput={(e) => (e.target.value = e.target.value.slice(0, 20))}
 							placeholder="Enter your Username"
 							onChange={(e) =>
 								setUserData_({ ...userData, username: e.target.value })
@@ -154,6 +171,7 @@ const Login = () => {
 						</label>
 						<input
 							type="password"
+							onInput={(e) => (e.target.value = e.target.value.slice(0, 30))}
 							placeholder="Enter your password"
 							onChange={(e) =>
 								setUserData_({ ...userData, password: e.target.value })
@@ -162,7 +180,7 @@ const Login = () => {
 
 						<article className={styles.signUp_form_btn_container}>
 							<button onClick={handleLogin}>Login </button>
-							<button>Cancel</button>
+							<button onClick={handleCancel}>Cancel</button>
 						</article>
 
 						{/* <article className={styles.alert_subtle_container}>

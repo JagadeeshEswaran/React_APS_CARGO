@@ -324,7 +324,8 @@ const AddrInputs = ({
 
 							{/* Pincode / Postal Code */}
 							<input
-								type="textfield"
+								type="number"
+								onInput={(e) => (e.target.value = e.target.value.slice(0, 6))}
 								name=""
 								id=""
 								placeholder="Pincode *"
@@ -365,6 +366,7 @@ const AddrInputs = ({
 							<label htmlFor="">Phone : </label>
 							<input
 								type="number"
+								onInput={(e) => (e.target.value = e.target.value.slice(0, 10))}
 								placeholder="+91 XXXXX XXXXX *"
 								value={
 									person === "Sender"

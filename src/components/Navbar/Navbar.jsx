@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { IoIosApps } from "react-icons/io";
+import { HiHome } from "react-icons/hi2";
 
 import main_icon from "../../assets/Company Icons/Final/Icon_Full_Final.svg";
 import "../../styles/Navbar.css";
@@ -31,13 +32,20 @@ const Navbar = () => {
 					className="Navbar_menu_items rounded me-4 mt-2"
 					style={{ width: "auto", minWidth: "70vw" }}>
 					<menu>
-						{isLoggedIn ? (
+						{/* {isLoggedIn ? (
 							<article>
 								<a href="/">Home</a>
 							</article>
 						) : (
-							<></>
-						)}
+							
+						)} */}
+
+						<a href="/">
+							<HiHome
+								className="fs-2 p-1 home_icon_navbar"
+								style={{ color: "rounded-circle" }}
+							/>
+						</a>
 
 						<article>
 							<a href="/about">About Us</a>

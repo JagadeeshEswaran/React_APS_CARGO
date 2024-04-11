@@ -230,18 +230,28 @@ const Booking = () => {
 											Date : <span className={styles.man_span}>*</span>{" "}
 										</label>
 										<input
+											className="fw-bold"
 											type="date"
+											// min={new Date().toISOString().split("T")[0]}
+											value={new Date().toISOString().split("T")[0]}
+											disabled
 											name=""
 											id=""
-											value={bookingDetails.booking_date}
 											onChange={(e) => {
-												const selectedData = new Date(e.target.value);
-												const inMilliSec = selectedData.getTime();
+												const selectedDate = new Date(e.target.value);
+												const currentDate = new Date();
+												currentDate.setHours(0, 0, 0, 0);
 
-												setBookingDetails({
-													...bookingDetails,
-													booking_date_ms: inMilliSec,
-												});
+												if (selectedDate.getTime() < currentDate.getTime()) {
+													e.target.value = ""; // Clear the input if the selected date is before today
+													alert("Please select today's date.");
+												} else {
+													const inMilliSec = selectedDate.getTime();
+													setBookingDetails({
+														...bookingDetails,
+														booking_date_ms: inMilliSec,
+													});
+												}
 											}}
 										/>
 									</article>
@@ -289,23 +299,36 @@ const Booking = () => {
 
 									flexDirection: "column",
 								}}>
-								<label>Consignment Details : </label>
+								<label className="mb-2">Consignment Details : </label>
 
+								{/* For Weight of the Consignment */}
 								<input
-									type="text"
+									type="number"
+									step="0.5"
+									min="0"
+									max="9999"
 									name=""
 									id=""
 									placeholder="Weight"
 									value={bookingDetails.details.gross_weight}
-									onChange={(e) =>
-										setBookingDetails({
-											...bookingDetails,
-											details: {
-												...bookingDetails.details,
-												gross_weight: e.target.value,
-											},
-										})
-									}
+									onChange={(e) => {
+										const value = e.target.value;
+
+										if (
+											value === "" ||
+											(!isNaN(value) &&
+												parseFloat(value) >= 0 &&
+												parseFloat(value) <= 10000)
+										) {
+											setBookingDetails({
+												...bookingDetails,
+												details: {
+													...bookingDetails.details,
+													gross_weight: e.target.value,
+												},
+											});
+										}
+									}}
 								/>
 								<input
 									type="text"

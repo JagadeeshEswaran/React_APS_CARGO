@@ -42,7 +42,7 @@ const Services = () => {
 							</article>
 							<article>
 								<h5 className="text-center">Get Quotes</h5>
-								<p>Bettwe Price, for Sure</p>
+								<p>Better Price, for Sure</p>
 							</article>
 						</article>
 					</a>

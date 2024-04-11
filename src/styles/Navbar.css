@@ -41,6 +41,19 @@
 	margin-bottom: 0.75rem;
 }
 
+.home_icon_navbar {
+	color: aliceblue;
+	transition: 0.35s;
+	border: 2px solid transparent;
+}
+
+.home_icon_navbar:hover {
+	transform: scale(1.1);
+	color: rgb(175, 231, 253);
+	border: 2px solid rgb(79, 185, 247);
+	border-radius: 50%;
+}
+
 .Navbar_menu_items menu {
 	display: flex;
 	justify-content: space-evenly;

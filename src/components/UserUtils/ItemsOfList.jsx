@@ -105,7 +105,7 @@ const ItemsOfList = ({ item, idx, handleDeleteItem }) => {
 					<a
 						href={`/admin/tracking_update/${item.cgmtId}`}
 						target="_blank"
-						title="Track Consignment">
+						title="Update Consignment">
 						<article className="fs-1 list_item_update_icon d-flex justify-content-center align-items-center">
 							<MdNoteAlt className="icon_font rounded-circle" />
 						</article>
@@ -113,7 +113,7 @@ const ItemsOfList = ({ item, idx, handleDeleteItem }) => {
 					<a
 						href={`/tracking/${item.cgmtId}`}
 						target="_blank"
-						title="Update Consignment">
+						title="Track Consignment">
 						<article className="fs-1 list_item_track_icon d-flex justify-content-center align-items-center">
 							<FaMapMarkedAlt className="icon_font rounded-circle" />
 						</article>

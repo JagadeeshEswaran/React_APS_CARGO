@@ -11,6 +11,7 @@ import icons_PNG from "../assets/Company Icons/Figma/Icon_final.svg";
 
 import CircularProgress from "@mui/joy/CircularProgress";
 import { globalInstanceForAxios } from "../../Axios/GlobalInstance";
+import { isValidUsername } from "../Helpers/isValidUsername";
 
 const Register = () => {
 	const [isLoading, setLoading] = useState(true);
@@ -25,6 +26,22 @@ const Register = () => {
 
 	const handleRegFormSubmit = (e) => {
 		e.preventDefault();
+
+		if (!isValidUsername(userData.username)) {
+			return toast.error(
+				"Username contains Special Characters. '@' and '_' are only allowed to use",
+				{
+					position: "bottom-right",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				}
+			);
+		}
 
 		userData.username && userData.username.length >= 8
 			? userData.password && userData.password.length > 6
@@ -106,6 +123,15 @@ const Register = () => {
 		}
 	};
 
+	const handleClear = () => {
+		setUserData({
+			username: "",
+			password: "",
+			c_password: "",
+			access_priviliges: "",
+		});
+	};
+
 	useEffect(() => {
 		const admin_token = localStorage.getItem("token");
 		const db_token = "4bdf3d11b0b33f7420cee64b888285ed3a155610";
@@ -163,6 +189,9 @@ const Register = () => {
 								</label>
 								<input
 									type="text"
+									onInput={(e) =>
+										(e.target.value = e.target.value.slice(0, 15))
+									}
 									placeholder="Type your desired Username"
 									value={userData.username}
 									onChange={(e) =>
@@ -175,6 +204,9 @@ const Register = () => {
 								</label>
 								<input
 									type="password"
+									onInput={(e) =>
+										(e.target.value = e.target.value.slice(0, 20))
+									}
 									placeholder="Please create a safe password"
 									value={userData.password}
 									onChange={(e) =>
@@ -187,6 +219,9 @@ const Register = () => {
 								</label>
 								<input
 									type="password"
+									onInput={(e) =>
+										(e.target.value = e.target.value.slice(0, 20))
+									}
 									placeholder="Please repeat password"
 									value={userData.c_password}
 									onChange={(e) =>
@@ -196,7 +231,7 @@ const Register = () => {
 
 								<div className="dropdown mt-4">
 									<button
-										className="btn btn-secondary dropdown-toggle bg-info border-light  w-50"
+										className="btn btn-secondary dropdown-toggle bg-info border-light pe-2 w-50"
 										type="button"
 										data-bs-toggle="dropdown"
 										aria-expanded="false">
@@ -235,21 +270,20 @@ const Register = () => {
 								</div>
 
 								<article className={styles.signUp_form_btn_container}>
-									<button onClick={() => handleRegFormSubmit()}>
+									<button type="submit" onClick={() => handleRegFormSubmit()}>
 										Register
 									</button>
-									<button onClick={() => navigate("/admin/staff_page")}>
-										Cancel
+									<button type="button" onClick={handleClear}>
+										Clear
 									</button>
 								</article>
 
-								<article className={styles.alert_subtle_container}>
-									<p className={styles.alert_subtle_2}>
-										Already have an Account, Click hear to{" "}
-										<span>
-											<a href="/admin/login">Login</a>
-										</span>
-									</p>
+								<article className=" d-flex justify-content-center align-items-center">
+									<button
+										className="my-4 fw-bold shadow w-75 btn btn-danger"
+										onClick={() => navigate("/admin/all_users")}>
+										Cancel
+									</button>
 								</article>
 							</form>
 
