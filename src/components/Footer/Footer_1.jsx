@@ -10,7 +10,7 @@ import main_logo_for_footer from "../../assets/Company Icons/Final/Icon_Full_Fin
 const Footer_1 = () => {
 	return (
 		<footer className="footer_1_container d-flex justify-content-evenly align-items-center w-75  h-100">
-			<section className="h-100">
+			<section className="">
 				<article className="py-5">
 					<img
 						src={main_logo_for_footer}

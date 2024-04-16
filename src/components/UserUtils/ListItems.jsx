@@ -43,6 +43,8 @@ const ListItems = () => {
 	};
 
 	const handleDeleteItem = async (id) => {
+		alert("Please Confirm to Delete the Item");
+
 		try {
 			const response = await globalInstanceForAxios.delete(
 				`/consignment/remove/${id}`

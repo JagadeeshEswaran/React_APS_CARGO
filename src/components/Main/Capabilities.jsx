@@ -7,7 +7,7 @@ import "../../styles/Main_Section.css";
 const Capabilities = () => {
 	return (
 		<>
-			<section>
+			<section className="" style={{ height: "60svh" }}>
 				<article className="services_container">
 					<img src={capabilities_canvas} alt="" />
 				</article>

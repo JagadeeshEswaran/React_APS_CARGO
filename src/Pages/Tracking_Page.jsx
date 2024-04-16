@@ -246,11 +246,22 @@ const Tracking_Page = () => {
 								Current Status: &nbsp;
 								<span>{consignment_data?.tracking?.curr_status}</span>
 							</p>
-							<button onClick={handleShowAllUpdates} className="mt-3">
-								{!showAllTrackingUpdates
-									? "Show All Updates"
-									: "Hide All Updates"}
-							</button>
+
+							{consignment_data.details.delivery_agent === "Delhivery" ? (
+								<>
+									<a
+										href={`https://www.delhivery.com/tracking/${consignment_data.cgmtId}`}
+										target="_blank">
+										<button className="mt-3">Show All Updates</button>
+									</a>
+								</>
+							) : (
+								<button onClick={handleShowAllUpdates} className="mt-3">
+									{!showAllTrackingUpdates
+										? "Show All Updates"
+										: "Hide All Updates"}
+								</button>
+							)}
 						</article>
 					</section>
 				) : (
@@ -258,66 +269,70 @@ const Tracking_Page = () => {
 				)}
 
 				{showAllTrackingUpdates ? (
-					<section className={styles.all_updates_container}>
-						<article className={styles.all_updates_data}>
-							<h5>Tracking details</h5>
-						</article>
+					consignment_data.details.delivery_agent === "Delhivery" ? (
+						<></>
+					) : (
+						<section className={styles.all_updates_container}>
+							<article className={styles.all_updates_data}>
+								<h5>Tracking details</h5>
+							</article>
 
-						{/* Consignment Timeline */}
-						<article
-							className="col-6 bg-light bg-gradient bg-opacity-25 mx-5 mt-5 d-flex flex-row justify-content-start align-items-center"
-							style={{
-								width: "auto",
-								minWidth: "10%",
-								minHeight: "60%",
-								height: "auto",
-							}}>
-							{consignment_data?.tracking.booked.status ? (
-								<TimeLinePtr2
-									title="Booked"
-									date={consignment_data?.tracking?.booked.date}
-								/>
-							) : (
-								<></>
-							)}
+							{/* Consignment Timeline */}
+							<article
+								className="col-6 bg-light bg-gradient bg-opacity-25 mx-5 mt-5 d-flex flex-row justify-content-start align-items-center"
+								style={{
+									width: "auto",
+									minWidth: "10%",
+									minHeight: "60%",
+									height: "auto",
+								}}>
+								{consignment_data?.tracking.booked.status ? (
+									<TimeLinePtr2
+										title="Booked"
+										date={consignment_data?.tracking?.booked.date}
+									/>
+								) : (
+									<></>
+								)}
 
-							{consignment_data?.tracking.dispatch.status ? (
-								<TimeLinePtr2
-									title="Dispatched"
-									date={consignment_data?.tracking.dispatch.date}
-								/>
-							) : (
-								<></>
-							)}
+								{consignment_data?.tracking.dispatch.status ? (
+									<TimeLinePtr2
+										title="Dispatched"
+										date={consignment_data?.tracking.dispatch.date}
+									/>
+								) : (
+									<></>
+								)}
 
-							{consignment_data?.tracking.in_transit.status ? (
-								<TimeLinePtr2
-									title="In-Transit"
-									date={consignment_data?.tracking.in_transit.date}
-								/>
-							) : (
-								<></>
-							)}
+								{consignment_data?.tracking.in_transit.status ? (
+									<TimeLinePtr2
+										title="In-Transit"
+										date={consignment_data?.tracking.in_transit.date}
+									/>
+								) : (
+									<></>
+								)}
 
-							{consignment_data?.tracking.out_for_delivery.status ? (
-								<TimeLinePtr2
-									title="Out-For-Delivery"
-									date={consignment_data?.tracking.out_for_delivery.status}
-								/>
-							) : (
-								<></>
-							)}
+								{consignment_data?.tracking.out_for_delivery.status ? (
+									<TimeLinePtr2
+										title="Out-For-Delivery"
+										date={consignment_data?.tracking.out_for_delivery.status}
+									/>
+								) : (
+									<></>
+								)}
 
-							{consignment_data?.tracking.delivered.status ? (
-								<TimeLinePtr2
-									title="Delivered"
-									date={consignment_data?.tracking.delivered.date}
-								/>
-							) : (
-								<></>
-							)}
-						</article>
-					</section>
+								{consignment_data?.tracking.delivered.status ? (
+									<TimeLinePtr2
+										title="Delivered"
+										date={consignment_data?.tracking.delivered.date}
+									/>
+								) : (
+									<></>
+								)}
+							</article>
+						</section>
+					)
 				) : null}
 			</section>
 

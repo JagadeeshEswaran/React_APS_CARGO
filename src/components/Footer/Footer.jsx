@@ -6,7 +6,7 @@ import Footer_2 from "./Footer_2";
 
 const Footer = () => {
 	return (
-		<>
+		<section className="" style={{ height: "" }}>
 			<section className="footer_container_1">
 				<Footer_1 />
 			</section>
@@ -14,7 +14,7 @@ const Footer = () => {
 			<section className="footer_container_2">
 				<Footer_2 />
 			</section>
-		</>
+		</section>
 	);
 };
 

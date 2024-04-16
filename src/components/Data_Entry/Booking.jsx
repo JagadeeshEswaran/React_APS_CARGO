@@ -45,6 +45,7 @@ const Booking = () => {
 			package_type: "",
 			package_qty: "",
 			delivery_agent: "",
+			delhivery_lrn: "",
 		},
 		tracking: {
 			curr_status: "booked",
@@ -160,6 +161,7 @@ const Booking = () => {
 							package_type: "",
 							package_qty: "",
 							delivery_agent: "",
+							delhivery_lrn: "",
 						},
 						tracking: {
 							curr_status: "",
@@ -485,6 +487,27 @@ const Booking = () => {
 										<label htmlFor="others">Other</label>
 									</article>
 								</article>
+
+								{bookingDetails.details.delivery_agent === "Delhivery" && (
+									<article className="mt-2">
+										<input
+											type="number"
+											placeholder="Delhivery LRN No."
+											onInput={(e) =>
+												(e.target.value = e.target.value.slice(0, 10))
+											}
+											onChange={(e) =>
+												setBookingDetails({
+													...bookingDetails,
+													details: {
+														...bookingDetails.details,
+														delhivery_lrn: e.target.value,
+													},
+												})
+											}
+										/>
+									</article>
+								)}
 							</form>
 
 							{/* <article

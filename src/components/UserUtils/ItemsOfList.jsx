@@ -5,7 +5,6 @@ import { MdNoteAlt } from "react-icons/md";
 import { FaMapMarkedAlt } from "react-icons/fa";
 
 import { RiDeleteBin5Fill } from "react-icons/ri";
-import { globalInstanceForAxios } from "../../../Axios/GlobalInstance";
 
 const ItemsOfList = ({ item, idx, handleDeleteItem }) => {
 	const [hoveringItem, setHoveringItem] = useState();
@@ -25,7 +24,15 @@ const ItemsOfList = ({ item, idx, handleDeleteItem }) => {
 				onClick={() => console.log(item)}
 				className="border border-dark-subtle col-2 py-2 text-center position-relative"
 				style={{ height: "2rem" }}>
-				<h6 className="p-0 m-0">{item.cgmtId ? item.cgmtId : ""}</h6>
+				<h6 className="p-0 m-0">
+					{item.cgmtId ? item.cgmtId : ""}
+					{item.details.delivery_agent === "Delhivery" ||
+					item.details.delhivery_lrn ? (
+						<>&nbsp; / {item.details.delhivery_lrn}</>
+					) : (
+						<></>
+					)}
+				</h6>
 				<h6 className="p-0 m-0 mt-1" style={{ fontSize: "0.75rem" }}>
 					{new Date(item.booking_date).toDateString()}
 				</h6>
@@ -34,7 +41,7 @@ const ItemsOfList = ({ item, idx, handleDeleteItem }) => {
 					<article
 						onClick={() => handleDeleteItem(item._id)}
 						type="button"
-						className="ms-5 me-4 text-danger position-absolute"
+						className="ms-4 me-4 text-danger position-absolute"
 						style={{ bottom: "14px", left: "-15px", transition: "0.3s" }}>
 						<RiDeleteBin5Fill
 							className="fs-3"

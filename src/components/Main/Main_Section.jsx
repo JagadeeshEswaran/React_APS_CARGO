@@ -23,9 +23,9 @@ const Main_Section = () => {
 				<Capabilities />
 			</section>
 
-			<section>
+			{/* <section>
 				<Customers />
-			</section>
+			</section> */}
 		</>
 	);
 };
